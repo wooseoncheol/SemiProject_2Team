@@ -14,16 +14,23 @@ h2{
 	text-align:center;
 }
 h4{
+	margin-left: 30px;
 	margin-top: 5px;
 	margin-bottom:3px;
 }
 img{
+	margin-left:30px;
 	width:200px;
 	height:300px;
 }
 a{
+	margin-left:30px;
 	color: gray;
 	font-size:12px;
+}
+p{
+	margin-left: 30px;
+	margin-top: -2px;
 }
 </style>
 </head>
@@ -51,7 +58,7 @@ a{
 				<img src="<%=arr.get(i).getG_img() %>"><br>
 				<a><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
-				<%=arr.get(i).getG_price() %>원
+				<p><%=arr.get(i).getG_price() %>원</p>
 				</td>
 				<%
 			}
