@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+a {
+text-decoration:none;
+}
+</style>
 <footer>
 	<hr>
 	<div>
@@ -11,6 +16,6 @@
 	<br>
 	최고의 서비스를 제공하기 위해 쿠키를 사용합니다.</p>
 	<a>1:1문의사항</a>
-	<a>공지사항</a>
+	<a href="/ezenstyle/notice/noticeList.jsp">공지사항</a>
 	</div>
 </footer>
