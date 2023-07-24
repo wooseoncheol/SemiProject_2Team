@@ -1,21 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.ezenstyle.goods.*" %>  
+<%@ page import="java.util.*" %>
+<jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/semiLayout.css">
+<style>
+h2{
+	text-align:center;
+}
+h4{
+	margin-top: 5px;
+	margin-bottom:3px;
+}
+img{
+	width:200px;
+	height:300px;
+}
+a{
+	color: gray;
+	font-size:12px;
+}
+</style>
 </head>
 <body>
 <%@include file="header.jsp" %>
-<h1>test</h1>
-<h1>1. 유성진 세팅 완료!</h1>
-<h1>2. 우선철 세팅 완료!</h1>
-<h1>3. 안재영 세팅 완료!</h1>
-<h1>4. 염한별 세팅 완료!</h1>
-<h1>5. 윤지영 세팅 완료!</h1>
-<h1>6. 김시연 세팅 완료!</h1>
+<section>
+	<article>
+		<h2>BEST ITEM</h2>
+		<table>
+		<caption>인기 상품 목록</caption>
+			<tr>
+		<%
+		ArrayList<GoodsDTO> arr=gdao.bestItemList();
+		
+		if(arr==null || arr.size()==0){
+			%>
+			<td colspan="5" align="center">
+			등록된 상품이 없습니다.
+			</td>
+			<%
+		}else{
+			for(int i=0;i<arr.size();i++){
+				%>
+				<td>
+				<img src="<%=arr.get(i).getG_img() %>"><br>
+				<a><b><%=arr.get(i).getG_category() %></b></a>
+				<h4><%=arr.get(i).getG_name()%></h4>
+				<%=arr.get(i).getG_price() %>원
+				</td>
+				<%
+			}
+		}
+		
+		
+		%>
+			</tr>
+		</table>
+		
+	</article>
+	<!-- ---------------------------------------- -->
+	<br>
+	<br>
+	<br>
+	<article>
+		<h2>NEW ARRIVAL</h2>
+		<table>
+		<caption>신상품 목록</caption>
+			<tr>
+		<%
+		ArrayList<GoodsDTO> arr2=gdao.newItemList();
+		
+		if(arr2==null || arr2.size()==0){
+			%>
+			<td colspan="5" align="center">
+			등록된 상품이 없습니다.
+			</td>
+			<%
+		}else{
+			for(int i=0;i<arr.size();i++){
+				%>
+				<td>
+				<img src="<%=arr2.get(i).getG_img() %>"><br>
+				<a><b><%=arr2.get(i).getG_category() %></b></a>
+				<h4><%=arr2.get(i).getG_name()%></h4>
+				<%=arr2.get(i).getG_price() %>원
+				</td>
+				<%
+			}
+		}
+		
+		
+		%>
+			</tr>
+		</table>
+	</article>
+	<br>
+	<br>
+	<br>
+</section>
 <%@include file="footer.jsp" %>
 </body>
 </html>
