@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
 article{
 text-align: center;
@@ -13,9 +14,9 @@ li{
 list-style-type:none;
 }
 
-hr{
-
-width: 200px;}
+#q123{
+width: 200px;
+}
 </style>
 </head>
 <%
@@ -30,6 +31,7 @@ if(cks!=null){
 }
 %>
 <body>
+<%@include file="../header.jsp" %>
 <h1>로그인 페이지</h1>
 <section>
 	<article>
@@ -41,13 +43,13 @@ if(cks!=null){
 			
 			<li><br><input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %>>아이디 기억</li>
 			<li><br><input type="submit" value="LOGIN" ></li>
-			<li><br><hr></li>
+			<li><br><hr id="q123"></li>
 
 			<li><br><input type="button" value="JOIN US" onclick="location.href='memberJoin.jsp'"></li>
 		</ul>	
 		</form>
 	</article>
 </section>
-
+<%@include file="../footer.jsp" %>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <script>
 function show(){
 	window.open('idcheck.jsp','popup','width=570,height=200,top=400,left=1300');
@@ -16,6 +17,7 @@ function show(){
 </script>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h1>회원가입</h1>
 <section>
 	<article>
@@ -52,6 +54,6 @@ function show(){
 		</form>
 	</article>
 </section>
-
+<%@include file="../footer.jsp" %>
 </body>
 </html>

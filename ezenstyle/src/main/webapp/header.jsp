@@ -10,16 +10,16 @@ String sname=(String)session.getAttribute("sname");
       %>
       <div><a href="/ezenstyle/member/memberLogin.jsp">LOGIN</a>
       | <a href="/ezenstyle/member/memberJoin.jsp">JOIN</a>
-      | <a href="/myweb/member/memberMypage.jsp">MYPAGE</a>
-      | <a href="/myweb/member/memberCart.jsp">CART</a>
+      | <a href="/ezenstyle/member/memberMypage.jsp">MYPAGE</a>
+      | <a href="/ezenstyle/member/memberCart.jsp">CART</a>
       </div>
       <%
    }else{
       %>
       <div><%=sname %>님 로그인중... 
-      | <a href="/myweb/member/memberLogout.jsp">LOGOUT</a>
+      | <a href="/ezenstyle/member/memberLogout.jsp">LOGOUT</a>
       | <a href="/ezenstyle/member/memberMypage.jsp">MYPAGE</a>
-      | <a href="/myweb/member/memberCart.jsp">CART</a>
+      | <a href="/ezenstyle/member/memberCart.jsp">CART</a>
       </div>
       <%
    }
