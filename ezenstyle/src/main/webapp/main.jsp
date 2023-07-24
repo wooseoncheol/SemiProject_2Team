@@ -23,7 +23,7 @@ img{
 	width:200px;
 	height:300px;
 }
-a{
+#ca{
 	margin-left:30px;
 	color: gray;
 	font-size:12px;
@@ -56,7 +56,7 @@ p{
 				%>
 				<td>
 				<img src="<%=arr.get(i).getG_img() %>"><br>
-				<a><b><%=arr.get(i).getG_category() %></b></a>
+				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
 				<p><%=arr.get(i).getG_price() %>원</p>
 				</td>
@@ -93,14 +93,13 @@ p{
 				%>
 				<td>
 				<img src="<%=arr2.get(i).getG_img() %>"><br>
-				<a><b><%=arr2.get(i).getG_category() %></b></a>
+				<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
 				<h4><%=arr2.get(i).getG_name()%></h4>
 				<p><%=arr2.get(i).getG_price() %>원</p>
 				</td>
 				<%
 			}
 		}
-		
 		
 		%>
 			</tr>
