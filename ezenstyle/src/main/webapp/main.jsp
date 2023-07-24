@@ -95,7 +95,7 @@ p{
 				<img src="<%=arr2.get(i).getG_img() %>"><br>
 				<a><b><%=arr2.get(i).getG_category() %></b></a>
 				<h4><%=arr2.get(i).getG_name()%></h4>
-				<%=arr2.get(i).getG_price() %>원
+				<p><%=arr2.get(i).getG_price() %>원</p>
 				</td>
 				<%
 			}
