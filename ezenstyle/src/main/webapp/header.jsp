@@ -8,18 +8,18 @@ String sname=(String)session.getAttribute("sname");
 	<%
    if(sname==null){
       %>
-      <div><a>LOGIN</a>
-      | <a>JOIN</a>
-      | <a>MYPAGE</a>
-      | <a>CART</a>
+      <div><a href="/ezenstyle/member/memberLogin.jsp">LOGIN</a>
+      | <a href="/ezenstyle/member/memberJoin.jsp">JOIN</a>
+      | <a href="/myweb/member/memberMypage.jsp">MYPAGE</a>
+      | <a href="/myweb/member/memberCart.jsp">CART</a>
       </div>
       <%
    }else{
       %>
       <div><%=sname %>님 로그인중... 
-      | <a>LOGOUT</a>
-      | <a>MYPAGE</a>
-      | <a>CART</a>
+      | <a href="/myweb/member/memberLogout.jsp">LOGOUT</a>
+      | <a href="/ezenstyle/member/memberMypage.jsp">MYPAGE</a>
+      | <a href="/myweb/member/memberCart.jsp">CART</a>
       </div>
       <%
    }
@@ -31,7 +31,7 @@ String sname=(String)session.getAttribute("sname");
 			<li>KID</li>
 			<li>ACCESSORIES</li>
 			<li>SHOES</li>
-			<li><input type="text" name="search"><img src="img/search.png"></li>
+			<li><input type="text" name="search"><img src="/ezenstyle/img/search.png"></li><!-- 절대경로로 수정_유성진-->
 		</ul>
 	</nav>
 	<hr>
