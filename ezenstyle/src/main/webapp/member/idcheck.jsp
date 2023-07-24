@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+ 	request.setCharacterEncoding("UTF-8");
+%>
 <jsp:useBean id="mdto" class="com.ezenstyle.member.MemberDTO"></jsp:useBean>
 <jsp:setProperty property="*" name="mdto"/>
 <jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
@@ -38,7 +41,7 @@ function show(){
 </head>
 <body>
 <div>
-<form name="id">
+<form name="id" method="post">
 <fieldset>
 	<legend>아이디 중복 검사</legend>
 	<table>

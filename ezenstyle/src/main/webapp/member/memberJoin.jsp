@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+ 	request.setCharacterEncoding("UTF-8");   
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +19,7 @@ function show(){
 <h1>회원가입</h1>
 <section>
 	<article>
-		<form name="memberjoin" action="memberJoin_ok.jsp">
+		<form name="memberjoin" action="memberJoin_ok.jsp" method="post">
 		<fieldset>
 		<legend>회원가입</legend>
 		<table>

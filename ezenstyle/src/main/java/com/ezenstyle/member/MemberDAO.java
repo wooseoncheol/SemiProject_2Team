@@ -9,10 +9,16 @@ public class MemberDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
+	// 상수, 누구나사용가능, 바로사용가능
+	final public static int NOT_ID=1;
+	final public static int NOT_PWD=2;
+	final public static int LOGIN_OK=3;
+	final public static int ERROR=-1;
+	
 	public MemberDAO() {
 		System.out.println("DAO호출");//test
 	}
-	
+	/** 회원가입 메소드_유성진*/
 	public int memberInsert(MemberDTO dto) {
 		
 		try {
@@ -43,6 +49,7 @@ public class MemberDAO {
 		}
 	}
 	
+	/** 회원가입_아이디 중복 메소드_유성진*/
 	public int memberDuplication(String id) {
 		try {
 			
@@ -72,5 +79,62 @@ public class MemberDAO {
 		
 	}
 	
+	/** 로그인 메소드_유성진*/
+	public int loginCheck(String userid, String userpwd){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select pwd from semi_member where id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String dbpwd=rs.getString(1);
+				if(dbpwd.equals(userpwd)) {
+					return LOGIN_OK;
+				}else {
+					return NOT_PWD;
+				}
+			}else {
+				return NOT_ID;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+		}	
+	}
+	
+	/** 로그인_아이디 기억하기_메소드_유성진*/
+	public String getUserInfo(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql = "select name from semi_member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+	}
 	
 }
