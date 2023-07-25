@@ -32,14 +32,29 @@ p{
 	margin-left: 30px;
 	margin-top: -2px;
 }
+h3{
+	margin-left:20px;
+}
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+#searchIcon{
+	width:20px;
+	height:20px;
+}
 </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
 <section>
 	<article>
-		<h3>검색 결과:"<%=userInput %>"</h3>
+		<h3><img src="/ezenstyle/img/search.png" alt="검색아이콘" id="searchIcon">&nbsp;&nbsp;<%=userInput %></h3>
 		<table>
+		<caption class="blind">검색된 상품</caption>
 			<tr>
 			    <%
 				ArrayList<GoodsDTO> arr=gdao.searchItem(userInput);
