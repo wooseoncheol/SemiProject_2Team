@@ -32,9 +32,6 @@ p{
 	margin-left: 30px;
 	margin-top: -2px;
 }
-td{
-	margin-left:50px;
-}
 </style>
 </head>
 <body>
