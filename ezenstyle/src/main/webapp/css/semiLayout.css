@@ -14,7 +14,12 @@ header h1{
 	color:black;
 	padding: 10px;
 }
-
+header h1 a:link{
+	color:black;
+}
+header h1 a:visited{
+	color:black;
+}
 header nav li{
 	list-style-type: none;
 	display: inline;

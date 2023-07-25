@@ -10,7 +10,7 @@ function search(){
 }
 </script>
 <header>
-	<h1>EZEN STYLE</h1>
+	<h1><a href="/ezenstyle/main.jsp">EZEN STYLE</a></h1>
 	<%
    if(sname==null){
       %>
