@@ -52,7 +52,9 @@ public class GoodsDAO {
 			return null;
 		}finally {
 			try {
-				
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
@@ -97,9 +99,46 @@ public class GoodsDAO {
 			return null;
 		}finally {
 			try {
-				
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			} catch (Exception e2) {
 				// TODO: handle exception
+			}
+		}
+	}
+	
+	//검색 기능 
+	public ArrayList<GoodsDTO> searchItem(String userInput){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select * from semi_goods where g_name like '%"+userInput+"%'";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
+			while(rs.next()) {
+				int idx=rs.getInt("idx");
+				String g_name=rs.getString("g_name");
+				String g_img=rs.getString("g_img");
+				String g_size=rs.getString("g_size");
+				int g_price=rs.getInt("g_price");
+				String g_category=rs.getString("g_category");
+				int readnum=rs.getInt("readnum");
+				
+				GoodsDTO dto=new GoodsDTO(idx, g_name, g_img, g_size, g_price, g_category, readnum);
+				arr.add(dto);
+			}
+			return arr;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 	}

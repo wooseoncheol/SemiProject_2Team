@@ -3,6 +3,12 @@
 <%
 String sname=(String)session.getAttribute("sname");
 %>
+<script>
+function search(){
+	let userInput=document.searchForm.userInput.value;
+	location.href='search.jsp?userInput='+userInput;
+}
+</script>
 <header>
 	<h1>EZEN STYLE</h1>
 	<%
@@ -25,14 +31,19 @@ String sname=(String)session.getAttribute("sname");
    }
    %>
 	<nav>
+	<form name="searchForm">
 		<ul>
 			<li>MAN</li>
 			<li>WOMAN</li>
 			<li>KID</li>
 			<li>ACCESSORIES</li>
 			<li>SHOES</li>
-			<li><input type="text" name="search"><img src="/ezenstyle/img/search.png"></li><!-- 절대경로로 수정_유성진-->
+			<li></li>
+			<li></li>
+			<li></li>
+			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
 		</ul>
+	</form>
 	</nav>
 	<hr>
 </header>
