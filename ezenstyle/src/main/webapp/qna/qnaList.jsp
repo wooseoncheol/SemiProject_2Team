@@ -33,6 +33,18 @@ padding-left: 200px;
 </style>
 </head>
 <%
+String sid=(String)session.getAttribute("sid");
+if(sid==null){
+	%>
+	<script>
+	window.alert('로그인 후 이용 가능하십니다.');
+	location.href='/ezenstyle/main.jsp';
+	</script>
+	<%
+	return;
+}
+%>
+<%
 int totalCnt=qdao.getTotalCnt();
 int listSize=10;
 int pageSize=5;

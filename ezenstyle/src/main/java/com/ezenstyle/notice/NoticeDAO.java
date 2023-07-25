@@ -2,6 +2,7 @@ package com.ezenstyle.notice;
 
 import java.sql.*;
 import java.util.*;
+import com.ezenstyle.member.MemberDTO;
 
 public class NoticeDAO {
 	
@@ -12,6 +13,26 @@ public class NoticeDAO {
 	public NoticeDAO() {
 
 	}
+	/**관리자 게정 판단_재영*/
+	public int mgrJudge(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select * from semi_member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			int count=ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+			if(ps!=null)ps.close();
+			if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+		}
+	}
+	
 	
 	/**총 게시물 수 관련 메서드_재영*/
 	public int getTotalCnt() {

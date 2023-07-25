@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.ezenstyle.notice.*" %>
+<%@ page import="com.ezenstyle.member.*" %>
 <jsp:useBean id="ndao" class="com.ezenstyle.notice.NoticeDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -85,9 +86,22 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 }
 %>
 						</td>
+						<%
+						String id=(String)session.getAttribute("sid");
+						int result=ndao.mgrJudge(id);
+						if (result>0) {
+						%>
 						<td align="center">
 						<a href="noticeWrite.jsp">	글쓰기</a>
 						</td>
+						<%
+						} else {
+						%>
+						<td>
+						</td>	
+						<%	
+						}
+						%>
 					</tr>
 				</tfoot>
 				<tbody>
