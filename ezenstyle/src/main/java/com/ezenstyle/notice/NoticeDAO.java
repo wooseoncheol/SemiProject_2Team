@@ -17,11 +17,13 @@ public class NoticeDAO {
 	public int mgrJudge(String id) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select * from semi_member where id=?";
+			String sql="select mgr from semi_member where id=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
-			int count=ps.executeUpdate();
-			return count;
+			rs=ps.executeQuery();
+			rs.next();
+			int mgr=rs.getInt("mgr");
+			return mgr;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;

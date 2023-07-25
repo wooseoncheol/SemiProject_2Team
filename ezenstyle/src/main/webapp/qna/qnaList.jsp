@@ -12,16 +12,26 @@
 <style>
 table {
 margin: 0px auto;
-height: auto;
-min-height: 100px;
-width: 700px;
+width: 800px;
 border-collapse: collapse;
 }
-table thead th {
+table tbody td {
+height: 50px;
 border-bottom: 1px solid gray;
+}
+table thead th {
+height: 70px;
+border-bottom: 1px solid gray;
+}
+table tfoot td {
+height: 70px;
 }
 table td {
 text-align: center;
+
+}
+table tr{
+
 }
 a {
 text-decoration: none;

@@ -28,6 +28,7 @@ if(result==logindao.LOGIN_OK){
 	session.setAttribute("sid", userid);
 	session.setAttribute("sname", name);
 	
+	
 	%> 
 	<script>
 	window.alert('<%=name%>님 환영합니다~');

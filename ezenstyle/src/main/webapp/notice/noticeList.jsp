@@ -13,22 +13,36 @@
 <style>
 table {
 margin: 0px auto;
-height: auto;
-min-height: 100px;
-width: 700px;
+width: 800px;
 border-collapse: collapse;
 }
-table thead th {
+table tbody td {
+height: 50px;
 border-bottom: 1px solid gray;
+}
+table thead th {
+height: 70px;
+border-bottom: 1px solid gray;
+}
+table tfoot td {
+height: 70px;
 }
 table td {
 text-align: center;
+
 }
 table tr{
 
 }
 a {
 text-decoration: none;
+}
+.a{
+color: red;
+font-weight: bold;
+}
+.b {
+color: red;
 }
 </style>
 </head>
@@ -120,16 +134,19 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 						<%
 						if (arr.get(i).getRef()==0){ 
 						%>
-							<td>공지</td>
+							<td class="a">공지</td>
+							<td><a class="b" href="noticeContent.jsp?idx=<%=arr.get(i).getIdx()%>&readnum=<%=arr.get(i).getReadnum()%>"><%=arr.get(i).getSubject() %></a></td>	
+							<td class="b"><%=arr.get(i).getWritedate() %></td>
+							<td class="b"><%=arr.get(i).getReadnum() %></td>
+						</tr>
 						<%} else {%>
 							<td><%=arr.get(i).getRef() %></td>
-						<%}
-							%>
 							<td><a href="noticeContent.jsp?idx=<%=arr.get(i).getIdx()%>&readnum=<%=arr.get(i).getReadnum()%>"><%=arr.get(i).getSubject() %></a></td>	
 							<td><%=arr.get(i).getWritedate() %></td>
 							<td><%=arr.get(i).getReadnum() %></td>
 						</tr>
-					<%
+						<%}
+							
 					}
 					
 				}
