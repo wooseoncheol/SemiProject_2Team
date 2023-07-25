@@ -14,26 +14,27 @@ String userInput=request.getParameter("userInput");
 <link rel="stylesheet" type="text/css" href="css/semiLayout.css">
 <style>
 h4{
-	margin-left: 30px;
+	margin-left:80px;
 	margin-top: 5px;
 	margin-bottom:3px;
 }
-img{
-	margin-left:30px;
+
+#goodsIcon{
+	margin-left:80px;
 	width:200px;
 	height:300px;
 }
 #ca{
-	margin-left:30px;
+	margin-left:80px;
 	color: gray;
 	font-size:12px;
 }
 p{
-	margin-left: 30px;
+	margin-left:80px;
 	margin-top: -2px;
 }
 h3{
-	margin-left:20px;
+	margin-left:80px;
 }
 .blind {
   position: absolute;
@@ -42,17 +43,35 @@ h3{
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+label{
+	border-bottom: 1px solid black;
+}
 #searchIcon{
+	margin-left:-20px;
 	width:20px;
 	height:20px;
+}
+#searchtxt{
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	outline:none;
+	font-size: 17px;
+}
+table{
+	clear: both;
 }
 </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
 <section>
-	<article>
-		<h3><img src="/ezenstyle/img/search.png" alt="검색아이콘" id="searchIcon">&nbsp;&nbsp;<%=userInput %></h3>
+	<article>	
+		<br>
+		<h3><img src="/ezenstyle/img/search.png" alt="검색아이콘" id="searchIcon">
+		&nbsp;&nbsp;
+		<input type="text" value="<%=userInput %>" readonly id="searchtxt">
+		</h3>
 		<table>
 		<caption class="blind">검색된 상품</caption>
 			<tr>
@@ -72,7 +91,7 @@ h3{
 						}
 						%>
 						<td>
-							<img src="<%=arr.get(i).getG_img()%>" alt="상품이미지"><br>
+							<img src="<%=arr.get(i).getG_img()%>" alt="상품이미지" id="goodsIcon"><br>
 							<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 							<h4><%=arr.get(i).getG_name()%></h4>
 							<p><%=arr.get(i).getG_price() %>원</p>
@@ -83,6 +102,10 @@ h3{
 				%>
 			</tr>
 		</table>
+		<br>
+		<br>
+		<br>
+		<br>
 	</article>
 </section>
 <%@include file="footer.jsp" %>
