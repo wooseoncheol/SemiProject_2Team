@@ -7,16 +7,44 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
-article{
+.article1{
 text-align: center;
 }
+.div1{
+height:450px;
+width:500px;
+padding-top:50px;
+margin: 0px auto;
+}
 li{
+text-align:left;
 list-style-type:none;
 }
-
-#q123{
-width: 200px;
+.a{
+width:400px;
+border-style: solid;
+outline:none;
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+border-bottom: ;
+border-color: #898989;
+font-size: 17px;
 }
+.btn1{
+width:400px;
+height:35px;
+background-color:white;
+border-style: solid;
+border-top-color:#E7E7E7;
+border-left-color:#E7E7E7;
+border-bottom-color: #E7E7E7;
+border-right-color: #E7E7E7;
+border-radius: 7px;
+}
+
+.li3{}
+
 </style>
 </head>
 <%
@@ -32,21 +60,21 @@ if(cks!=null){
 %>
 <body>
 <%@include file="../header.jsp" %>
-<h1>로그인 페이지</h1>
 <section>
-	<article>
+	<article class=art1>
 		<form name="login" action="memberLogin_ok.jsp" method="post">
-		
+		<div class="div1">
 		<ul>
-			<li><label>USERID</label><br><input type="text" name="userid" value="<%= saveid%>"></li>
-			<li><label>PASSWORD</label><br><input type="password" name="userpwd"></li>
+			<li><label>USER ID</label><br><br><input class="a" type="text" name="userid" value="<%= saveid%>"></li>
+			<li><br><br><label>PASSWORD</label><br><br><input class="a" type="password" name="userpwd"></li>
 			
-			<li><br><input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %>>아이디 기억</li>
-			<li><br><input type="submit" value="LOGIN" ></li>
-			<li><br><hr id="q123"></li>
+			<li class="li3"><br><input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %>>아이디 기억</li>
+			<li><br><br><input class="btn1" type="submit" value="LOGIN" ></li>
+			<li><br></li>
 
-			<li><br><input type="button" value="JOIN US" onclick="location.href='memberJoin.jsp'"></li>
-		</ul>	
+			<li><br><input class="btn1" type="button" value="JOIN US!" onclick="location.href='memberJoin.jsp'"></li>
+		</ul>
+		</div>	
 		</form>
 	</article>
 </section>

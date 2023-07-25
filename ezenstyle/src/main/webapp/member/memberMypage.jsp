@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.ezenstyle.member.*" %>
 <%
+request.setCharacterEncoding("utf-8");
 String sid=(String)session.getAttribute("sid");
 String upwd = request.getParameter("pwd");
 %>
@@ -14,15 +15,64 @@ String upwd = request.getParameter("pwd");
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
-#container {display: flex;}
-#box1{flex:1;background-color: blue;}
-#box2{flex:1;background-color: orange;}
-#box3{flex:1;background-color: gray;}
-#ul1{margin-left:100px;}
-table{margin-left:100px;}
+#container {display: flex;padding-top: 30px;}
+#box1{flex:1;}
+#box2{flex:1;padding-top: 30px;}
+#box3{flex:1;padding-top: 40px;}
+#ul1{margin-left:70px;}
+.tname{
+text-align: center;
+}
+#box2 table{margin-left:50px;}
+#box2 table tr th{padding-bottom: 30px;}
+#box2 table tr td{height: 45px;}
+#box3 table{margin-left:80px;}
+#box3 table tr td{height: 35px;}
+#lname{
+text-align: center;
+}
 li{
 list-style-type:none;
 }
+.btn1{
+margin-left:15px;
+width:50px;
+height:28px;
+background-color: white;
+border-style: solid;
+border-top-color:#E7E7E7;
+border-left-color:#E7E7E7;
+border-bottom-color: #E7E7E7;
+border-right-color: #E7E7E7;
+border-radius: 5px;
+}
+.btn2{
+margin-top:20px;
+width:200px;
+height:35px;
+background-color: white;
+border-style: solid;
+border-top-color:#E7E7E7;
+border-left-color:#E7E7E7;
+border-bottom-color: #E7E7E7;
+border-right-color: #E7E7E7;
+border-radius: 7px;
+}
+.atd{
+text-align: center;
+}
+.a{
+width:200px;
+border-style: solid;
+outline:none;
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+border-bottom: ;
+border-color: #D5D5D5;
+font-size: 17px;
+}
+
 </style>
 </head>
 <body>
@@ -61,6 +111,9 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 
 <div id="box2"> 
 <table>
+	<tr>
+	<th class="tname" colspan="2">* 내 정보 보기 *</th>
+	</tr>
 	<%
 	if(arr==null||arr.size()==0){
 		%>
@@ -73,22 +126,22 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 			MemberDTO dto=arr.get(i);
 			%>
 			<tr>
-			<td> 이름 </td><td><%=dto.getName()%></td>
+			<td> 이름 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getName()%></td>
 			</tr>
 			<tr>
-			<td> 아이디 </td><td><%=dto.getId()%></td>
+			<td> 아이디 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getId()%></td>
 			</tr>
 			<tr>
-			<td> 비밀번호 </td><td><%=dto.getId()%></td>
+			<td> 비밀번호 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getId()%></td>
 			</tr>
 			<tr>
-			<td> 주소 </td><td><%=dto.getAdr()%></td>
+			<td> 주소 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getAdr()%></td>
 			</tr>
 			<tr>
-			<td> 휴대전화 </td><td><%=dto.getTel()%></td>
+			<td> 휴대전화 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getTel()%></td>
 			</tr>
 			<tr>
-			<td> 이메일 </td><td><%=dto.getEmail()%></td>
+			<td> 이메일 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getEmail()%></td>
 			</tr>
 			<tr>
 			<td>
@@ -102,13 +155,13 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 </div>
 
 <div id="box3">
-<form name="updateinfo">
+<form name="updateinfo" method="post">
 <ul>
-	<li> 상세 정보 수정</li>
-	<li><br>비밀번호 * <input type="text" name="pwd"> <input type="submit" value="확인"></li>
+	<li class="lname"> * 상세 정보 수정 * </li>
+	<li><br>비밀번호 * <input class="a" type="text" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
 </ul>
 </form>
-<form name="updateinfo2" action="memberMypage_ok.jsp">
+<form name="updateinfo2" action="memberMypage_ok.jsp" method="post">
 <table>
 <%if(dto1 == null){
 	%>
@@ -117,22 +170,22 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 }else{
 	%>
 	<tr>
-	<td>이름 : </td><td><input type="text" name="name" value="<%=dto1.getName() %>"> </td>
+	<td>이름  &nbsp;&nbsp;</td><td><input class="a" type="text" name="name" value="<%=dto1.getName() %>"> </td>
 	</tr>
 	<tr>
-	<td>비밀번호 : </td><td><input type="text" name="pwd" value="<%=dto1.getPwd() %>"> </td>
+	<td>비밀번호  &nbsp;&nbsp;</td><td><input class="a" type="text" name="pwd" value="<%=dto1.getPwd() %>"> </td>
 	</tr>
 	<tr>
-	<td>주소 : </td><td><input type="text" name="adr" value="<%=dto1.getAdr() %>"> </td>
+	<td>주소  &nbsp;&nbsp;</td><td><input class="a" type="text" name="adr" value="<%=dto1.getAdr() %>"> </td>
 	</tr>
 	<tr>
-	<td>휴대전화 : </td><td><input type="text" name="tel" value="<%=dto1.getTel() %>"> </td>
+	<td>휴대전화  &nbsp;&nbsp;</td><td><input class="a" type="text" name="tel" value="<%=dto1.getTel() %>"> </td>
 	</tr>
 	<tr>
-	<td>이메일 : </td><td><input type="text" name="email" value="<%=dto1.getEmail() %>"> </td>
+	<td>이메일  &nbsp;&nbsp;</td><td><input class="a" type="text" name="email" value="<%=dto1.getEmail() %>"> </td>
 	</tr>
 	<tr>
-	<td cospan="2"> <input type="submit" value="수정"> </td>
+	<td colspan="2" class="atd"> <input class="btn2" type="submit" value="수정"> </td>
 	</tr>
 	<%
 } 

@@ -35,7 +35,15 @@ if(result==logindao.LOGIN_OK){
 	location.href='/ezenstyle/main.jsp';
 	</script>
 	<%
-	
+}else if(result==logindao.NOT_ID||result==logindao.NOT_PWD){
+	%> 
+	<script> 
+	window.alert('아이디또는 비밀번호가 잘못되었습니다.');
+	location.href='/ezenstyle/member/memberLogin.jsp';
+	</script> 
+	<%
+}else{
+	out.println("고객센터 연락바람~");
 }
 %>
     
