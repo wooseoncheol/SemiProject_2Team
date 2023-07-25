@@ -9,6 +9,12 @@ function search(){
 	location.href='search.jsp?userInput='+userInput;
 }
 </script>
+<style>
+a{
+text-decoration-line: none;
+color:black;
+}
+</style>
 <header>
 	<h1><a href="/ezenstyle/main.jsp">EZEN STYLE</a></h1>
 	<%
