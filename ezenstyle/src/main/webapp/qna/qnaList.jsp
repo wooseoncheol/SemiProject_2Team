@@ -23,11 +23,12 @@ border-bottom: 1px solid gray;
 table td {
 text-align: center;
 }
-table tr{
-
-}
 a {
 text-decoration: none;
+}
+.a{
+text-align: left;
+padding-left: 200px;
 }
 </style>
 </head>
@@ -102,15 +103,14 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 					for (int i=0;i<arr.size();i++){
 						%>
 						<tr>
-						<%
-						if (arr.get(i).getRef()==0){ 
-						%>
-							<td>공지</td>
-						<%} else {%>
 							<td><%=arr.get(i).getIdx()%></td>
-						<%}
+							<td class="a">
+							<% 
+							for (int z=0;z<arr.get(i).getLev();z++){
+								out.println("&nbsp;&nbsp;");
+							}
 							%>
-							<td><a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>	
+							<a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>	
 							<td><%=arr.get(i).getWritedate() %></td>
 						</tr>
 					<%

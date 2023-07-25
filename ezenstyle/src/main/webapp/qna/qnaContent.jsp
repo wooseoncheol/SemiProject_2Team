@@ -53,7 +53,7 @@ if (dto==null) {
 				<td colspan="3"><%=dto.getContent().replaceAll("\n", "<br>") %></td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a>
+				<td colspan="3" align="center"><a href="qnaList.jsp">목록</a>
 				&nbsp;&nbsp;<a href="qnaReWrite.jsp?subject=<%=dto.getSubject()%>&ref=<%=dto.getRef()%>&lev=<%=dto.getLev() %>&sunbun=<%=dto.getSunbun()%>">답변쓰기</a></td>
 			</tr>
 		</table>

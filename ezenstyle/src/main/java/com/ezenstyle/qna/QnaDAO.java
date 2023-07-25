@@ -16,7 +16,7 @@ public class QnaDAO {
 	/**마지막 ref 값 구하기 관련 메서드*/
 	public int getMaxRef() {
 		try { // bbsWrite() 메소드와 같이 실행하므로 conn 하지 않아도 됨
-			String sql="select max(ref) from jsp_bbs";
+			String sql="select max(ref) from semi_qna";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			int count=0;
@@ -166,10 +166,9 @@ public class QnaDAO {
 		}
 	}
 	
-	/**순번 기능 업데이트_재영*/
+	/**순번 업데이트 기능_재영*/
 	public void setUpdateSun(int ref, int sunbun) {
 		try {
-			conn=com.ezenstyle.db.EzenDB.getConn();
 			String sql="update semi_qna set sunbun=sunbun+1 where ref=? and sunbun>=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, ref);
@@ -188,8 +187,8 @@ public class QnaDAO {
 	/**답변 쓰기 메서드_안재영*/
 	public int qnaReWrite(QnaDTO dto) {
 		try {
-			setUpdateSun(dto.getRef(), dto.getSunbun()+1);
 			conn=com.ezenstyle.db.EzenDB.getConn();
+			setUpdateSun(dto.getRef(), dto.getSunbun()+1);
 			String sql="insert into semi_qna values(semi_qna_idx.nextval,?,?,?,sysdate,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, dto.getId());
