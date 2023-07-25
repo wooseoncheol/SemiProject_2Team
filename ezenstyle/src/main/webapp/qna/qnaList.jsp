@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="com.ezenstyle.notice.*" %>
-<jsp:useBean id="ndao" class="com.ezenstyle.notice.NoticeDAO"></jsp:useBean>
+<%@ page import="com.ezenstyle.qna.*" %>
+<jsp:useBean id="qdao" class="com.ezenstyle.qna.QnaDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@ text-decoration: none;
 </style>
 </head>
 <%
-int totalCnt=ndao.getTotalCnt();
+int totalCnt=qdao.getTotalCnt();
 int listSize=10;
 int pageSize=5;
 
@@ -52,7 +52,7 @@ if(cp%pageSize==0) {userGroup--;}
 <%@ include file="/header.jsp" %>
 <section>
 	<article>
-		<h3>자주하는 질문 게시판 & 공지</h3>
+		<h3>1대1 문의게시판</h3>
 		<form>
 			<table>
 				<thead>
@@ -60,20 +60,19 @@ if(cp%pageSize==0) {userGroup--;}
 						<th>TYPE</th>
 						<th>SUBJECT</th>
 						<th>DATE</th>
-						<th>VIEW</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
-						<td colspan="3" align="center">
+						<td colspan="2" align="center">
 <%
 if (userGroup!=0) {
-	%><a href="noticeList.jsp?cp=<%=(userGroup-1)%pageSize+pageSize%>">&lt;&lt;</a><%
+	%><a href="qnaList.jsp?cp=<%=(userGroup-1)%pageSize+pageSize%>">&lt;&lt;</a><%
 }
 %>
 <%
 for(int i=userGroup*pageSize+1;i<=userGroup*pageSize+pageSize;i++) {
-	%>&nbsp;&nbsp;<a href="noticeList.jsp?cp=<%=i %>"><%=i %></a>&nbsp;&nbsp;<%
+	%>&nbsp;&nbsp;<a href="qnaList.jsp?cp=<%=i %>"><%=i %></a>&nbsp;&nbsp;<%
 	if (i==totalPage) {
 		break;
 	}
@@ -81,22 +80,22 @@ for(int i=userGroup*pageSize+1;i<=userGroup*pageSize+pageSize;i++) {
 %>
 <%
 if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
-	%><a href="noticeList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a><%
+	%><a href="qnaList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a><%
 }
 %>
 						</td>
 						<td align="center">
-						<a href="noticeWrite.jsp">	글쓰기</a>
+						<a href="qnaWrite.jsp">	글쓰기</a>
 						</td>
 					</tr>
 				</tfoot>
 				<tbody>
 				<%
-				ArrayList<NoticeDTO> arr=ndao.noticeList(cp, listSize);
+				ArrayList<QnaDTO> arr=qdao.qnaList(cp, listSize);
 				if (arr==null||arr.size()==0) {
 					%>
 					<tr>
-						<td colspan="4" align="center">등록된 게시글이 없습니다.</td>
+						<td colspan="3" align="center">등록된 게시글이 없습니다.</td>
 					</tr>
 					<%
 				} else {
@@ -108,12 +107,11 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 						%>
 							<td>공지</td>
 						<%} else {%>
-							<td><%=arr.get(i).getRef() %></td>
+							<td><%=arr.get(i).getIdx()%></td>
 						<%}
 							%>
-							<td><a href="noticeContent.jsp?idx=<%=arr.get(i).getIdx()%>&readnum=<%=arr.get(i).getReadnum()%>"><%=arr.get(i).getSubject() %></a></td>	
+							<td><a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>	
 							<td><%=arr.get(i).getWritedate() %></td>
-							<td><%=arr.get(i).getReadnum() %></td>
 						</tr>
 					<%
 					}

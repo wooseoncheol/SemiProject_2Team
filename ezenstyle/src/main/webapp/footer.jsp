@@ -15,7 +15,7 @@ text-decoration:none;
 	고개님의 안전거래를 위해 현금결제시 이젠은행과 채무지급보증계약을 체결하여 안전거래를 보장하고 있습니다.<br>
 	<br>
 	최고의 서비스를 제공하기 위해 쿠키를 사용합니다.</p>
-	<a>1:1문의사항</a>
+	<a href="/ezenstyle/qna/qnaList.jsp">1:1문의사항</a>
 	<a href="/ezenstyle/notice/noticeList.jsp">공지사항</a>
 	</div>
 </footer>

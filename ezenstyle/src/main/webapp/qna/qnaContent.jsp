@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.ezenstyle.notice.*" %>
-<jsp:useBean id="ndao" class="com.ezenstyle.notice.NoticeDAO"></jsp:useBean>
+<%@ page import="com.ezenstyle.qna.*" %>
+<jsp:useBean id="qdao" class="com.ezenstyle.qna.QnaDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,15 +21,12 @@ border-bottom: 1px solid gray;
 </style>
 </head>
 <%
-String readnum_s=request.getParameter("readnum");
 String idx_s=request.getParameter("idx");
 if(idx_s==null||idx_s.equals("")){
 	idx_s="0";
 }
 int idx=Integer.parseInt(idx_s);
-int readnum=Integer.parseInt(readnum_s);
-ndao.noticeReadnum(idx, readnum);
-NoticeDTO dto=ndao.noticeContent(idx);
+QnaDTO dto=qdao.qnaContent(idx);
 if (dto==null) {
 	%>
 	<script>
@@ -47,7 +44,7 @@ if (dto==null) {
 			<tr>
 				<td>제목: <%=dto.getSubject() %></td>
 				<td>작성날짜: <%=dto.getWritedate() %></td>
-				<td>조회수: <%=dto.getReadnum() %></td>
+				<td>작성아이디: <%=dto.getId() %></td>
 			</tr>
 			<tr>
 				<td colspan="3" align="center">본문</td>
@@ -56,7 +53,8 @@ if (dto==null) {
 				<td colspan="3"><%=dto.getContent().replaceAll("\n", "<br>") %></td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a></td>
+				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a>
+				&nbsp;&nbsp;<a href="qnaReWrite.jsp?subject=<%=dto.getSubject()%>&ref=<%=dto.getRef()%>&lev=<%=dto.getLev() %>&sunbun=<%=dto.getSunbun()%>">답변쓰기</a></td>
 			</tr>
 		</table>
 	</article>

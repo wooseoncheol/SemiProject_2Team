@@ -88,7 +88,7 @@ public class NoticeDAO {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			int count=0;
-			if (rs.next()) {
+			if(rs.next()) {
 				count=rs.getInt(1);
 			}
 			return count;
