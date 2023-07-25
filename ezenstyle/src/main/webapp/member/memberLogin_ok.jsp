@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO" ></jsp:useBean>
+<jsp:useBean id="logindao" class="com.ezenstyle.member.MemberDAO" ></jsp:useBean>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -9,9 +9,9 @@ String userid = request.getParameter("userid");
 String userpwd = request.getParameter("userpwd");
 String saveid=request.getParameter("saveid");
 
-int result = mdao.loginCheck(userid, userpwd);
+int result = logindao.loginCheck(userid, userpwd);
 
-if(result==mdao.LOGIN_OK){
+if(result==logindao.LOGIN_OK){
 	
 	if(saveid!=null){
 		Cookie ck = new Cookie("saveid",userid);
@@ -23,7 +23,7 @@ if(result==mdao.LOGIN_OK){
 		response.addCookie(ck);
 	}
 	
-	String name = mdao.getUserInfo(userid);
+	String name = logindao.getUserInfo(userid);
 	
 	session.setAttribute("sid", userid);
 	session.setAttribute("sname", name);

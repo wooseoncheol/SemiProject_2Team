@@ -14,6 +14,28 @@ public class MemberDTO {
 		System.out.println("DTO호출");//test
 	}
 	
+	public MemberDTO(int idx, String name, String pwd, String email, String adr, String tel) {
+		this.idx = idx;
+		this.name = name;
+		this.pwd = pwd;
+		this.email = email;
+		this.adr = adr;
+		this.tel = tel;
+	}
+	
+	
+	public MemberDTO(int idx, String id, String name, String pwd, String email, String adr, String tel, int mgr) {
+		super();
+		this.idx = idx;
+		this.id = id;
+		this.name = name;
+		this.pwd = pwd;
+		this.email = email;
+		this.adr = adr;
+		this.tel = tel;
+		this.mgr = mgr;
+	}
+
 	public int getIdx() {
 		return idx;
 	}
