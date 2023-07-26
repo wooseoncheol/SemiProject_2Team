@@ -38,6 +38,7 @@ border-left-color:#E7E7E7;
 border-bottom-color: #E7E7E7;
 border-right-color: #E7E7E7;
 border-radius: 7px;
+cursor: pointer;
 }
 section article form table tr{
 height: 55px;
