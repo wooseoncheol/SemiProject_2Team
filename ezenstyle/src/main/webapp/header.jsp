@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import = "com.ezenstyle.goods.*" %>
 <%
 String sname=(String)session.getAttribute("sname");
 %>
@@ -39,11 +40,11 @@ color:black;
 	<nav>
 	<form name="searchForm">
 		<ul>
-			<li>MAN</li>
-			<li>WOMAN</li>
-			<li>KID</li>
-			<li>ACCESSORIES</li>
-			<li>SHOES</li>
+			<li><a href= "/ezenstyle/goodsList/goodsList.jsp?category=man">MAN</a></li>
+			<li><a href= "/ezenstyle/goodsList/goodsList.jsp?category=woman">WOMAN</a></li>
+			<li><a href= "/ezenstyle/goodsList/goodsList.jsp?category=kid">KID</a></li>
+			<li><a href= "/ezenstyle/goodsList/goodsList.jsp?category=accessorise">ACCESSORIES</a></li>
+			<li><a href= "/ezenstyle/goodsList/goodsList.jsp?category=shoes">SHOES</a></li>
 			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
 		</ul>
 	</form>
