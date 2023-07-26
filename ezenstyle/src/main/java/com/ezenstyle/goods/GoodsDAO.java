@@ -32,13 +32,17 @@ public class GoodsDAO {
 
 				int idx=rs.getInt("idx");
 				String g_name=rs.getString("g_name");
-				String g_img=rs.getString("g_img");
 				String g_size=rs.getString("g_size");
+				String g_ofile=rs.getString("g_ofile");
+				String g_nfile=rs.getString("g_nfile");
+				String g_color=rs.getString("g_color");
 				int g_price=rs.getInt("g_price");
+				int g_stock=rs.getInt("g_stock");
 				String g_category=rs.getString("g_category");
+				String g_detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto=new GoodsDTO(idx, g_name, g_img, g_size, g_price, g_category, readnum);
+				GoodsDTO dto=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock,g_price, g_category, g_detail, readnum);
 				arr.add(dto);
 				
 				count++;
@@ -79,13 +83,17 @@ public class GoodsDAO {
 
 				int idx=rs.getInt("idx");
 				String g_name=rs.getString("g_name");
-				String g_img=rs.getString("g_img");
 				String g_size=rs.getString("g_size");
+				String g_ofile=rs.getString("g_ofile");
+				String g_nfile=rs.getString("g_nfile");
+				String g_color=rs.getString("g_color");
 				int g_price=rs.getInt("g_price");
+				int g_stock=rs.getInt("g_stock");
 				String g_category=rs.getString("g_category");
+				String g_detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto2=new GoodsDTO(idx, g_name, g_img, g_size, g_price, g_category, readnum);
+				GoodsDTO dto2=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock,g_price, g_category, g_detail, readnum);
 				arr2.add(dto2);
 				
 				count++;
@@ -119,13 +127,17 @@ public class GoodsDAO {
 			while(rs.next()) {
 				int idx=rs.getInt("idx");
 				String g_name=rs.getString("g_name");
-				String g_img=rs.getString("g_img");
 				String g_size=rs.getString("g_size");
+				String g_ofile=rs.getString("g_ofile");
+				String g_nfile=rs.getString("g_nfile");
+				String g_color=rs.getString("g_color");
 				int g_price=rs.getInt("g_price");
+				int g_stock=rs.getInt("g_stock");
 				String g_category=rs.getString("g_category");
+				String g_detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto=new GoodsDTO(idx, g_name, g_img, g_size, g_price, g_category, readnum);
+				GoodsDTO dto=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock,g_price, g_category, g_detail, readnum);
 				arr.add(dto);
 			}
 			return arr;
