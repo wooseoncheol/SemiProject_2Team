@@ -41,6 +41,7 @@ border-left-color:#E7E7E7;
 border-bottom-color: #E7E7E7;
 border-right-color: #E7E7E7;
 border-radius: 7px;
+cursor: pointer;
 }
 
 .li3{}
