@@ -279,6 +279,58 @@ public class MemberDAO {
 			}
 		}
 	}
-	
+	/**비밀번호 찾기 관련 메소드_김시연*/
+	public boolean getUserPwd(String id, String name, String tel) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			
+			String sql="select idx from semi_member where id=? and name=? and tel=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, name);
+			ps.setString(3, tel);
+			rs=ps.executeQuery();
+			
+			return rs.next();
+			
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+	/**비밀번호 재설정 관련 메소드_김시연*/
+	public int pwdReset(String id, String pwd) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			
+			String sql="update semi_member set pwd=? where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, pwd);
+			ps.setString(2, id);
+			int count=ps.executeUpdate();
+			
+			return count;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
 	
 }
