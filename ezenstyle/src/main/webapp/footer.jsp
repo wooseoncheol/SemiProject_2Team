@@ -17,5 +17,6 @@ text-decoration:none;
 	최고의 서비스를 제공하기 위해 쿠키를 사용합니다.</p>
 	<a href="/ezenstyle/qna/qnaList.jsp">1:1문의사항</a>
 	<a href="/ezenstyle/notice/noticeList.jsp">공지사항</a>
+	<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
 	</div>
 </footer>

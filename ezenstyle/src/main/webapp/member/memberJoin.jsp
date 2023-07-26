@@ -40,6 +40,18 @@ border-right-color: #E7E7E7;
 border-radius: 7px;
 cursor: pointer;
 }
+.btn2{
+margin-left:15px;
+width:80px;
+height:28px;
+background-color: white;
+border-style: solid;
+border-top-color:#E7E7E7;
+border-left-color:#E7E7E7;
+border-bottom-color: #E7E7E7;
+border-right-color: #E7E7E7;
+border-radius: 5px;
+}
 section article form table tr{
 height: 55px;
 }
@@ -69,7 +81,7 @@ function show(){
 		</tr>
 		<tr>
 			<td>아이디 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="id" readonly="readonly"></td>
-			<td>&nbsp;&nbsp;<input type="button" name="duid" value="중복검사" onclick="show()"></td>
+			<td>&nbsp;&nbsp;<input class="btn2" type="button" name="duid" value="중복검사" onclick="show()"></td>
 		</tr>
 		<tr>
 			<td>비밀번호 * </td><td>&nbsp;&nbsp;<input class="a" type="password" name="pwd" required="required"></td>

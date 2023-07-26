@@ -16,9 +16,9 @@ String upwd = request.getParameter("pwd");
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
 #container {display: flex;padding-top: 30px;}
-#box1{flex:1;}
-#box2{flex:1;padding-top: 30px;}
-#box3{flex:1;padding-top: 40px;}
+#box1{flex:1;padding-top: 15px;}
+#box2{flex:1;padding-top: 32px;}
+#box3{flex:1;padding-top: 15px;}
 #ul1{margin-left:70px;}
 .tname{
 text-align: center;
@@ -28,6 +28,7 @@ text-align: center;
 #box2 table tr td{height: 45px;}
 #box3 table{margin-left:80px;}
 #box3 table tr td{height: 35px;}
+
 #lname{
 text-align: center;
 }
@@ -157,7 +158,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 <div id="box3">
 <form name="updateinfo" method="post">
 <ul>
-	<li class="lname"> * 상세 정보 수정 * </li>
+	<li class="lname"> <h4>* 상세 정보 수정 *</h4> </li>
 	<li><br>비밀번호 * <input class="a" type="text" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
 </ul>
 </form>
