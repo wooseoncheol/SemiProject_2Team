@@ -10,14 +10,38 @@
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 table {
-margin: 0px auto;
+margin-right: auto;
+margin-left: auto;
+margin-top: 100px;
+margin-bottom: 100px;
 width: 700px;
-height: 150px;
-}
-td {
-border-bottom: 1px solid gray;
+border-collapse: collapse;
+
 }
 
+table thead {
+height:50px;
+}
+
+table thead th {
+border-bottom: 5px solid #F0F0F0;
+text-align: left;
+}
+
+table tbody {
+height: 200px;
+}
+
+table tbody td {
+border-bottom: 5px solid #F0F0F0;
+}
+
+table tfoot {
+height: 50px;
+}
+.a{
+text-align: right;
+}
 </style>
 </head>
 <%
@@ -41,22 +65,25 @@ if (dto==null) {
 <section>
 	<article>
 		<table>
-			<tr>
-				<td>제목: <%=dto.getSubject() %></td>
-				<td>작성날짜: <%=dto.getWritedate() %></td>
-				<td>작성아이디: <%=dto.getId() %></td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center">본문</td>
-			</tr>
+			<thead>
+				<tr>
+					<th><%=dto.getSubject() %></th>
+					<th><%=dto.getWritedate() %></th>
+					<th><%=dto.getId() %></th>
+				</tr>
+			<thead>
+			<tbody>
 			<tr>
 				<td colspan="3"><%=dto.getContent().replaceAll("\n", "<br>") %></td>
 			</tr>
+			</tbody>
+			<tfoot>
 			<tr>
 				<td colspan="3" align="center"><a href="qnaList.jsp">목록</a>
 				&nbsp;&nbsp;<a href="qnaReWrite.jsp?subject=<%=dto.getSubject()%>&ref=<%=dto.getRef()%>&lev=<%=dto.getLev() %>&sunbun=<%=dto.getSunbun()%>">답변쓰기</a>
 				&nbsp;&nbsp;<a href="qnaDelete.jsp?idx=<%=dto.getIdx()%>">삭제</a></td>
 			</tr>
+			</tfoot>
 		</table>
 	</article>
 </section>

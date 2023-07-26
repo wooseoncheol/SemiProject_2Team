@@ -10,12 +10,37 @@
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 table {
-margin: 0px auto;
+margin-right: auto;
+margin-left: auto;
+margin-top: 100px;
+margin-bottom: 100px;
 width: 700px;
-height: 150px;
+border-collapse: collapse;
+
 }
-td {
-border-bottom: 1px solid gray;
+
+table thead {
+height:50px;
+}
+
+table thead th {
+border-bottom: 5px solid #F0F0F0;
+text-align: left;
+}
+
+table tbody {
+height: 200px;
+}
+
+table tbody td {
+border-bottom: 5px solid #F0F0F0;
+}
+
+table tfoot {
+height: 50px;
+}
+.a{
+text-align: right;
 }
 
 </style>
@@ -44,21 +69,24 @@ if (dto==null) {
 <section>
 	<article>
 		<table>
+			<thead>
 			<tr>
-				<td>제목: <%=dto.getSubject() %></td>
-				<td>작성날짜: <%=dto.getWritedate() %></td>
-				<td>조회수: <%=dto.getReadnum() %></td>
+				<th><%=dto.getSubject() %></th>
+				<th class="b">작성날짜: <%=dto.getWritedate() %></th>
+				<th class="a">조회수: <%=dto.getReadnum() %></th>
 			</tr>
+			</thead>
+			<tfoot>
 			<tr>
-				<td colspan="3" align="center">본문</td>
+				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="noticeDelete.jsp?idx=<%=dto.getIdx()%>">삭제</a></td>
 			</tr>
+			</tfoot>
+			<tbody>
 			<tr>
 				<td colspan="3"><%=dto.getContent().replaceAll("\n", "<br>") %></td>
 			</tr>
-			<tr>
-				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a>
-				&nbsp;&nbsp;<a href="noticeDelete.jsp?idx=<%=dto.getIdx()%>">삭제</a></td>
-			</tr>
+			</tbody>
 		</table>
 	</article>
 </section>

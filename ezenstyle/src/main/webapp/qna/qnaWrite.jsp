@@ -8,10 +8,49 @@
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 table {
-margin: 0px auto;
-text-align: center;
+margin-right: auto;
+margin-left: auto;
+margin-top: 100px;
+margin-bottom: 100px;
+width: 700px;
+border-collapse: collapse;
+
 }
 
+table thead {
+height:80px;
+}
+
+table thead th {
+border-bottom: 5px solid #F0F0F0;
+text-align: left;
+padding-left: 70px;
+
+}
+
+table tbody {
+text-align: center;
+height: 250px;
+}
+table textarea {
+width: 600px;
+}
+table tbody td {
+border-bottom: 5px solid #F0F0F0;
+}
+
+table tfoot {
+text-align: center;
+height: 50px;
+}
+input[type=submit] {
+background: none;
+border: 1px solid gray;
+}
+input[type=reset] {
+background: none;
+border: 1px solid gray;
+}
 </style>
 </head>
 <%@include file="/header.jsp" %>
@@ -20,24 +59,23 @@ text-align: center;
 	<article>
 	<form name="qnaWrite" action="qnaWrite_ok.jsp">
 		<table>
+		<thead>
 			<tr>
-				<th>제목</th>
-				<td><input type="text" name="subject"></td>
+				<th>제목&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="subject">
+				&nbsp;&nbsp;&nbsp;&nbsp;아이디&nbsp;&nbsp;<input type="text" name="id"></th>
 			</tr>
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" name="id"></td>
-			</tr>
-			<tr>
-				<th colspan="2" align="center">내용</th>
-			</tr>
-			<tr>
-				<td colspan="2"><textarea rows="10" cols="55" name="content"></textarea></td>
-			</tr>
+		</thead>
+		<tfoot>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="완료">
 				&nbsp;&nbsp;<input type="reset" value="다시작성"></td>
 			</tr>
+		</tfoot>
+		<tbody>
+			<tr>
+				<td colspan="2"><textarea placeholder="내용을 입력하세요." rows="10" cols="55" name="content"></textarea></td>
+			</tr>
+		</tbody>
 		</table>
 	</form>
 	</article>

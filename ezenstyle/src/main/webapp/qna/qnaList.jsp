@@ -11,34 +11,42 @@
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 table {
-margin: 0px auto;
+margin-right: auto;
+margin-left: auto;
+margin-top: 100px;
+margin-bottom: 100px;
 width: 800px;
 border-collapse: collapse;
+
 }
-table tbody td {
-height: 40px;
-border-bottom: 1px solid gray;
-font-size: 15px;
+
+table thead {
+height:50px;
 }
+
 table thead th {
-height: 40px;
-border-top: 1px solid gray;
-border-bottom: 1px solid gray;
-background-color: #F0F0F0;
-}
-table tfoot td {
-height: 50px;
-}
-table td {
+border-bottom: 3px solid #F0F0F0;
 text-align: center;
 }
-a {
-text-decoration: none;
+
+table tbody {
+height: 250px;
 }
+
+table tbody td {
+border-bottom: 3px solid #F0F0F0;
+text-align: center;
+}
+
+table tfoot {
+height: 50px;
+}
+
 .a{
 text-align: left;
 padding-left: 250px;
 }
+
 </style>
 </head>
 <%
