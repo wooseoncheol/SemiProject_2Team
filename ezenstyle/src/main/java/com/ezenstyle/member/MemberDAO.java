@@ -250,7 +250,35 @@ public class MemberDAO {
 		}
 	}
 	
-	
+	/**아이디 찾기 메소드 윤지영*/
+	public String getUserId(String name,String tel) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select id from semi_member where name=? and tel=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, tel);
+			rs=ps.executeQuery();
+			
+			if(rs.next()) {
+				String id=rs.getString("id");
+				return id;
+			}else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				
+			}
+		}
+	}
 	
 	
 }

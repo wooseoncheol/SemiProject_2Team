@@ -14,6 +14,13 @@ public class MemberDTO {
 		System.out.println("DTO호출");//test
 	}
 	
+	public MemberDTO(String id, String name, String tel) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.tel = tel;
+	}
+	
 	public MemberDTO(int idx, String name, String pwd, String email, String adr, String tel) {
 		this.idx = idx;
 		this.name = name;
