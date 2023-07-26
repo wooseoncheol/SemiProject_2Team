@@ -45,6 +45,13 @@ border-radius: 7px;
 
 .li3{}
 
+#search{
+padding-left: 130px;
+}
+#search:hover {
+	color: gray;
+}
+
 </style>
 </head>
 <%
@@ -68,7 +75,8 @@ if(cks!=null){
 			<li><label>USER ID</label><br><br><input class="a" type="text" name="userid" value="<%= saveid%>"></li>
 			<li><br><br><label>PASSWORD</label><br><br><input class="a" type="password" name="userpwd"></li>
 			
-			<li class="li3"><br><input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %>>아이디 기억</li>
+			<li class="li3"><br><input type="checkbox" name="saveid" value="on" <%=saveid.equals("")?"":"checked" %>>아이디 기억
+			<a href="/ezenstyle/member/memberFind.jsp" id="search">아이디/비밀번호 찾기</a></li>
 			<li><br><br><input class="btn1" type="submit" value="LOGIN" ></li>
 			<li><br></li>
 
