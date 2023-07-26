@@ -221,5 +221,24 @@ public class NoticeDAO {
 		}
 	}
 	
+	/**게시판 삭제*/
+	public int noticeDelete(int idx) {
+		try {
+		 conn=com.ezenstyle.db.EzenDB.getConn();
+		 String sql="Delete from semi_notice where idx=?";
+		 ps=conn.prepareStatement(sql);
+		 ps.setInt(1, idx);
+		 int count=ps.executeUpdate();
+		 return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+		}
+	}
 	
 }

@@ -56,7 +56,8 @@ if (dto==null) {
 				<td colspan="3"><%=dto.getContent().replaceAll("\n", "<br>") %></td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a></td>
+				<td colspan="3" align="center"><a href="noticeList.jsp">목록</a>
+				&nbsp;&nbsp;<a href="noticeDelete.jsp?idx=<%=dto.getIdx()%>">삭제</a></td>
 			</tr>
 		</table>
 	</article>

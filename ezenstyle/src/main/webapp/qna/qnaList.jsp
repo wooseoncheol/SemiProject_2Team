@@ -16,29 +16,28 @@ width: 800px;
 border-collapse: collapse;
 }
 table tbody td {
-height: 50px;
+height: 40px;
 border-bottom: 1px solid gray;
+font-size: 15px;
 }
 table thead th {
-height: 70px;
+height: 40px;
+border-top: 1px solid gray;
 border-bottom: 1px solid gray;
+background-color: #F0F0F0;
 }
 table tfoot td {
-height: 70px;
+height: 50px;
 }
 table td {
 text-align: center;
-
-}
-table tr{
-
 }
 a {
 text-decoration: none;
 }
 .a{
 text-align: left;
-padding-left: 200px;
+padding-left: 250px;
 }
 </style>
 </head>

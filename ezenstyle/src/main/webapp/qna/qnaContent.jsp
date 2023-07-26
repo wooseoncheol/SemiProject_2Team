@@ -54,7 +54,8 @@ if (dto==null) {
 			</tr>
 			<tr>
 				<td colspan="3" align="center"><a href="qnaList.jsp">목록</a>
-				&nbsp;&nbsp;<a href="qnaReWrite.jsp?subject=<%=dto.getSubject()%>&ref=<%=dto.getRef()%>&lev=<%=dto.getLev() %>&sunbun=<%=dto.getSunbun()%>">답변쓰기</a></td>
+				&nbsp;&nbsp;<a href="qnaReWrite.jsp?subject=<%=dto.getSubject()%>&ref=<%=dto.getRef()%>&lev=<%=dto.getLev() %>&sunbun=<%=dto.getSunbun()%>">답변쓰기</a>
+				&nbsp;&nbsp;<a href="qnaDelete.jsp?idx=<%=dto.getIdx()%>">삭제</a></td>
 			</tr>
 		</table>
 	</article>
