@@ -213,12 +213,19 @@ public class GoodsDAO {
 		}
 	}
 	// 카테고리별 상품리스트 출력 메소드 -우선철
-	public ArrayList<GoodsDTO> showGoodsList(String category){
+	public ArrayList<GoodsDTO> showGoodsList(String category, int cp, int ls){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select * from semi_goods where category = ? order by idx desc";
+			int start=(cp-1)*ls+1;
+			int end=cp*ls;
+			String sql=	 "select * from "
+						+"(select rownum as rnum,a.* from "
+						+"(select * from semi_goods where g_category = ? order by idx desc)a)b "
+						+"where rnum>=? and rnum<=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, category);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
 			rs=ps.executeQuery();
 			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
 			while(rs.next()) {

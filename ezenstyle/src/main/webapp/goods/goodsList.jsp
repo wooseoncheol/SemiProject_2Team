@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.goods.*" %>
 <%@ page import="java.util.*" %>
+<jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO" scope="session"></jsp:useBean>
 <%String category_s = request.getParameter("category"); %>
 <%String category = category_s.toUpperCase(); %>
 <!DOCTYPE html>
@@ -9,8 +10,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%
-	int totalCnt = 36;
+<%	
+	
+	
+	int totalCnt = idao.getTotalCnt(category_s);
 	int listSize=6;
 	int pageSize=5;
 	
@@ -23,12 +26,16 @@
 	int totalpage=totalCnt/listSize+1;
 	if(totalCnt % listSize == 0){totalpage--;}
 	
-	int userGroup = cp/pageSize; // 
+	int userGroup = cp/pageSize;  
 	if(cp%pageSize==0){
 		userGroup--;
 	}
 %>
 <style>
+img{
+width: 150px;
+height: 250px;
+}
 section h3{
 font-style: italic;
 }
@@ -63,61 +70,36 @@ margin: 0px, auto;
 <article>
 <table>
 	<tr>
+	<%
+	ArrayList<GoodsDTO> arr = idao.showGoodsList(category_s, cp, listSize);
+	for (int i = 0 ; i<arr.size(); i++){
+		%>
 		<td>
-			<ul><a href = "goodsContent.jsp">
-			<li id = "img">상품 이미지</li>
-			<li>상품 이름</li>
-			<li>상품 가격</li>
+			<ul><a href = "goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
+			<li id = "img"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>"></li>
+			<li><%=arr.get(i).getG_name() %></li>
+			<li><%=arr.get(i).getG_price() %>원</li>
 			</a></ul>
 		</td>
-		<td>
-			<ul>
-			<li id = "img">상품 이미지</li>
-			<li>상품 이름</li>
-			<li>상품 가격</li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-			<li id = "img">상품 이미지</li>
-			<li>상품 이름</li>
-			<li>상품 가격</li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<ul>
-			<li id = "img">상품 이미지</li>
-			<li>상품 이름</li>
-			<li>상품 가격</li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-			<li id = "img">상품 이미지</li>
-			<li>상품 이름</li>
-			<li>상품 가격</li>
-			</ul>
-		</td>
-		<td>
-			<ul>
-			<li id = "img">상품 이미지</li>
-			<li>상품 이름</li>
-			<li>상품 가격</li>
-			</ul>
-		</td>
+		<%if((i+1)%3==0){
+			%>
+			</tr>
+			<tr>
+			<%
+		}
+	}
+	%>
 	</tr>
 	<tr>
 		<td colspan ="3" align = "center">
 			<%
 		if(userGroup!=0){
-			%> <a href="pageTest.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>">&lt;&lt;</a> <%
+			%> <a href="goodsList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>&category=<%=category_s%>">&lt;&lt;</a> <%
 		}
 		%>
 		<%
 		for(int i = userGroup*pageSize+1 ; i<=userGroup*pageSize+pageSize; i++){
-			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>"><%=i%></a>&nbsp;&nbsp;<%
+			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>"><%=i%></a>&nbsp;&nbsp;<%
 			if(i==totalpage){
 				break;
 			}
@@ -125,7 +107,7 @@ margin: 0px, auto;
 		%>
 		<%
 		if(userGroup!=(totalpage/pageSize-(totalpage%pageSize==0?1:0))){
-			%> <a href="goodsList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a> <%
+			%> <a href="goodsList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>&category=<%=category_s%>">&gt;&gt;</a> <%
 		}
 		%>
 		</td>
