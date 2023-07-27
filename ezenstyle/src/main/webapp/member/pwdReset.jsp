@@ -69,6 +69,6 @@ String id=request.getParameter("id");
 		</form>
 	</article>
 </section>
-<%@ include file="/footer.jsp" %>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

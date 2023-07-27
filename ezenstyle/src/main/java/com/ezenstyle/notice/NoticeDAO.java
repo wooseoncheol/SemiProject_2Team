@@ -13,7 +13,7 @@ public class NoticeDAO {
 	public NoticeDAO() {
 
 	}
-	/**관리자 게정 판단_재영*/
+	/**관리자 계정 판단_재영*/
 	public int mgrJudge(String id) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();

@@ -251,7 +251,75 @@ public class GoodsDAO {
 		}
 	}
 	
+	/**카테고리별 목록 보기_재영*/
+	public ArrayList<GoodsDTO> adminCategory(String category){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select * from semi_goods where g_category=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, category);
+			rs=ps.executeQuery();
+			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
+			while (rs.next()) {
+				int idx=rs.getInt("idx");
+				String name=rs.getString("g_name");
+				String ofile=rs.getString("g_ofile");
+				String nfile=rs.getString("g_nfile");
+				String color=rs.getString("g_color");
+				String size=rs.getString("g_size");
+				int stock=rs.getInt("g_stock");
+				String detail=rs.getString("g_detail");
+				int readnum=rs.getInt("readnum");
+				
+				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, stock, category, detail, readnum);
+				
+				arr.add(dto);	
+			}
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+			
+		}
+		
+	}
+	
+	/**상품 정보 수정_재영*/
+	public int adminUpdate(int idx, String name, String color, String size, int stock, int price, String detail) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="update semi_goods set g_name=?, g_color=?, g_size=?, g_stock=?, "
+					+ "g_price=?, g_detail=? where idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, color);
+			ps.setString(3, size);
+			ps.setInt(4, stock);
+			ps.setInt(5, price);
+			ps.setString(6, detail);
+			ps.setInt(7, idx);
+			int count=ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+			
+		}
+		
+	}
 
 	
-
+	
+	
 }
