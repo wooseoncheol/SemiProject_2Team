@@ -28,6 +28,13 @@ h4{
 	color: gray;
 	font-size:12px;
 }
+#logo{
+	width: 200px;
+	height: 70px;
+  	float: left;
+  	margin-top: -10px;
+  	margin-left: 20px;
+}
 p{
 	margin-left: 30px;
 	margin-top: -2px;
@@ -110,7 +117,7 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
-				<img src="/ezenstyle/goods/imgs/<%=arr2.get(i).getG_nfile()%>" alt="상품이미지"><br>
+				<img src="/ezenstyle/goods/imgs/<%=arr2.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
 				<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
 				<h4><%=arr2.get(i).getG_name()%></h4>
 				<p><%=arr2.get(i).getG_price() %>원</p>
