@@ -332,5 +332,43 @@ public class MemberDAO {
 			}
 		}
 	}
+	/**결제 페이지에서 사용자 정보 출력 관련 메소드_김시연*/
+	public MemberDTO printMember(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			
+			String sql="select * from semi_member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs=ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				String name=rs.getString("name");
+				String email=rs.getString("email");
+				String adr=rs.getString("adr");
+				String tel=rs.getString("tel");
+				
+				MemberDTO dto=new MemberDTO(id, name, email, adr, tel);
+				
+				return dto;
+			}else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+	
 	
 }

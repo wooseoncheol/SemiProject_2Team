@@ -42,6 +42,16 @@ public class MemberDTO {
 		this.tel = tel;
 		this.mgr = mgr;
 	}
+	
+
+	public MemberDTO(String id, String name, String email, String adr, String tel) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.adr = adr;
+		this.tel = tel;
+	}
 
 	public int getIdx() {
 		return idx;
