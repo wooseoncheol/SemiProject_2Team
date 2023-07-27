@@ -187,7 +187,71 @@ public class GoodsDAO {
 			}
 		}
 	}
+	//상품리스트 페이징을 위한 테이블 로우 카운트 메소드
+	public int getTotalCnt() {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql = "select count(*) from semi_goods";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			return count==0?1:count;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return 1;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	// 카테고리별 상품리스트 출력 메소드 -우선철
+	public ArrayList<GoodsDTO> showGoodsList(String category){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select * from semi_goods where category = ? order by idx desc";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, category);
+			rs=ps.executeQuery();
+			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
+			while(rs.next()) {
+				int idx=rs.getInt("idx");
+				String g_name=rs.getString("g_name");
+				String g_size=rs.getString("g_size");
+				String g_ofile=rs.getString("g_ofile");
+				String g_nfile=rs.getString("g_nfile");
+				String g_color=rs.getString("g_color");
+				int g_price=rs.getInt("g_price");
+				int g_stock=rs.getInt("g_stock");
+				String g_category=rs.getString("g_category");
+				String g_detail=rs.getString("g_detail");
+				int readnum=rs.getInt("readnum");
+				
+				GoodsDTO dto=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock,g_price, g_category, g_detail, readnum);
+				arr.add(dto);
+			}
+			return arr;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 	
+
 	
 
 }
