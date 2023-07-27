@@ -39,11 +39,21 @@ p{
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+#mainad{
+	margin-left:0px;
+	width:1200px;
+	height:600px;
+
+}
 </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
 <section>
+	<article>
+		<img src="img/main_img.png" id="mainad" >
+	</article>
 	<article>
 	<br>
 	<br>
