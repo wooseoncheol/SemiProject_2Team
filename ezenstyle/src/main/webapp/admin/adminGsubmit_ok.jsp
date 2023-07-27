@@ -1,63 +1,47 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
-<style>
-form table{
-width: 300px;
-height: 300px;
-margin: 0px auto;
-}
-</style>
-</head>
-<body>
-<%@include file="/header.jsp" %>
-<form name="goodsUpload" action="adminGsubmit_ok.jsp" method="post" enctype="multipart/form-data">
+<%@ page import="com.oreilly.servlet.*" %>
+<%@ page import="com.ezenstyle.goods.*" %>
 
-	<table border="1">
-	<tr>
-		<td rowspan="7">
-		<input type="file" name="upload"></td>
-		<td>카테고리 : <select name="g_category">
-		<option value="man">MAN</option>
-		<option value="woman">WOMAN</option>
-		<option value="kid">KID</option>
-		<option value="accessories">ACCESSORIES</option>
-		<option value="shoes">SHOES</option>
-		</select></td>
-	</tr>
-	<tr>
-	<td>상품 이름 : <input type="text" name="g_name"></td>
-	</tr>
-	<tr>
-	<td>가격 : <input type="text" name="g_price"></td>
-	</tr>
-	<tr>
-	<td>색상 : <input type="text" name="g_color"></td>
-	</tr>
-	<tr>
-	<td>사이즈 : <input type="text" name="g_size"></td>
-	</tr>
-	<tr>
-	<td>재고 : <input type="text" name="g_stock"></td>
-	</tr>
-	<tr>
-	<td>상세정보 : <textarea rows="10" cols="55" name="g_detail"></textarea></td>
-	</tr>
-	<tr>
-	<td colspan="2">
-	<input type="submit" value="올리기">
-	</td>
-	</tr>
-	</table>
+<jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO" scope="session"></jsp:useBean>
 
-</form>
+<%
+	request.setCharacterEncoding("utf-8");
+	String savepath=request.getRealPath("/goods/imgs");
+	int filesize = 15728640;//10mb, 15728640 15mb
+	MultipartRequest mr = new MultipartRequest(request, savepath, filesize,"utf-8",new DefaultFileRenamePolicy());
+	
+	String g_name = mr.getParameter("g_name");
+	String g_color = mr.getParameter("g_color");
+	String g_size = mr.getParameter("g_size");
+	String g_stock_s = mr.getParameter("g_stock");
+	int g_stock = Integer.parseInt(g_stock_s);
+	
+	String g_price_s = mr.getParameter("g_price");
+	int g_price = Integer.parseInt(g_price_s);
+	String g_category = mr.getParameter("g_category");
+	String g_detail = mr.getParameter("g_detail");
+													
+	String g_ofile=mr.getOriginalFileName("upload");
+	String g_nfile=mr.getFilesystemName("upload");
 
 	
-<%@include file="/footer.jsp" %>
-</body>
-</html>
+	GoodsDTO dto = new GoodsDTO(g_name, g_ofile, g_nfile, g_color, g_size, g_stock, g_price, g_category, g_detail);
+
+	gdao.goodsInsert(dto);
+	
+%>
+
+<script>
+window.alert("이미지 업로드 완료");
+location.href='/ezenstyle/admin/adminGsubmit.jsp';
+window.self.close();
+</script>
+
+
+
+
+
+
+
