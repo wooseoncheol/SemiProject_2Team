@@ -91,7 +91,7 @@ table{
 						}
 						%>
 						<td>
-							<img src="<%=arr.get(i).getG_img()%>" alt="상품이미지" id="goodsIcon"><br>
+							<img src="<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="goodsIcon"><br>
 							<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 							<h4><%=arr.get(i).getG_name()%></h4>
 							<p><%=arr.get(i).getG_price() %>원</p>
