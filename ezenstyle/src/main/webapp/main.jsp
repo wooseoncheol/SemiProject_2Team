@@ -64,7 +64,7 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
-				<img src="<%=arr.get(i).getG_img() %>" alt="상품이미지"><br>
+				<img src="<%=arr.get(i).getG_nfile()%>" alt="상품이미지"><br>
 				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
 				<p><%=arr.get(i).getG_price() %>원</p>
@@ -101,7 +101,7 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
-				<img src="<%=arr2.get(i).getG_img() %>" alt="상품이미지"><br>
+				<img src="<%=arr2.get(i).getG_nfile()%>" alt="상품이미지"><br>
 				<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
 				<h4><%=arr2.get(i).getG_name()%></h4>
 				<p><%=arr2.get(i).getG_price() %>원</p>
