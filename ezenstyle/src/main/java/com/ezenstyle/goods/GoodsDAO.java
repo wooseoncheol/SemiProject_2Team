@@ -188,11 +188,12 @@ public class GoodsDAO {
 		}
 	}
 	//상품리스트 페이징을 위한 테이블 로우 카운트 메소드
-	public int getTotalCnt() {
+	public int getTotalCnt(String category) {
 		try {
-			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql = "select count(*) from semi_goods";
+			conn=com.ezenstyle.db.EzenDB.getConn(); 
+			String sql = "select count(*) from semi_goods where g_category = ?";
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, category);
 			rs = ps.executeQuery();
 			rs.next();
 			int count=rs.getInt(1);
