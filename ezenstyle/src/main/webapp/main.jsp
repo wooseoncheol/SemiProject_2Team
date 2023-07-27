@@ -18,7 +18,7 @@ h4{
 	margin-top: 5px;
 	margin-bottom:3px;
 }
-img{
+#a{
 	margin-left:30px;
 	width:200px;
 	height:300px;
@@ -41,7 +41,6 @@ p{
 }
 
 #mainad{
-	margin-left:0px;
 	width:1200px;
 	height:600px;
 
@@ -74,7 +73,7 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
-				<img src="<%=arr.get(i).getG_nfile()%>" alt="상품이미지"><br>
+				<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
 				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
 				<p><%=arr.get(i).getG_price() %>원</p>
@@ -111,7 +110,7 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
-				<img src="<%=arr2.get(i).getG_nfile()%>" alt="상품이미지"><br>
+				<img src="/ezenstyle/goods/imgs/<%=arr2.get(i).getG_nfile()%>" alt="상품이미지"><br>
 				<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
 				<h4><%=arr2.get(i).getG_name()%></h4>
 				<p><%=arr2.get(i).getG_price() %>원</p>

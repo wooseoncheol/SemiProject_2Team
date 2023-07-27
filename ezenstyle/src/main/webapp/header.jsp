@@ -17,7 +17,6 @@ color:black;
 }
 </style>
 <header>
-	<h1><a href="/ezenstyle/main.jsp">EZEN STYLE</a></h1>
 	<%
    if(sname==null){
       %>
@@ -38,6 +37,7 @@ color:black;
    }
    %>
 	<nav>
+	<img src="/ezenstyle/img/logo.png"  class="logo" onclick="javascript:location.href='/ezenstyle/main.jsp'">
 	<form name="searchForm">
 		<ul>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=man">MAN</a></li>
@@ -45,7 +45,7 @@ color:black;
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=kid">KID</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=accessorise">ACCESSORIES</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=shoes">SHOES</a></li>
-			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
+			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" class="search" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
 		</ul>
 	</form>
 	</nav>
