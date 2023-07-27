@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.goods.*" %>
-
+<jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
+<%
+String idx_s = request.getParameter("idx"); 
+int idx = Integer.parseInt(idx_s); 
+GoodsDTO dto = idao.showGoodscontent(idx);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +27,8 @@ font-size:15px;
 #title{
 font-size: 30px;
 }
-#img{
-background-color: skyblue;
+img{
+
 width: 500px;
 height: 600px; 
 }
@@ -67,16 +72,16 @@ outline:none;
 <form fm = "fm" action = "/ezenstyle/orderInput.jsp" >
 <table>
 		<tr>
-			<td rowspan="3" id= "img">사진</td>
+			<td rowspan="3" id= "img"><img src="/ezenstyle/goods/imgs/<%=dto.getG_nfile() %>"></td>
 			<td rowspan="3"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td colspan = "2">
 			<ul>
-			<li><input id= "title" type="text" value="상품이름" readonly class=g_inf></li>
-			<li><input type="text" value="가격정보" readonly class=g_inf></li>
-			<li><input type="text" value="색상정보" readonly class=g_inf></li>
-			<li><input type="text" value="사이즈정보" readonly class=g_inf></li>
+			<li><input id= "title" type="text" value="<%=dto.getG_name() %>" readonly class=g_inf></li>
+			<li><input type="text" value="가격: : <%=dto.getG_price() %>" readonly class=g_inf></li>
+			<li><input type="text" value="색상: : <%=dto.getG_color() %>" readonly class=g_inf></li>
+			<li><input type="text" value="사이즈: : <%=dto.getG_size() %>" readonly class=g_inf></li>
 			<li><input type="text" value="상품재고" readonly class=g_inf></li>
-			<li><input type="text" value="상세정보" readonly class=g_inf></li>
+			<li><input type="text" value="상세정보 : <%=dto.getG_detail() %>" readonly class=g_inf></li>
 			</ul>
 			</td>
 		</tr>
