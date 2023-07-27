@@ -12,10 +12,11 @@
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 #box1{flex:1;padding-top: 15px;}
-#box2{flex:2;padding-top: 32px;display: flex;}
+#box2{flex:3;padding-top: 32px;display: flex;}
+#box3{flex:1;padding-top: 15px;}
 #container {display: flex;padding-top: 30px;}
 #box1 ul{
-padding-left: 180px;
+padding-left: 100px;
 }
 #box1 ul li{
 list-style-type:none;
@@ -29,7 +30,7 @@ margin-right: auto;
 margin-left: auto;
 margin-top: 100px;
 margin-bottom: 100px;
-width: 900px;
+width: 650px;
 border-collapse: collapse;
 }
 table thead {
@@ -85,7 +86,7 @@ border-collapse: collapse;
 	arr=gdao.adminCategory(category);
 	%>
 	<div id="box2">
-	<table border="1">
+	<table>
 	<%if (arr==null||arr.size()==0) {	
 		%>
 		<thead>
@@ -113,7 +114,7 @@ border-collapse: collapse;
 			<tbody>
 				<tr>
 					<td rowspan="4" class="a"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td>
-					<td><%=arr.get(i).getG_category() %></td>
+					<td><%=category_t %></td>
 				</tr>
 				<tr>
 					<td>상품번호: <%=arr.get(i).getIdx() %></td>
@@ -132,6 +133,11 @@ border-collapse: collapse;
 	
 	</table>
 	</div>
+	
+	<div id="box3">
+	<h4><a href="adminGsubmit.jsp">상품 등록</a></h4>
+	</div>
+	
 	</div>
 </section>
 <%@include file="/footer.jsp" %>

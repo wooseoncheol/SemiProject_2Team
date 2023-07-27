@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="adao" class="com.ezenstyle.admin.AdminDAO"></jsp:useBean>
 <style>
 a {
 text-decoration:none;
@@ -17,6 +18,16 @@ text-decoration:none;
 	최고의 서비스를 제공하기 위해 쿠키를 사용합니다.</p>
 	<a href="/ezenstyle/qna/qnaList.jsp">1:1문의사항</a>
 	<a href="/ezenstyle/notice/noticeList.jsp">공지사항</a>
-	<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
+	<% 
+		String adminid=(String)session.getAttribute("sid");
+		int result2=adao.adminPage(adminid);
+		if (result2>0) {
+			%>
+			<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
+			<%
+		} else {
+			
+		}
+	%>
 	</div>
 </footer>

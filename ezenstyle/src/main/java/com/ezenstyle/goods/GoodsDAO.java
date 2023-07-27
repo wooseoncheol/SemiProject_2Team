@@ -320,7 +320,44 @@ public class GoodsDAO {
 		
 	}
 
-	
+	/**전체 목록 보기_재영*/
+	public ArrayList<GoodsDTO> adminAll(){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select * from semi_goods";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
+			while (rs.next()) {
+				int idx=rs.getInt("idx");
+				String category=rs.getString("g_category");
+				String name=rs.getString("g_name");
+				String ofile=rs.getString("g_ofile");
+				String nfile=rs.getString("g_nfile");
+				String color=rs.getString("g_color");
+				String size=rs.getString("g_size");
+				int stock=rs.getInt("g_stock");
+				String detail=rs.getString("g_detail");
+				int readnum=rs.getInt("readnum");
+				
+				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, stock, category, detail, readnum);
+				
+				arr.add(dto);	
+			}
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+			
+		}
+		
+	}
 	
 	
 }

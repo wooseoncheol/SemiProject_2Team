@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +10,12 @@
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 #container {display: flex;padding-top: 30px;}
-#box1{flex:1;padding-top: 15px;background-color: orange;}
-#box2{flex:2;padding-top: 32px;display: flex;}
-#box3{flex:1;padding-top: 15px;background-color: lime;}
+#box1{flex:1;padding-top: 15px;}
+#box2{flex:3;padding-top: 32px;display: flex;}
+#box3{flex:1;padding-top: 15px;}
 
 #box1 ul{
-padding-left: 180px;
+padding-left: 100px;
 }
 #box1 ul li{
 list-style-type:none;
@@ -26,7 +28,43 @@ margin:0px auto;
 width:200px;
 height: 200px;
 }
-
+table {
+margin-right: auto;
+margin-left: auto;
+margin-top: 100px;
+margin-bottom: 100px;
+width: 650px;
+border-collapse: collapse;
+}
+table thead {
+height: 40px;
+text-align:center;
+border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #F0F0F0;
+}
+table tbody {
+border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #F0F0F0;
+text-indent: 30px;
+}
+table tfoot {
+height: 40px;
+text-align:center;
+border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #F0F0F0;
+}
+img {
+height: 200px;
+width: 200px;
+object-fit:contain;
+}
+.a {
+margin: 0px;
+padding: 0px;
+width: 200px;
+border-collapse: collapse;
+}
+.b {display:block;}
 </style>
 </head>
 <body>
@@ -44,18 +82,60 @@ height: 200px;
 </div>
 
 <div id="box2">
-	<table border="1">
-	<tr>
-	<td class="g_pic">사진</td><td>카테고리 : MAN <br>상품 번호: 123 | 이름 : 셔츠 | 가격 : 38,000원<br>재고 | 나머지 정보들</td>
-	</tr>
-	<tr>
-	<td class="g_pic">사진</td><td>카테고리 : WOMAN <br>상품 번호: 123 | 이름 : 셔츠 | 가격 : 29,000원<br>재고 | 나머지 정보들</td>
-	</tr>
+	<table>
+	<%
+	ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
+	arr=gdao.adminAll();
+	%>
+	<%if (arr==null||arr.size()==0) {	
+		%>
+		<thead>
+			<tr>
+				<td>등록된 상품이 없습니다.</td>
+			</tr>
+		</thead>
+		<% 
+		} else {
+			for(int i=0;i<arr.size();i++) {
+		%>
+			<thead>
+				<tr>
+					<th colspan="2"><%=arr.get(i).getG_name() %></th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx() %>
+					&name=<%=arr.get(i).getG_name() %>&color=<%=arr.get(i).getG_color() %>
+					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock() %>
+					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail() %>">수정</a></td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr>
+					<td rowspan="4" class="a"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td>
+					<%String category=arr.get(i).getG_category().toUpperCase(); %>
+					<td><%=category %></td>
+				</tr>
+				<tr>
+					<td>상품번호: <%=arr.get(i).getIdx() %></td>
+				</tr>
+				<tr>
+					<td>색상: <%=arr.get(i).getG_color() %>&nbsp;&nbsp;사이즈: <%=arr.get(i).getG_size() %></td>
+				</tr>
+				<tr>
+					<td>가격: <%=arr.get(i).getG_price() %>&nbsp;&nbsp;재고: <%=arr.get(i).getG_stock() %></td>
+				</tr>
+			</tbody>
+		<%
+			}
+		}
+		%>
 	</table>
 </div>
 
 <div id="box3">
-<h2><a href="adminGsubmit.jsp">상품 등록+</a></h2>
+<h4><a href="adminGsubmit.jsp">상품 등록</a></h4>
 </div>
 
 </div>
