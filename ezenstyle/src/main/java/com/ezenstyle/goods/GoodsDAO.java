@@ -13,6 +13,39 @@ public class GoodsDAO {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public int goodsInsert(GoodsDTO dto) {
+		try{
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql = "insert into semi_goods values(semi_goods_idx.nextval,?,?,?,?,?,?,?,?,?,0)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getG_category());
+			ps.setString(2, dto.getG_name());
+			ps.setString(3, dto.getG_ofile());
+			ps.setString(4,dto.getG_nfile());
+			ps.setString(5,dto.getG_color());
+			ps.setString(6,dto.getG_size());
+			ps.setInt(7,dto.getG_stock());
+			ps.setInt(8,dto.getG_price());
+			ps.setString(9,dto.getG_detail());
+			
+
+			int count = ps.executeUpdate();
+			
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e1){
+				
+			}
+		}
+		
+	}
+	
 	public ArrayList<GoodsDTO> bestItemList(){
 		
 		int count=0;

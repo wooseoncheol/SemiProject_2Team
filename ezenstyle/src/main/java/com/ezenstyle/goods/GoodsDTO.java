@@ -16,6 +16,21 @@ public class GoodsDTO {
 	public GoodsDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public GoodsDTO(String g_name, String g_ofile, String g_nfile, String g_color, String g_size, int g_stock,
+			int g_price, String g_category, String g_detail) {
+		super();
+		this.g_name = g_name;
+		this.g_ofile = g_ofile;
+		this.g_nfile = g_nfile;
+		this.g_color = g_color;
+		this.g_size = g_size;
+		this.g_stock = g_stock;
+		this.g_price = g_price;
+		this.g_category = g_category;
+		this.g_detail = g_detail;
+	}
+	
 
 	public GoodsDTO(int idx, String g_name, String g_ofile, String g_nfile, String g_color, String g_size, int g_stock,
 			int g_price, String g_category, String g_detail, int readnum) {
