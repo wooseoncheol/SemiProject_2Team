@@ -258,7 +258,7 @@ public class GoodsDAO {
 			}
 		}
 	}
-	
+	//*상품상세 페이지 출력 메소드 우선철*/
 	public GoodsDTO showGoodscontent(int idx){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
@@ -444,9 +444,39 @@ public class GoodsDAO {
 				e1.printStackTrace();
 			}
 		}
-		
-		
 	}
-	
+	/**장바구니담기 메소드 우선철*/
+	public int insertCart(GoodsDTO dto, int g_stock, int idx, String id) {
+		try {
+			conn = com.ezenstyle.db.EzenDB.getConn();
+			String sql = "update semi_goods set g_stock = (g_stock-?) where idx = ?";
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, g_stock);
+			ps.setInt(2, idx);
+			ps.executeUpdate();
+			
+			sql = "insert into semi_cart values(?,?,?,?,?,?,?)";
+			ps= conn.prepareStatement(sql);
+			ps.setString(1,id);
+			ps.setInt(2,idx);
+			ps.setString(3,dto.getG_nfile());
+			ps.setString(4,dto.getG_category());
+			ps.setString(5,dto.getG_name());
+			ps.setInt(6,dto.getG_price());
+			ps.setInt(7,dto.getG_stock());
+			int count = ps.executeUpdate();
+			return count;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e) {
+				
+			}
+		}
+	}
 	
 }
