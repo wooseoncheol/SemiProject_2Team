@@ -50,13 +50,13 @@ public class OrderDAO {
 		}
 	}
 	/**구매완료 된 후 장바구니 테이블에 담김 데이터 삭제 김시연*/
-	public int deleteCart(String id) {
+	public int deleteCart(int c_idx) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			
-			String sql="delete from semi_cart where id=?";
+			String sql="delete from semi_cart where c_idx=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, c_idx);
 			int count=ps.executeUpdate();
 			
 			return count;

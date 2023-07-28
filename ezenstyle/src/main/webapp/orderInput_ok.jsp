@@ -19,6 +19,7 @@ String tel=request.getParameter("tel");
 ArrayList<CartDTO> arr=cdao.showCart(sid);
 
 int sum=0;
+int count=0;
 String msg="";
 
 for(int i=0;i<arr.size();i++){
@@ -34,12 +35,16 @@ for(int i=0;i<arr.size();i++){
 	OrderDTO dto=new OrderDTO(sid,name,addr,tel,g_nfile,g_name,g_price,g_size,ordernum,g_category,o_state);
 	
 	int result=odao.insertOrder(dto);
-
-	sum=sum+result;
 	
+	if(result>0){
+		count=odao.deleteCart(arr.get(i).getC_idx());
+		sum=sum+count;
+	}else{
+		sum--;
+	}
 }
 if(sum==arr.size()){
-	int count=odao.deleteCart(sid);
+	//int count=odao.deleteCart(sid);
 	msg=count>0?"결제가 완료되었습니다":"결제가 실패하였습니다";
 }else{
 	msg="결제가 등록 실패. 고객센터 문의바랍니다!";
