@@ -2,11 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.member.*" %>
 <jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
+<jsp:useBean id="cdao" class="com.ezenstyle.cart.CartDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 String sid=(String)session.getAttribute("sid");
 
 MemberDTO dto=mdao.printMember(sid);
+
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -70,6 +74,21 @@ font-size:20px;
 margin-right:50px;
 }
 </style>
+<script>
+function shownew(){
+	document.orderaddr.name.value='';
+	document.orderaddr.addr.value='';
+	document.orderaddr.tel.value='';
+}
+function showmem(){
+	document.orderaddr.name.value='<%=dto.getName() %>';
+	
+	document.orderaddr.addr.value='<%=dto.getAdr() %>';
+	document.orderaddr.tel.value='<%=dto.getTel() %>';
+	<%boolean readch=true;%>
+	
+}
+</script>
 </head>
 <body>
 <%
@@ -110,6 +129,18 @@ if(sid==null){
 	</article>
 		<article>
 	<h3>배송지정보</h3>
+	<form name="orderaddr">
+	<input type="radio" name="addr" value="newaddr" onclick="shownew()">신규배송지
+	<input type="radio" name="addr" value="memberaddr" onclick="showmem()">최근배송지<br>
+	<label>수령인</label>
+	<input type="text" name="name" <%=readch?"readonly":"" %>><br>
+	<label>주소</label>
+	<input type="text" name="addr" <%=readch?"readonly":"" %>><br>
+	<label>전화번호</label>
+	<input type="text" name="tel" <%=readch?"readonly":"" %>><br>
+	
+	
+	</form>
 	<fieldset>
 	<ul>
 		<li><%=dto.getName() %>(<%=dto.getEmail() %>)</li>
