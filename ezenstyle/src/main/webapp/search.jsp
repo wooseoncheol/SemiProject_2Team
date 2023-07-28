@@ -34,7 +34,7 @@ p{
 	margin-top: -2px;
 }
 h3{
-	margin-left:80px;
+	margin-left:30px;
 }
 .blind {
   position: absolute;
@@ -45,11 +45,6 @@ h3{
 }
 label{
 	border-bottom: 1px solid black;
-}
-#searchIcon{
-	margin-left:-20px;
-	width:20px;
-	height:20px;
 }
 #searchtxt{
 	border-top: none;
@@ -68,9 +63,9 @@ table{
 <section>
 	<article>	
 		<br>
-		<h3><img src="/ezenstyle/img/search.png" alt="검색아이콘" id="searchIcon">
+		<h3>
 		&nbsp;&nbsp;
-		<input type="text" value="<%=userInput %>" readonly id="searchtxt">
+		SEARCH :&nbsp;<input type="text" value="<%=userInput %>" readonly id="searchtxt">
 		</h3>
 		<table>
 		<caption class="blind">검색된 상품</caption>
