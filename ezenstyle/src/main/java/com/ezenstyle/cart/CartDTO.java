@@ -8,13 +8,17 @@ public class CartDTO {
 	private String g_category;
 	private String g_name;
 	private int g_price;
+	private String g_size;
 	private int ordernum;
 	
 	public CartDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartDTO(String id, int g_idx, String g_nfile, String g_category, String g_name, int g_price, int ordernum) {
+
+
+	public CartDTO(String id, int g_idx, String g_nfile, String g_category, String g_name, int g_price, String g_size,
+			int ordernum) {
 		super();
 		this.id = id;
 		this.g_idx = g_idx;
@@ -22,20 +26,11 @@ public class CartDTO {
 		this.g_category = g_category;
 		this.g_name = g_name;
 		this.g_price = g_price;
+		this.g_size = g_size;
 		this.ordernum = ordernum;
 	}
-	
-	
 
-	public CartDTO(int g_idx, String g_nfile, String g_category, String g_name, int g_price, int ordernum) {
-		super();
-		this.g_idx = g_idx;
-		this.g_nfile = g_nfile;
-		this.g_category = g_category;
-		this.g_name = g_name;
-		this.g_price = g_price;
-		this.ordernum = ordernum;
-	}
+
 
 	public String getId() {
 		return id;
@@ -86,6 +81,19 @@ public class CartDTO {
 	public int getG_price() {
 		return g_price;
 	}
+	
+
+	public String getG_size() {
+		return g_size;
+	}
+
+
+
+	public void setG_size(String g_size) {
+		this.g_size = g_size;
+	}
+
+
 
 	public void setG_price(int g_price) {
 		this.g_price = g_price;
