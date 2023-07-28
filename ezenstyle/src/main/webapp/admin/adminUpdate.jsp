@@ -15,15 +15,29 @@ margin-right: auto;
 margin-left: auto;
 margin-top: 100px;
 margin-bottom: 100px;
-width: 900px;
+width: 800px;
+height:300px;
 border-collapse: collapse;
 }
-table tbody {
+table {
 height: 70px;
 text-align:center;
 border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 }
+.a {
+height: 50px;
+text-align:center;
+border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #F0F0F0;
+}
+.b {
+margin:0px auto;
+height: 300px;
+width: 300px;
+object-fit:contain;
+}
+.b {display:block;}
 </style>
 </head>
 <body>
@@ -41,33 +55,44 @@ int stock=Integer.parseInt(stock_s);
 String price_s=request.getParameter("price");
 int price=Integer.parseInt(price_s);
 String detail=request.getParameter("detail");
+String nfile=request.getParameter("nfile");
 
 %>	
-		<form name="adminUpdate" action="adminUpadate_ok.jsp">
+		<form name="adminUpdate" action="adminUpdate_ok.jsp">
 		<h3>상품 수정 페이지</h3>
-			<table border="1" width="300" height="400">
+			<table>
 				<tbody>
-				<tr>
-					<td rowspan="6"></td>
-					<td>상품번호:<%=idx %> </td>
+				<tr class="a">
+					<td rowspan="7"><img src="/ezenstyle/goods/imgs/<%=nfile %>" class="b"></td>
+					<td>상품번호</td>
+					<td><input type="text" name="idx" value=<%=idx %> readonly></td>
 				</tr>
-				<tr>
+				<tr class="a">
+					<td>상품명</td>
 					<td><input type="text" name="name" value=<%=name %>></td>
 				</tr>
-				<tr>	
+				<tr class="a">	
+					<td>가격</td>
 					<td><input type="text" name="price" value=<%=price %>></td>
 				</tr>
-				<tr>
+				<tr class="a">
+					<td>컬러</td>
 					<td><input type="text" name="color" value=<%=color %>></td>
 				</tr>
-				<tr>
+				<tr class="a">
+					<td>사이즈</td>
 					<td><input type="text" name="size" value=<%=size %>></td>
 				</tr>
-				<tr>
+				<tr class="a">
+					<td>재고</td>
 					<td><input type="text" name="stock" value=<%=stock %>></td>
 				</tr>
-				<tr>
+				<tr class="a">
+					<td>세부</td>
 					<td><input type="text" name="detail" value=<%=detail %>></td>
+				</tr>
+				<tr class="a">
+					<td colspan="3"><input type="submit" value="수정"></td>
 				</tr>
 				</tbody>
 			</table>

@@ -122,7 +122,8 @@ border-collapse: collapse;
 					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx() %>
 					&name=<%=arr.get(i).getG_name() %>&color=<%=arr.get(i).getG_color() %>
 					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock() %>
-					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail() %>">수정</a></td>
+					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail() %>
+					&nfile=<%=arr.get(i).getG_nfile() %>">수정</a></td>
 				</tr>
 		<%
 			}

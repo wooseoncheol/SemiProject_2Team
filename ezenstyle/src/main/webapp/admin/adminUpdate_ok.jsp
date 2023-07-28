@@ -4,6 +4,24 @@
 <jsp:setProperty property="*" name="adto"/>
 <jsp:useBean id="adao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 <%
+String idx_s=request.getParameter("idx");
+int idx=Integer.parseInt(idx_s);
+String name=request.getParameter("name");
+String color=request.getParameter("color");
+String size=request.getParameter("size");
+String stock_s=request.getParameter("stock");
+int stock=Integer.parseInt(stock_s);
+String price_s=request.getParameter("price");
+int price=Integer.parseInt(price_s);
+String detail=request.getParameter("detail");
 
-
+int result=adao.adminUpdate(idx, name, color, size, stock, price, detail);
+String msg=result>0?"수정이 완료되었습니다.":"수정에 실패했습니다.";
 %>
+<script>
+window.alert('<%=msg %>');
+location.href='adminMain.jsp';
+</script>
+
+
+
