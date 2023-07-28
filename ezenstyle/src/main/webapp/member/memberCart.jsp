@@ -100,17 +100,17 @@ if(sid==null){
 			for(int i=0;i<arr.size();i++){	
 		%>
 				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
-				<td colspan="2"><%=arr.get(i).getG_name() %></td>
+				<td colspan="2">상품명:<%=arr.get(i).getG_name() %></td>
 				<td rowspan="3" align="right">가격:<%=arr.get(i).getG_price() %></td>
 				<td align="right"><input type="button" value="X" class="btn1"></td>
 			</tr>
 			<tr>
-				<td colspan="2" >shoes/trainers</td>
+				<td colspan="2" ><%=arr.get(i).getG_category() %></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>사이즈:Free</td>
-				<td>수량:2</td>
+				<td>사이즈:1</td>
+				<td>수량:<%=arr.get(i).getOrdernum() %></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -123,7 +123,7 @@ if(sid==null){
 		<table>
 			<tr align="center">
 			<td><input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:location.href='/ezenstyle/main.jsp'"></td>
-			<td><input type="button" value="결제하기" class="btn2"></td>
+			<td><input type="button" value="결제하기" class="btn2" onclick="location.href='/ezenstyle/orderInput.jsp'"></td>
 			</tr>
 		</table>
 	</article>	

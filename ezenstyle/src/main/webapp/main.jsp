@@ -80,7 +80,9 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
+				<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
 				<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
+				</a>
 				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
 				<p><%=arr.get(i).getG_price() %>원</p>
@@ -117,7 +119,9 @@ p{
 			for(int i=0;i<arr.size();i++){
 				%>
 				<td>
+				<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
 				<img src="/ezenstyle/goods/imgs/<%=arr2.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
+				</a>
 				<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
 				<h4><%=arr2.get(i).getG_name()%></h4>
 				<p><%=arr2.get(i).getG_price() %>원</p>
