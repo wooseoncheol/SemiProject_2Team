@@ -63,31 +63,48 @@ border-radius: 5px;
 border: 0px;
 outline:none;
 }
+.g_number{
+width: 40px;
+outline:none;
+}
 </style>
+<script>
+function buy{
+	<%String id=(String)session.getAttribute("sid");%>
+	if(<%=id%>==null){
+		window.alert('로그인 후 이용 가능하십니다.');
+		location.href='/ezenstyle/main.jsp';
+		return;
+	}else{document.location.href='/ezenstyle/orderInput.jsp';}
+}
+</script>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>
 <body>
 <%@include file = "../header.jsp" %>
 <section>
-<form fm = "fm" action = "/ezenstyle/orderInput.jsp" >
+<form name = "fm" action="/ezenstyle/goods/goodsContent_ok.jsp">
+<input type = hidden name="idx" value = <%=dto.getIdx() %>>
+<input type = hidden name="g_nfile" value = <%=dto.getG_nfile()%>>
+<input type = hidden name="g_category" value = <%=dto.getG_category()%>>
 <table>
 		<tr>
 			<td rowspan="3" id= "img"><img src="/ezenstyle/goods/imgs/<%=dto.getG_nfile() %>"></td>
 			<td rowspan="3"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td colspan = "2">
 			<ul>
-			<li><input id= "title" type="text" value="<%=dto.getG_name() %>" readonly class=g_inf></li>
-			<li><input type="text" value="가격: : <%=dto.getG_price() %>" readonly class=g_inf></li>
-			<li><input type="text" value="색상: : <%=dto.getG_color() %>" readonly class=g_inf></li>
-			<li><input type="text" value="사이즈: : <%=dto.getG_size() %>" readonly class=g_inf></li>
-			<li><input type="text" value="상품재고" readonly class=g_inf></li>
-			<li><input type="text" value="상세정보 : <%=dto.getG_detail() %>" readonly class=g_inf></li>
+			<li><input id= "title" type="text" name=g_name value="<%=dto.getG_name()%>" readonly class=g_inf></li>
+			<li>가격: <input type="text" name=g_price value="<%=dto.getG_price()%>" readonly class=g_inf></li>
+			<li>색상: <input type="text" name=g_color value="<%=dto.getG_color()%>" readonly class=g_inf></li>
+			<li>사이즈: <input type="text" name=g_size value="<%=dto.getG_size()%>" readonly class=g_inf></li>
+			<li>구매수량: <input type="number" name= "g_stock" min="1" value="1" class=g_number></li>
+			<li>상세정보 :<input type="text" name=g_detail value= "<%=dto.getG_detail()%>" readonly class=g_inf></li>
 			</ul>
 			</td>
 		</tr>
 		<tr>
-			<td ><input id="button1"type = "submit" value = "바로구매"></td>
-			<td ><input id="button2" type = "button" value = "장바구니"></td>
+			<td ><input id="button1" type = "button" value = "바로구매" onclick="buy()"></td>
+			<td ><input id="button2" type = "submit" value = "장바구니"></td>
 		</tr>
 		<tr>
 			<td> &nbsp; </td>
