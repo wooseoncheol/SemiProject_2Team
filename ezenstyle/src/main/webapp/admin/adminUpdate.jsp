@@ -92,7 +92,8 @@ String nfile=request.getParameter("nfile");
 					<td><input type="text" name="detail" value=<%=detail %>></td>
 				</tr>
 				<tr class="a">
-					<td colspan="3"><input type="submit" value="수정"></td>
+					<td colspan="3"><input type="submit" value="수정">
+					&nbsp;&nbsp;&nbsp;<input type="reset"	value="다시작성"></td>
 				</tr>
 				</tbody>
 			</table>

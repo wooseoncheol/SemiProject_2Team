@@ -79,6 +79,7 @@ border-collapse: collapse;
 				<li><a href="adminCategory.jsp?category=kid">KID</a></li>
 				<li><a href="adminCategory.jsp?category=accessories">ACCESSORIES</a></li>
 				<li><a href="adminCategory.jsp?category=shoes">SHOES</a></li>
+				<li><a href="adminGoodsSoldout.jsp">품절 상품 보기</a></li>
 			</ul>
 		</div>
 	

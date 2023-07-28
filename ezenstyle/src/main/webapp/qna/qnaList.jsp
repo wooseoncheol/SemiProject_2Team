@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.ezenstyle.qna.*" %>
 <jsp:useBean id="qdao" class="com.ezenstyle.qna.QnaDAO"></jsp:useBean>
+<jsp:useBean id="ndao" class="com.ezenstyle.notice.NoticeDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +51,8 @@ padding-left: 250px;
 </style>
 </head>
 <%
-String sid=(String)session.getAttribute("sid");
-if(sid==null){
+String id=(String)session.getAttribute("sid");
+if(id==null){
 	%>
 	<script>
 	window.alert('로그인 후 이용 가능하십니다.');
@@ -119,9 +120,46 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 						</td>
 					</tr>
 				</tfoot>
+			
+				<%
+			int result4=ndao.mgrJudge(id);	
+			if (result4>0) {
+				%>
 				<tbody>
 				<%
-				ArrayList<QnaDTO> arr=qdao.qnaList(cp, listSize);
+					ArrayList<QnaDTO> arr=qdao.qnaMgrList(cp, listSize);
+					if (arr==null||arr.size()==0) {
+						%>
+						<tr>
+							<td colspan="3" align="center">등록된 게시글이 없습니다.</td>
+						</tr>
+						<%
+					} else {
+						for (int i=0;i<arr.size();i++){
+							%>
+							<tr>
+								<td><%=arr.get(i).getIdx()%></td>
+								<td class="a">
+								<% 
+								for (int z=0;z<arr.get(i).getLev();z++){
+									out.println("&nbsp;&nbsp;");
+								}
+								%>
+								<a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>	
+								<td><%=arr.get(i).getWritedate() %></td>
+							</tr>
+						<%
+						}
+						
+					}
+					%>
+					</tbody>	
+				<%
+			} else {
+			%>
+			<tbody>
+			<%
+				ArrayList<QnaDTO> arr=qdao.qnaList(cp, listSize, id);
 				if (arr==null||arr.size()==0) {
 					%>
 					<tr>
@@ -146,6 +184,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 					}
 					
 				}
+			}
 				%>
 				</tbody>
 			</table>

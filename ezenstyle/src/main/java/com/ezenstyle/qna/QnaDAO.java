@@ -62,7 +62,52 @@ public class QnaDAO {
 	}
 	
 	/**목록 관련 메서드_재영*/
-	public ArrayList<QnaDTO> qnaList(int cp, int ls) {
+	public ArrayList<QnaDTO> qnaList(int cp, int ls, String id) {
+		try {
+		 conn=com.ezenstyle.db.EzenDB.getConn();
+		 int start=(cp-1)*ls+1;
+		 int end=cp*ls;
+		 String sql="select * from "
+					+ "(select rownum as rnum,a.* from  "
+					+ "(select * from semi_qna order by ref desc,sunbun asc) a) b "
+					+ "where rnum>=? and rnum<=? and id=?";
+		 ps=conn.prepareStatement(sql);
+		 ps.setInt(1, start);
+		 ps.setInt(2, end);
+		 ps.setString(3, id);
+		 rs=ps.executeQuery();
+		 ArrayList<QnaDTO> arr=new ArrayList<QnaDTO>();
+		 if (rs.next()) {
+			 do {
+				 int idx=rs.getInt("idx");
+				 String subject=rs.getString("subject");
+				 String content=rs.getString("content");
+				 java.util.Date writedate=rs.getDate("writedate");
+				 int ref=rs.getInt("ref");
+				 int lev=rs.getInt("lev");
+				 int sunbun=rs.getInt("sunbun");
+				 
+				 QnaDTO dto=new QnaDTO(idx, id, subject, content, writedate, ref, lev, sunbun);
+				 
+				 arr.add(dto);
+				 
+			 } while (rs.next());
+		 }
+		 	return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+		}
+	}
+	
+	/**관리자 전용 목록 관련 메서드_재영*/
+	public ArrayList<QnaDTO> qnaMgrList(int cp, int ls) {
 		try {
 		 conn=com.ezenstyle.db.EzenDB.getConn();
 		 int start=(cp-1)*ls+1;

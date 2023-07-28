@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,14 @@ border: 1px solid gray;
 		<thead>
 			<tr>
 				<th>제목&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="subject">
-				&nbsp;&nbsp;&nbsp;&nbsp;아이디&nbsp;&nbsp;<input type="text" name="id"></th>
+				<%Calendar now=Calendar.getInstance();
+					int y=now.get(Calendar.YEAR);
+					int m=now.get(Calendar.MONTH)+1;
+					int d=now.get(Calendar.DATE);
+					String date=y+"년 "+m+"월 "+d+"일"; 
+				%>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;날짜: <%=date %>
 			</tr>
 		</thead>
 		<tfoot>
