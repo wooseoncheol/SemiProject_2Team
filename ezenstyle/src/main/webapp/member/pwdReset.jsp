@@ -45,7 +45,10 @@ cursor: pointer;
 }
 
 .li3{}
-
+h2{
+	text-align:center;
+	padding-top: 20px;
+}
 </style>
 </head>
 <%
@@ -55,6 +58,7 @@ String id=request.getParameter("id");
 <%@ include file="/header.jsp" %>
 <section>
 	<article>
+	<h2>비밀번호 변경</h2>
 		<form name="pwdReset" action="pwdReset_ok.jsp" >
 		<input type="hidden" name="id" value="<%=id %>">
 		<div class="div1">
