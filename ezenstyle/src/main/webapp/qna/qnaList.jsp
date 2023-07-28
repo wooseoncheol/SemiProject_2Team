@@ -31,7 +31,7 @@ text-align: center;
 }
 
 table tbody {
-height: 250px;
+height: 300px;
 }
 
 table tbody td {
@@ -45,9 +45,11 @@ height: 50px;
 
 .a{
 text-align: left;
-padding-left: 250px;
+padding-left: 180px;
 }
-
+.b {
+width: 100px;
+}
 </style>
 </head>
 <%
@@ -61,6 +63,7 @@ if(id==null){
 	<%
 	return;
 }
+int result4=ndao.mgrJudge(id);	
 %>
 <%
 int totalCnt=qdao.getTotalCnt();
@@ -89,13 +92,21 @@ if(cp%pageSize==0) {userGroup--;}
 				<thead>
 					<tr>
 						<th>TYPE</th>
+						<%if (result4>0) { 
+						%>	
+						<th>ID</th>
+						<%
+						}  else {
+						%>
+						<th></th>
+						<% } %>
 						<th>SUBJECT</th>
 						<th>DATE</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
-						<td colspan="2" align="center">
+						<td colspan="3" align="center">
 <%
 if (userGroup!=0) {
 	%><a href="qnaList.jsp?cp=<%=(userGroup-1)%pageSize+pageSize%>">&lt;&lt;</a><%
@@ -122,8 +133,6 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 				</tfoot>
 			
 				<%
-			int result4=ndao.mgrJudge(id);	
-			System.out.println(result4);
 			if (result4>0) {
 				%>
 				<tbody>
@@ -132,14 +141,15 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 					if (arr==null||arr.size()==0) {
 						%>
 						<tr>
-							<td colspan="3" align="center">등록된 게시글이 없습니다.</td>
+							<td colspan="4" align="center">등록된 게시글이 없습니다.</td>
 						</tr>
 						<%
 					} else {
 						for (int i=0;i<arr.size();i++){
 							%>
 							<tr>
-								<td><%=arr.get(i).getIdx()%></td>
+								<td class="b"><%=arr.get(i).getIdx()%></td>
+								<td><%=arr.get(i).getId() %></td>
 								<td class="a">
 								<% 
 								for (int z=0;z<arr.get(i).getLev();z++){
@@ -164,14 +174,15 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 				if (arr==null||arr.size()==0) {
 					%>
 					<tr>
-						<td colspan="3" align="center">등록된 게시글이 없습니다.</td>
+						<td colspan="4" align="center">등록된 게시글이 없습니다.</td>
 					</tr>
 					<%
 				} else {
 					for (int i=0;i<arr.size();i++){
 						%>
 						<tr>
-							<td><%=arr.get(i).getIdx()%></td>
+							<td class="b"><%=arr.get(i).getIdx()%></td>
+							<td></td>
 							<td class="a">
 							<% 
 							for (int z=0;z<arr.get(i).getLev();z++){
