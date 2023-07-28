@@ -313,10 +313,11 @@ public class GoodsDAO {
 				String color=rs.getString("g_color");
 				String size=rs.getString("g_size");
 				int stock=rs.getInt("g_stock");
+				int price=rs.getInt("g_price");
 				String detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, stock, category, detail, readnum);
+				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, price, category, detail, readnum);
 				
 				arr.add(dto);	
 			}
@@ -381,10 +382,11 @@ public class GoodsDAO {
 				String color=rs.getString("g_color");
 				String size=rs.getString("g_size");
 				int stock=rs.getInt("g_stock");
+				int price=rs.getInt("g_price");
 				String detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, stock, category, detail, readnum);
+				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, price, category, detail, readnum);
 				
 				arr.add(dto);	
 			}
@@ -402,10 +404,10 @@ public class GoodsDAO {
 		}
 		
 	}
-	
+	/** 품절 상품 리스트_성진*/
 	public ArrayList<GoodsDTO> soidoutlist(){
 		try {
-			String sql="select * from semi_goods where g_stock=0 order by category desc";
+			String sql="select * from semi_goods where g_stock=0 order by g_category desc";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
@@ -419,10 +421,11 @@ public class GoodsDAO {
 				String color=rs.getString("g_color");
 				String size=rs.getString("g_size");
 				int stock=rs.getInt("g_stock");
+				int price=rs.getInt("g_price");
 				String detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, stock, category, detail, readnum);
+				GoodsDTO dto=new GoodsDTO(idx, name, ofile, nfile, color, size, stock, price, category, detail, readnum);
 				
 				arr.add(dto);	
 			}
