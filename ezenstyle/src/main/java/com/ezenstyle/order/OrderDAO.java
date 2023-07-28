@@ -49,6 +49,28 @@ public class OrderDAO {
 			}
 		}
 	}
-	
+	/**구매완료 된 후 장바구니 테이블에 담김 데이터 삭제 김시연*/
+	public int deleteCart(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			
+			String sql="delete from semi_cart where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			int count=ps.executeUpdate();
+			
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
 
 }

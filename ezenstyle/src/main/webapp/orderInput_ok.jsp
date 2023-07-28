@@ -19,6 +19,7 @@ String tel=request.getParameter("tel");
 ArrayList<CartDTO> arr=cdao.showCart(sid);
 
 int sum=0;
+String msg="";
 
 for(int i=0;i<arr.size();i++){
 	
@@ -33,11 +34,18 @@ for(int i=0;i<arr.size();i++){
 	OrderDTO dto=new OrderDTO(sid,name,addr,tel,g_nfile,g_name,g_price,g_size,ordernum,g_category,o_state);
 	
 	int result=odao.insertOrder(dto);
-	
+
 	sum=sum+result;
 	
 }
-String msg=sum==arr.size()?"결제가 완료되었습니다!":"결제가 실패하였습니다."; // 결제 테이블에 삽입된 행의 개수와 장바구니의 갯수가 같으면 결제 완료
+if(sum==arr.size()){
+	int count=odao.deleteCart(sid);
+	msg=count>0?"결제가 완료되었습니다":"결제가 실패하였습니다";
+}else{
+	msg="결제가 등록 실패. 고객센터 문의바랍니다.";
+}
+
+
 %>
 <script>
 	window.alert('<%=msg%>');
