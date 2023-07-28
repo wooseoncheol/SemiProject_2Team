@@ -11,10 +11,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
+#container {display: flex;padding-top: 30px;}
 #box1{flex:1;padding-top: 15px;}
 #box2{flex:3;padding-top: 32px;display: flex;}
 #box3{flex:1;padding-top: 15px;}
-#container {display: flex;padding-top: 30px;}
+
 #box1 ul{
 padding-left: 100px;
 }
@@ -25,6 +26,10 @@ height: 50px;
 #box2 table{
 margin:0px auto;
 }
+.g_pic{
+width:200px;
+height: 200px;
+}
 table {
 margin-right: auto;
 margin-left: auto;
@@ -33,24 +38,24 @@ margin-bottom: 100px;
 width: 650px;
 border-collapse: collapse;
 }
-table thead {
+.g {
 height: 40px;
 text-align:center;
 border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 }
-table tbody {
+.u {
 border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 text-indent: 30px;
 }
-table tfoot {
+.h {
 height: 40px;
 text-align:center;
 border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 }
-img {
+.b {
 height: 200px;
 width: 200px;
 object-fit:contain;
@@ -62,7 +67,20 @@ width: 200px;
 border-collapse: collapse;
 }
 .b {display:block;}
+.q{
+text-align: center;
+}
 </style>
+<script>
+function adminDelete(aaa) {
+	var result=window.confirm('삭제하시겠습니까?');
+	if (result) {
+		location.href='adminDelete.jsp?idx='+aaa;
+	} else {
+		location.reload();
+	}
+}
+</script>
 </head>
 <body>
 <%@include file="/header.jsp" %>
@@ -88,7 +106,7 @@ border-collapse: collapse;
 		%>
 		<table>
 		<thead>
-			<tr>
+			<tr class="q">
 				<td>등록된 상품이 없습니다.</td>
 			</tr>
 		</thead>
@@ -119,7 +137,8 @@ border-collapse: collapse;
 					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx() %>
 					&name=<%=arr.get(i).getG_name() %>&color=<%=arr.get(i).getG_color() %>
 					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock() %>
-					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail() %>">수정</a></td>
+					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail() %>">수정</a>&nbsp;&nbsp;&nbsp;
+					<a onclick="adminDelete('<%=arr.get(i).getIdx() %>')" style="cursor:pointer;">삭제</a></td>
 				</tr>
 		<%
 			}

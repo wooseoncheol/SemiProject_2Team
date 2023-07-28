@@ -66,7 +66,20 @@ width: 200px;
 border-collapse: collapse;
 }
 .b {display:block;}
+.q{
+text-align: center;
+}
 </style>
+<script>
+function adminDelete(aaa) {
+	var result=window.confirm('삭제하시겠습니까?');
+	if (result) {
+		location.href='adminDelete.jsp?idx='+aaa;
+	} else {
+		location.reload();
+	}
+}
+</script>
 </head>
 <body>
 <%@include file="/header.jsp" %>
@@ -95,7 +108,7 @@ border-collapse: collapse;
 		%>
 		<table>
 		<thead>
-			<tr>
+			<tr class="q">
 				<td>등록된 상품이 없습니다.</td>
 			</tr>
 		</thead>
@@ -126,7 +139,8 @@ border-collapse: collapse;
 					&name=<%=arr.get(i).getG_name() %>&color=<%=arr.get(i).getG_color() %>
 					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock() %>
 					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail()%>
-					&nfile=<%=arr.get(i).getG_nfile() %>">수정</a></td>
+					&nfile=<%=arr.get(i).getG_nfile() %>">수정</a>&nbsp;&nbsp;&nbsp;
+					<a onclick="adminDelete('<%=arr.get(i).getIdx() %>')" style="cursor:pointer;">삭제</a></td>
 				</tr>
 		<%
 			}

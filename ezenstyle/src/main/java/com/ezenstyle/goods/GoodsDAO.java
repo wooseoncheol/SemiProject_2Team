@@ -445,6 +445,7 @@ public class GoodsDAO {
 			}
 		}
 	}
+	
 	/**장바구니담기 메소드 우선철*/
 	public int insertCart(GoodsDTO dto, int g_stock, int idx, String id) {
 		try {
@@ -479,4 +480,24 @@ public class GoodsDAO {
 		}
 	}
 	
+	/**삭제 기능*/
+	public int adminDelete(int idx) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="delete from semi_goods where idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, idx);
+			int count=ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+			if(ps!=null)ps.close();
+			if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+		}	
+	}
+
 }
