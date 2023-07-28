@@ -60,6 +60,10 @@ border: 1px solid gray;
 	<article>
 	<form name="qnaWrite" action="qnaWrite_ok.jsp">
 		<table>
+		<%
+		String id=(String)session.getAttribute("sid");
+		%>
+		<input type="hidden" name="id" value="<%=id %>">
 		<thead>
 			<tr>
 				<th>제목&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="subject">

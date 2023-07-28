@@ -123,6 +123,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 			
 				<%
 			int result4=ndao.mgrJudge(id);	
+			System.out.println(result4);
 			if (result4>0) {
 				%>
 				<tbody>
@@ -184,9 +185,9 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 					}
 					
 				}
+				%></tbody><%
 			}
 				%>
-				</tbody>
 			</table>
 		</form>
 	</article>

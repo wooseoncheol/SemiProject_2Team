@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +58,7 @@ String subject=request.getParameter("subject");
 String ref=request.getParameter("ref");
 String lev=request.getParameter("lev");
 String sunbun=request.getParameter("sunbun");
+String id=(String)session.getAttribute("sid");
 %>
 </head>
 <body>
@@ -65,14 +67,21 @@ String sunbun=request.getParameter("sunbun");
 	<article>
 	<h3>문의게시판 답변 쓰기</h3>
 	<form name="qnaReWrite" action="qnaReWrite_ok.jsp">
+	<input type="hidden" name="id" value=<%=id %>>
 	<input type="hidden" name="ref" value=<%=ref %>>
 	<input type="hidden" name="lev" value=<%=lev %>>
 	<input type="hidden" name="sunbun" value=<%=sunbun %>>
 		<table>
 		<thead>
 			<tr>
-			<th>아이디 &nbsp;&nbsp;&nbsp;<input type="text" name="id">
-			&nbsp;&nbsp;&nbsp;&nbsp;제목 &nbsp;&nbsp;&nbsp;<input type="text" name="subject" value="L&nbsp;&nbsp;<%=subject %>"></th>
+				<th>제목 &nbsp;&nbsp;&nbsp;<input type="text" name="subject" value="L&nbsp;&nbsp;<%=subject %>">
+				&nbsp;&nbsp;&nbsp;<%Calendar now=Calendar.getInstance();
+					int y=now.get(Calendar.YEAR);
+					int m=now.get(Calendar.MONTH)+1;
+					int d=now.get(Calendar.DATE);
+					String date=y+"년 "+m+"월 "+d+"일"; 
+				%>
+				&nbsp;&nbsp;&nbsp;&nbsp;날짜: <%=date %></th>
 			</tr> 
 		</thead>
 		<tfoot>
