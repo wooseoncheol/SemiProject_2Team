@@ -7,7 +7,7 @@ String sname=(String)session.getAttribute("sname");
 <script>
 function search(){
 	let userInput=document.searchForm.userInput.value;
-	location.href='search.jsp?userInput='+userInput;
+	location.href='/ezenstyle/search.jsp?userInput='+userInput;
 }
 </script>
 <style>
