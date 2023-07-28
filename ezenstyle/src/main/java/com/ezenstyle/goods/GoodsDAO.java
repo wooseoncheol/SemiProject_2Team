@@ -456,7 +456,7 @@ public class GoodsDAO {
 			ps.setInt(2, idx);
 			ps.executeUpdate();
 			
-			sql = "insert into semi_cart values(?,?,?,?,?,?,?)";
+			sql = "insert into semi_cart values(?,?,?,?,?,?,?,?)";
 			ps= conn.prepareStatement(sql);
 			ps.setString(1,id);
 			ps.setInt(2,idx);
@@ -464,7 +464,8 @@ public class GoodsDAO {
 			ps.setString(4,dto.getG_category());
 			ps.setString(5,dto.getG_name());
 			ps.setInt(6,dto.getG_price());
-			ps.setInt(7,dto.getG_stock());
+			ps.setString(7, dto.getG_size());
+			ps.setInt(8,dto.getG_stock());
 			int count = ps.executeUpdate();
 			return count;
 		}catch(Exception e) {
