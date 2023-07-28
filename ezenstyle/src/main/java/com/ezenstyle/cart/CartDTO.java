@@ -2,6 +2,7 @@ package com.ezenstyle.cart;
 
 public class CartDTO {
 
+	private int c_idx;
 	private String id;
 	private int g_idx;
 	private String g_nfile;
@@ -15,7 +16,7 @@ public class CartDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	
 
 	public CartDTO(String id, int g_idx, String g_nfile, String g_category, String g_name, int g_price, String g_size,
 			int ordernum) {
@@ -28,6 +29,34 @@ public class CartDTO {
 		this.g_price = g_price;
 		this.g_size = g_size;
 		this.ordernum = ordernum;
+	}
+
+	
+
+	public CartDTO(int c_idx, String id, int g_idx, String g_nfile, String g_category, String g_name, int g_price,
+			String g_size, int ordernum) {
+		super();
+		this.c_idx = c_idx;
+		this.id = id;
+		this.g_idx = g_idx;
+		this.g_nfile = g_nfile;
+		this.g_category = g_category;
+		this.g_name = g_name;
+		this.g_price = g_price;
+		this.g_size = g_size;
+		this.ordernum = ordernum;
+	}
+
+
+
+	public int getC_idx() {
+		return c_idx;
+	}
+
+
+
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
 	}
 
 
