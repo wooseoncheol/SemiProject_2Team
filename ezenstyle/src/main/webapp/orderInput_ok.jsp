@@ -42,7 +42,7 @@ if(sum==arr.size()){
 	int count=odao.deleteCart(sid);
 	msg=count>0?"결제가 완료되었습니다":"결제가 실패하였습니다";
 }else{
-	msg="결제가 등록 실패. 고객센터 문의바랍니다.";
+	msg="결제가 등록 실패. 고객센터 문의바랍니다!";
 }
 
 
