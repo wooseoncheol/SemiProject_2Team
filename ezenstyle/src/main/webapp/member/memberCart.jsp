@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.member.*"%>
+<%@ page import="com.ezenstyle.cart.*"%>
+<%@ page import="java.util.*" %>
+<jsp:useBean id="cdao" class="com.ezenstyle.cart.CartDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 String sid=(String)session.getAttribute("sid");
@@ -86,10 +89,19 @@ if(sid==null){
 		<h3>장바구니</h3>
 		<table>
 		<caption class="blind" >장바구니 목록</caption>
-			<tr>
-				<td rowspan="3"><img src="/ezenstyle/img/shoes/s1.jpg"></td>
-				<td colspan="2">Yellow T-shirts</td>
-				<td rowspan="3" align="right">가격:200000</td>
+		<tr>
+		<%
+		ArrayList<CartDTO> arr=cdao.showCart(sid);
+		if(arr==null || arr.size()==0){
+			%>
+			<td colspan="2">장바구니에 담긴 상품이 없습니다.</td>
+			<% 
+		}else{	
+			for(int i=0;i<arr.size();i++){	
+		%>
+				<td rowspan="3"><img src="<%=arr.get(i).getG_nfile()%>"></td>
+				<td colspan="2"><%=arr.get(i).getG_name() %></td>
+				<td rowspan="3" align="right">가격:<%=arr.get(i).getG_price() %></td>
 				<td align="right"><input type="button" value="X" class="btn1"></td>
 			</tr>
 			<tr>
@@ -102,14 +114,18 @@ if(sid==null){
 				<td></td>
 			</tr>
 		</table>
+		<%
+			}
+		}
+		%>
 		<table>
 			<tr align="center">
 			<td><input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:location.href='/ezenstyle/main.jsp'"></td>
 			<td><input type="button" value="결제하기" class="btn2"></td>
 			</tr>
 		</table>
-	</article>
+	</article>	
 </section>
-<%@ include file="../footer.jsp" %>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

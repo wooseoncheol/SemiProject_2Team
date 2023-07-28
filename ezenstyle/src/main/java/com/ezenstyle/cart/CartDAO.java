@@ -1,6 +1,7 @@
 package com.ezenstyle.cart;
 
 import java.sql.*;
+import java.util.*;
 
 public class CartDAO {
 	
@@ -12,27 +13,39 @@ public class CartDAO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int cartInsert(CartDTO dto) {
+	//장바구니에 넣은 상품들 조회 메서드
+	public ArrayList<CartDTO> showCart(String id){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="insert into semi_cart values(?,?,?,?,?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getId());
-			ps.setInt(2, dto.getG_idx());
-			ps.setString(3, dto.getG_name());
-			ps.setInt(4, dto.getG_price());
-			ps.setInt(5, dto.getOrdernum());
-			int count=ps.executeUpdate();
-			return count;	
+			ArrayList<CartDTO> arr=new ArrayList<CartDTO>();
+			String sql="select * from semi_cart where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				id=rs.getString("id");
+				String g_idx=rs.getString("g_idx");
+				String g_nfile=rs.getString("g_nfile");
+				String g_category=rs.getString("g_category");
+				String g_name=rs.getString("g_name");
+				int g_price=rs.getInt("g_price");
+				int ordernum=rs.getInt("ordernum");
+				
+				CartDTO dto=new CartDTO(ordernum, g_nfile, g_category, g_name, g_price, ordernum);
+				arr.add(dto);
+			}
+			return arr;
 		}catch(Exception e) {
 			e.printStackTrace();
-			return -1;
+			return null;
 		}finally {
 			try {
+				if(rs!=null)rs.close();
 				if(ps!=null)ps.close();
 				if(conn!=null)conn.close();
 			}catch(Exception e2) {
-				
+				e2.printStackTrace();
 			}
 		}
 	}
