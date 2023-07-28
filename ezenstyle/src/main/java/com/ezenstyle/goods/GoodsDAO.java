@@ -408,7 +408,7 @@ public class GoodsDAO {
 	public ArrayList<GoodsDTO> soidoutlist(){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select * from semi_goods where g_stock=0 order by g_category desc";
+			String sql="select * from semi_goods where g_stock<=0 order by g_category desc";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
