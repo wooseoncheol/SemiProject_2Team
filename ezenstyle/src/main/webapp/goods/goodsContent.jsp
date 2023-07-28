@@ -97,7 +97,27 @@ function buy{
 			<li>가격: <input type="text" name=g_price value="<%=dto.getG_price()%>" readonly class=g_inf></li>
 			<li>색상: <input type="text" name=g_color value="<%=dto.getG_color()%>" readonly class=g_inf></li>
 			<li>사이즈: <input type="text" name=g_size value="<%=dto.getG_size()%>" readonly class=g_inf></li>
-			<li>구매수량: <input type="number" name= "g_stock" min="1" value="1" class=g_number></li>
+			<li>구매수량:
+			<% 
+			if(dto.getG_stock()==0){
+			%>
+				<span>[품절]</span>
+			<% 
+			}else{
+			%> 
+			<select name=g_stock>
+			<% 
+				for(int i = 1 ; i<=dto.getG_stock(); i++){
+					%>
+					<option value=<%=i%>><%=i %></option>
+					<% 
+				}
+			%>
+			</select>
+			<%
+			}
+			%>
+			</li>
 			<li>상세정보 :<input type="text" name=g_detail value= "<%=dto.getG_detail()%>" readonly class=g_inf></li>
 			</ul>
 			</td>
