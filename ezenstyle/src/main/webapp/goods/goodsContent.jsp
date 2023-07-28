@@ -75,7 +75,7 @@ function buy{
 		window.alert('로그인 후 이용 가능하십니다.');
 		location.href='/ezenstyle/main.jsp';
 		return;
-	}else{location.href='/ezenstyle/orderInput.jsp';}
+	}else{document.location.href='/ezenstyle/orderInput.jsp';}
 }
 </script>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
@@ -103,7 +103,7 @@ function buy{
 			</td>
 		</tr>
 		<tr>
-			<td ><input id="button1" type = "submit" value = "바로구매" onclick="javascript: form.action='/ezenstyle/orderInput.jsp';"></td>
+			<td ><input id="button1" type = "button" value = "바로구매" onclick="buy()"></td>
 			<td ><input id="button2" type = "submit" value = "장바구니"></td>
 		</tr>
 		<tr>
