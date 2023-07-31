@@ -500,5 +500,29 @@ public class GoodsDAO {
 			} catch (Exception e2) { }
 		}	
 	}
-
+	/**장바구니 상품 비교*/
+	public int cartCheck(int idx, String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select g_idx,id from semi_cart where g_idx=? and id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1,idx);
+			ps.setString(2,id);
+			rs = ps.executeQuery();
+			int count = 0;
+			if(rs.next()) {
+				count = 1;
+			}
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			try {
+			if(rs!=null)rs.close();
+			if(ps!=null)ps.close();
+			if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+		}
+	}
 }

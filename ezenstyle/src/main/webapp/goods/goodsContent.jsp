@@ -68,20 +68,6 @@ width: 40px;
 outline:none;
 }
 </style>
-<script>
-function buy{
-	<%String id=(String)session.getAttribute("sid");%>
-	if(<%=id%>==null){
-		window.alert('로그인 후 이용 가능하십니다.');
-		location.href='../ezenstyle/memberLogin.jsp';
-		return;
-	}else if(<%=dto.getG_stock()==0%>){
-		window.alert('품절상품입니다. 1대1문의를 이용해주세요.')	
-	}else{
-		window.location.href='../ezenstyle/orderInput.jsp';
-		}
-	}
-</script>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>
 <body>
@@ -103,7 +89,7 @@ function buy{
 			<li>사이즈: <input type="text" name=g_size value="<%=dto.getG_size()%>" readonly class=g_inf></li>
 			<li>구매수량:
 			<% 
-			if(dto.getG_stock()==0){
+			if(dto.getG_stock()<=0){
 			%>
 				<input type = hidden name="g_stock" value = <%=dto.getG_stock()%>>
 				<span>[품절]</span>
