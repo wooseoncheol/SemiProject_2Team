@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <%@ page import="com.ezenstyle.goods.*" %>
 <jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 
@@ -9,6 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%	
+	DecimalFormat df = new DecimalFormat("###,###,###");
+%>
 <link rel="stylesheet" type="text/css" href="/ezenstyle/css/semiLayout.css">
 <style>
 #container {display: flex;padding-top: 30px;}
@@ -132,7 +136,7 @@ function adminDelete(aaa) {
 					<td>색상: <%=arr.get(i).getG_color() %>&nbsp;&nbsp;사이즈: <%=arr.get(i).getG_size() %></td>
 				</tr>
 				<tr class="u">
-					<td>가격: <%=arr.get(i).getG_price() %>&nbsp;&nbsp;재고: <%=arr.get(i).getG_stock() %></td>
+					<td>가격: <%=df.format(arr.get(i).getG_price() ) %>원&nbsp;&nbsp;재고: <%=arr.get(i).getG_stock() %></td>
 				</tr>
 				<tr class="h">
 					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx() %>
