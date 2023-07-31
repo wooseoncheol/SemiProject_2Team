@@ -64,15 +64,14 @@ footer h3 {
 	display: inline;
 	text-align: center;
 	float: left;
-	margin-left: 145px;
-	
+	margin-left: 40px;
 }
 
 footer p{
 	float: left;
 	text-align: left;
 	display: inline;
-	margin-left: 80px;
+	margin-left: 60px;
 	font-size: 10px;
 }
 
