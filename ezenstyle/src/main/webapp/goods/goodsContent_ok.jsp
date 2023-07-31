@@ -49,7 +49,7 @@ if(id==null||id==""){
 	}else if(buttontype.equals("바로구매")){
 		%>
 		<script>
-		window.location.href="/ezenstyle/orderInput.jsp?idx=<%=idx%>&g_nfile=<%=request.getParameter("g_nfile")%>&g_category=<%=request.getParameter("g_category")%>&g_name=<%=request.getParameter("g_name")%>&g_price=<%=request.getParameter("g_price")%>&g_color=<%=request.getParameter("g_color")%>&g_size=<%=request.getParameter("g_size")%>&g_stock=<%=g_stock%>&g_detail=<%=request.getParameter("g_detail")%>";
+		window.location.href="/ezenstyle/orderNow.jsp?idx=<%=idx%>&g_nfile=<%=request.getParameter("g_nfile")%>&g_category=<%=request.getParameter("g_category")%>&g_name=<%=request.getParameter("g_name")%>&g_price=<%=request.getParameter("g_price")%>&g_color=<%=request.getParameter("g_color")%>&g_size=<%=request.getParameter("g_size")%>&g_stock=<%=g_stock%>&g_detail=<%=request.getParameter("g_detail")%>";
 		</script>
 		<% 
 	}else{
