@@ -4,6 +4,8 @@
 <%
 String c_idx_s=request.getParameter("cid");
 int c_idx=Integer.parseInt(c_idx_s);
+String g_idx_s=request.getParameter("g_idx");
+int g_idx=Integer.parseInt(g_idx_s);
 
 int result=odao.deleteCart(c_idx);
 

@@ -15,7 +15,7 @@ String sid=(String)session.getAttribute("sid");
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
-img{
+section img{
 	width: 150px;
 	height: 200px;
 	margin-right: -80px;
@@ -32,10 +32,10 @@ table{
 	height:130px;
 	margin:0px auto;
 }
-table td{
+section table td{
 	font-size:18px;
 }
-h3{
+section h3{
 	margin-left:15px;
 }
 .btn1{
@@ -69,7 +69,14 @@ cursor: pointer;
 font-size:20px;
 margin-right:50px;
 }
+
 </style>
+<script>
+function openpopup(){
+	
+}
+
+</script>
 </head>
 <body>
 <%
@@ -87,7 +94,8 @@ if(sid==null){
 <section>
 	<article id="art1">
 		<h3>장바구니</h3>
-		<table>
+		<form name="qtt">
+		<table border="1" cellspacing="0">
 		<caption class="blind" >장바구니 목록</caption>
 		<tr>
 		<%
@@ -101,17 +109,16 @@ if(sid==null){
 		%>
 				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
 				<td colspan="2">상품명:<%=arr.get(i).getG_name() %></td>
-				<td rowspan="3" align="right">가격:<%=arr.get(i).getG_price() %></td>
-				<td align="right"><input type="button" value="X" class="btn1" onclick="location.href='/ezenstyle/member/deleteCart_ok.jsp?cid=<%=arr.get(i).getC_idx()%>'"></td>
+				<td rowspan="3" align="right">가격:<%=arr.get(i).getG_price()*arr.get(i).getOrdernum()%></td>
+				<td align="right"><input type="button" value="X" class="btn1" onclick="deleteCart()"></td>
 			</tr>
 			<tr>
 				<td colspan="2" ><%=arr.get(i).getG_category() %></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>사이즈:1</td>
-				<td>수량:<%=arr.get(i).getOrdernum() %></td>
-				<td></td>
+				<td >사이즈:Free</td>
+				<td><input type="button" value="주문수정" onclick="javascript:window.open('openPopup.jsp?c_idx=<%=arr.get(i).getC_idx()%>','popup','width=50,heigth=50,top=100');">
 			</tr>
 			<tr>
 			<%
@@ -120,6 +127,7 @@ if(sid==null){
 		%>
 			</tr>
 		</table>
+		</form>
 		<table>
 			<tr align="center">
 			<td><input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:location.href='/ezenstyle/main.jsp'"></td>
