@@ -21,10 +21,10 @@ MemberDTO dto=mdao.printMember(sid);
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/semiLayout.css">
 <style>
-li{
+section li{
 	list-style-type: none;
 }
-img{
+section img{
 	width: 150px;
 	height: 200px;
 	margin-right: -80px;
@@ -36,16 +36,24 @@ img{
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-table{
+section table{
 	width:800px;
 	height:130px;
-	margin:0px auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	margin-bottom: 100px;
+	border-collapse: collapse;
+	border-top: 3px solid #F0F0F0;
+	border-bottom: 3px solid #F0F0F0;
+
 }
-table td{
+section table td{
 	font-size:18px;
 }
-h3{
-	margin-left:15px;
+section h3{
+	margin-top:100px;
+	margin-left:200px;
 }
 .btn2{
 width:200px;
@@ -94,7 +102,6 @@ if(sid==null){
 <section>
 	<article>
 	<h3>상품정보</h3>
-	<fieldset>
 		<table>
 		<caption class="blind" >결제 예정 목록</caption>
 		<%
@@ -120,9 +127,7 @@ if(sid==null){
 				<td></td>
 			</tr>
 			<tr>
-				<td><%=arr.get(i).getG_size() %></td>
-				<td><%=arr.get(i).getOrdernum() %></td>
-				<td></td>
+				<td colspan="3">사이즈:<%=arr.get(i).getG_size() %> | 수량:<%=arr.get(i).getOrdernum() %></td>
 			</tr>
 				<%
 			}
@@ -130,13 +135,12 @@ if(sid==null){
 		%>
 		
 		</table>
-		</fieldset>
 	</article>
 	
 	<article>
 	<h3>배송지정보</h3>
 	<form name="orderInput" action="orderInput_ok.jsp" method="post">
-	<fieldset>
+
 		<table>
 			<tr>
 				<td>받으시는 분</td>
@@ -150,12 +154,11 @@ if(sid==null){
 				<td>전화번호</td>
 				<td><input type="text" name="tel" value="<%=dto.getTel() %>"></td>
 			</tr>
-			<tr align="center">
-				<td><input type="button" value="장바구니로 가기" class="btn2" onclick="javascript:location.href='/ezenstyle/member/memberCart.jsp'"></td>
-				<td><input type="submit" value="결제하기" class="btn3"></td>
-				</tr>
 		</table>
-	</fieldset>
+		<div align="center">
+			<input type="button" value="장바구니로 가기" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
+			<input type="submit" value="결제하기" class="btn3">
+		</div>
 	</form>
 	</article>
 
