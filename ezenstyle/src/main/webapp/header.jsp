@@ -43,7 +43,7 @@ color:black;
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=man">MAN</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=woman">WOMAN</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=kid">KID</a></li>
-			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=accessorise">ACCESSORIES</a></li>
+			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=accessories">ACCESSORIES</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=shoes">SHOES</a></li>
 			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" class="search" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
 		</ul>

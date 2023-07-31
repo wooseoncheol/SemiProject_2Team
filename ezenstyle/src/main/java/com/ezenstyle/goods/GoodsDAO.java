@@ -262,7 +262,7 @@ public class GoodsDAO {
 	public GoodsDTO showGoodscontent(int idx){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql=	 "select * from semi_goods where idx = ?";
+			String sql="select * from semi_goods where idx = ?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, idx);
 			rs=ps.executeQuery();
@@ -279,8 +279,13 @@ public class GoodsDAO {
 				String g_detail=rs.getString("g_detail");
 				int readnum=rs.getInt("readnum");
 				
-				GoodsDTO dto=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock,g_price, g_category, g_detail, readnum);
+				GoodsDTO dto=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock, g_price, g_category, g_detail, readnum);
 
+				sql="update semi_goods set readnum=readnum+1 where idx = ?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, idx);
+				ps.executeQuery();
+				
 				return dto;
 		}catch(Exception e) {
 			e.printStackTrace();
