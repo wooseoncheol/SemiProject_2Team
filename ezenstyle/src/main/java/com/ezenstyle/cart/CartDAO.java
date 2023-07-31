@@ -24,8 +24,9 @@ public class CartDAO {
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
+				int c_idx=rs.getInt("c_idx");
 				id=rs.getString("id");
-				String g_idx=rs.getString("g_idx");
+				int g_idx=rs.getInt("g_idx");
 				String g_nfile=rs.getString("g_nfile");
 				String g_category=rs.getString("g_category");
 				String g_name=rs.getString("g_name");
@@ -33,7 +34,7 @@ public class CartDAO {
 				String g_size=rs.getString("g_size");
 				int ordernum=rs.getInt("ordernum");
 				
-				CartDTO dto=new CartDTO(g_idx, ordernum, g_nfile, g_category, g_name, g_price, g_size, ordernum);
+				CartDTO dto=new CartDTO(c_idx, id, g_idx, g_nfile, g_category, g_name, g_price, g_size, ordernum);
 				arr.add(dto);
 			}
 			return arr;

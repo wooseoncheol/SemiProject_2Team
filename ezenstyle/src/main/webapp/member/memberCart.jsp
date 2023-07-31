@@ -102,7 +102,7 @@ if(sid==null){
 				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
 				<td colspan="2">상품명:<%=arr.get(i).getG_name() %></td>
 				<td rowspan="3" align="right">가격:<%=arr.get(i).getG_price() %></td>
-				<td align="right"><input type="button" value="X" class="btn1"></td>
+				<td align="right"><input type="button" value="X" class="btn1" onclick="location.href='/ezenstyle/member/deleteCart_ok.jsp?cid=<%=arr.get(i).getC_idx()%>'"></td>
 			</tr>
 			<tr>
 				<td colspan="2" ><%=arr.get(i).getG_category() %></td>
