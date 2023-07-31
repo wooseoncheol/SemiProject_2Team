@@ -17,6 +17,7 @@ public class OrderDTO {
 	private String g_category;
 	private Date orderdate;
 	private String o_state;
+	private int del_state;
 	
 	public OrderDTO() {
 		// TODO Auto-generated constructor stub
@@ -59,6 +60,29 @@ public class OrderDTO {
 		this.orderdate = orderdate;
 		this.o_state = o_state;
 	}
+	
+	public OrderDTO(int o_idx, String name, String adr, String g_name, Date orderdate, String o_state, int del_state) {
+		this.o_idx=o_idx;
+		this.name=name;
+		this.adr=adr;
+		this.g_name=g_name;
+		this.orderdate=orderdate;
+		this.o_state=o_state;
+		this.del_state=del_state;
+	}
+
+
+	public int getDel_state() {
+		return del_state;
+	}
+
+
+
+	public void setDel_state(int del_state) {
+		this.del_state = del_state;
+	}
+
+
 
 	public int getO_idx() {
 		return o_idx;

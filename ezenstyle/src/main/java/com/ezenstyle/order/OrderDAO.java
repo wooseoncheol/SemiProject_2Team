@@ -72,5 +72,39 @@ public class OrderDAO {
 			}
 		}
 	}
+	
+	/**고객 배송 관리_재영*/
+	public ArrayList<OrderDTO> adminOrder() {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select name, adr, g_name, orderdate, o_state, trunc((sysdate-orderdate)) as \"del_state\" from semi_order";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
+			while(rs.next()) {			
+				int o_idx=rs.getInt("o_idx");
+				String name=rs.getString("name");
+				String adr=rs.getString("adr"); 
+				String g_name=rs.getString("g_name");
+				java.sql.Date orderdate=rs.getDate("orderdate");
+				String o_state=rs.getString("o_state");
+				int del_state=rs.getInt("del_state");
+				
+				OrderDTO dto=new OrderDTO(o_idx, name, adr, g_name, orderdate, o_state, del_state);
+				arr.add(dto);
+				}
+				return arr;
+		} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {}
+			
+		}
+	}
 
 }

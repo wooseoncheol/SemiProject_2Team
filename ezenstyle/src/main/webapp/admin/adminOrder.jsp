@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.ezenstyle.order.*" %>
+<jsp:useBean id="odao" class="com.ezenstyle.order.OrderDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,16 +71,6 @@ border-collapse: collapse;
 text-align: center;
 }
 </style>
-<script>
-function adminDelete(aaa) {
-	var result=window.confirm('삭제하시겠습니까?');
-	if (result) {
-		location.href='adminDelete.jsp?idx='+aaa;
-	} else {
-		location.reload();
-	}
-}
-</script>
 </head>
 <body>
 <%@include file="/header.jsp" %>
@@ -98,8 +90,8 @@ function adminDelete(aaa) {
 
 <div id="box2">
 	<%
-	ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
-	arr=gdao.adminAll();
+	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
+	arr=odao.adminOrder();
 	%>
 	<%if (arr==null||arr.size()==0) {	
 		%>
@@ -115,35 +107,38 @@ function adminDelete(aaa) {
 			%><table><%
 			for(int i=0;i<arr.size();i++) {
 		%>
-				<tr class="g">
-					<th colspan="2"><%=arr.get(i).getG_name() %></th>
+				<tr>
+				<td>고객 이름: <%=arr.get(i).getName() %></td>
 				</tr>
-				<tr class="u">
-					<td rowspan="4" class="a"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td>
-					<%String category=arr.get(i).getG_category().toUpperCase(); %>
-					<td><%=category %></td>
+				<tr>
+				<td>구매 날짜: <%=arr.get(i).getOrderdate() %></td>
 				</tr>
-				<tr class="u">
-					<td>상품번호: <%=arr.get(i).getIdx() %></td>
+				<tr>
+				<td>상품 이름: <%=arr.get(i).getG_name() %>
 				</tr>
-				<tr class="u">
-					<td>색상: <%=arr.get(i).getG_color() %>&nbsp;&nbsp;사이즈: <%=arr.get(i).getG_size() %></td>
+				<tr>
+				<td>배송지: <%=arr.get(i).getAdr() %> 배송현황: 
+				
+				<%switch (arr.get(i).getDel_state()) {
+				case 0:out.println("배송 시작");break;
+				case 1:out.println("배송 중");break;
+				case 2:out.println("배송 중");break;
+				case 3:out.println("배송 완료");
+				}
+				%>
+				
+				</td>
 				</tr>
-				<tr class="u">
-					<td>가격: <%=arr.get(i).getG_price() %>&nbsp;&nbsp;재고: <%=arr.get(i).getG_stock() %></td>
+				<tr>
+				<td><hr></td>
 				</tr>
-				<tr class="h">
-					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx() %>
-					&name=<%=arr.get(i).getG_name() %>&color=<%=arr.get(i).getG_color() %>
-					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock() %>
-					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail() %>
-					&nfile=<%=arr.get(i).getG_nfile() %>">수정</a>&nbsp;&nbsp;&nbsp;
-					<a onclick="adminDelete('<%=arr.get(i).getIdx() %>')" style="cursor:pointer;">삭제</a></td>
-					
+				<tr>
+				<td><br></td>
 				</tr>
 		<%
-			}
+			} 
 			%></table><%
+			
 		}
 		%>
 	
@@ -154,6 +149,7 @@ function adminDelete(aaa) {
 </div>
 
 </div>
+
 <%@include file="/footer.jsp" %>
 </body>
 </html>
