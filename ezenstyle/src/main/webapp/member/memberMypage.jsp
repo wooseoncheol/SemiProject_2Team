@@ -18,7 +18,7 @@ String upwd = request.getParameter("pwd");
 #container {display: flex;padding-top: 30px;}
 #box1{flex:1;padding-top: 15px;}
 #box2{flex:1;padding-top: 32px;}
-#box3{flex:1;padding-top: 15px;}
+#box3{flex:1.5;padding-top: 15px;}
 #ul1{margin-left:70px;}
 .tname{
 text-align: center;
@@ -73,6 +73,9 @@ border-bottom: ;
 border-color: #D5D5D5;
 font-size: 17px;
 }
+#memberbye{
+color: red;
+}
 
 </style>
 </head>
@@ -107,6 +110,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 	<li><h4>내 정보 보기 및 수정</h4></li>
 	<li><a href="/ezenstyle/member/memberCart.jsp">장바구니</a></li>
 	<li><br><a>구매 내역</a></li>
+	<li><span><br><br><br><br><a href="memberDel.jsp" id="memberbye">[회원탈퇴]</a></span></li>
 </ul>
 </div>
 
@@ -159,7 +163,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 <form name="updateinfo" method="post">
 <ul>
 	<li class="lname"> <h4>* 상세 정보 수정 *</h4> </li>
-	<li><br>비밀번호 * <input class="a" type="text" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
+	<li><br>비밀번호 * <input class="a" type="password" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
 </ul>
 </form>
 <form name="updateinfo2" action="memberMypage_ok.jsp" method="post">

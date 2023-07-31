@@ -9,8 +9,16 @@
 <jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
 
 <%
-int count = mdao.memberInsert(mdto);
-String msg = count > 0? "가입축 ㅋ":"가입실패!";
+String msg="";
+String pwd1 = request.getParameter("pwd1");
+String pwd = request.getParameter("pwd");
+if(pwd.equals(pwd1)){
+	int count = mdao.memberInsert(mdto);
+	msg = count > 0? "가입축 ㅋ":"가입실패!";
+}else{
+	msg="비밀번호가 다릅니다";
+}
+
 %>
 
 <script>

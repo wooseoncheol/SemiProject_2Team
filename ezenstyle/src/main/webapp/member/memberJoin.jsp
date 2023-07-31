@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
 .div1{
-height:450px;
+height:500px;
 width:450px;
 padding-top:50px;
 margin: 0px auto;
@@ -27,6 +27,9 @@ border-right: 0px;
 border-bottom: ;
 border-color: #898989;
 font-size: 17px;
+}
+#t{
+font-size: 9px;
 }
 .btn1{
 width:340px;
@@ -67,6 +70,14 @@ text-align: center;
 function show(){
 	window.open('idcheck.jsp','popup','width=570,height=200,top=400,left=1300');
 }
+//tel - 숫자만 입력받게
+function checkNumber(event) {
+	  if(event.key >= 0 && event.key <= 9) {
+	    return true;
+	  }
+	  
+	  return false;
+	}
 </script>
 </head>
 <body>
@@ -84,13 +95,16 @@ function show(){
 			<td>&nbsp;&nbsp;<input class="btn2" type="button" name="duid" value="중복검사" onclick="show()"></td>
 		</tr>
 		<tr>
-			<td>비밀번호 * </td><td>&nbsp;&nbsp;<input class="a" type="password" name="pwd" required="required"></td>
+			<td>비밀번호 * </td><td>&nbsp;&nbsp;<input class="a" type="password" name="pwd1" required="required"></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인* </td><td>&nbsp;&nbsp;<input class="a" type="password" name="pwd" required="required"></td>
 		</tr>
 		<tr>
 			<td>주소 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="adr" required="required"></td>
 		</tr>
 		<tr>
-			<td>휴대전화 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="tel" required="required"></td>
+			<td>휴대전화 *<br><span id="t">&nbsp;&nbsp;(&nbsp;-&nbsp;제외&nbsp;)</span></td><td>&nbsp;&nbsp;<input class="a" type="text" name="tel" required="required" onkeypress="return checkNumber(event)"></td>
 		</tr>
 		<tr>
 			<td>이메일 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="email" required="required"></td>

@@ -142,7 +142,7 @@ public class MemberDAO {
 	public ArrayList<MemberDTO> getuserInfo(String id){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select idx, substr(id,1,1)||lpad('*',3,'*') as mid, name, lpad('*',4,'*') as mpwd, substr(email,1,3)||lpad('*',5,'*') as memail, lpad('*',length(adr),'*') as madr, substr(tel,1,4)||lpad('*',4,'*')||substr(tel,-5) as mtel, mgr from semi_member where id = ?";
+			String sql="select idx, substr(id,1,1)||lpad('*',4,'*') as mid, name, lpad('*',4,'*') as mpwd, substr(email,1,3)||lpad('*',4,'*') as memail, lpad('*',length(adr),'*') as madr, substr(tel,1,4)||lpad('*',4,'*') as mtel, mgr from semi_member where id = ?";
 			
 			ArrayList<MemberDTO> arr=new ArrayList<MemberDTO>();
 			ps = conn.prepareStatement(sql);
@@ -366,6 +366,30 @@ public class MemberDAO {
 				if(conn!=null)conn.close();
 			} catch (Exception e2) {
 				// TODO: handle exception
+			}
+		}
+	}
+	
+	// 회원 탈퇴
+	public int memberDel(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="delete from semi_member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			int count = ps.executeUpdate();
+			return count;
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return 0;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 	}
