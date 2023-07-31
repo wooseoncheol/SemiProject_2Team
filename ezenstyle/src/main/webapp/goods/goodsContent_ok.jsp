@@ -6,6 +6,7 @@
 
 <%
 String id=(String)session.getAttribute("sid");
+String buttontype = request.getParameter("button");
 String idx_s = request.getParameter("idx");
 String g_stock_s = request.getParameter("g_stock");
 int idx= Integer.parseInt(idx_s);
@@ -18,22 +19,27 @@ if(id==null||id==""){
 	history.back();
 	</script>
 	<% 
+	}else if(gdto.getG_stock()==0){
+		%>
+		<script>
+		window.alert('품절 상품입니다 1대1 문의를 이용해주세요');
+		history.back();;
+		</script>
+		<% 
+	}else if(buttontype.equals("바로구매")){
+		%>
+		<script>
+		window.location.href="/ezenstyle/orderInput.jsp";
+		</script>
+		<% 
 	}else{
 		int result=gdao.insertCart(gdto, g_stock, idx, id);
-			if (result>0) {
+		String msg = result>0?"장바구니에 담겼습니다.":"장바구니에 담지못했습니다.";
 				%>
 				<script>
-				window.alert('장바구니에 담겼습니다.');
-				history.back();;
-				</script>
-				<%
-			}else{
-				%>
-				<script>
-				window.alert('장바구니에 담지못했습니다.');
+				window.alert('<%=msg%>');
 				history.back();
 				</script>
 				<%
-			}
-}
+	}
 %>

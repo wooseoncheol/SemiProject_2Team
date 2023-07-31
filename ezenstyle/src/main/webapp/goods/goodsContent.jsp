@@ -73,10 +73,14 @@ function buy{
 	<%String id=(String)session.getAttribute("sid");%>
 	if(<%=id%>==null){
 		window.alert('로그인 후 이용 가능하십니다.');
-		location.href='/ezenstyle/main.jsp';
+		location.href='../ezenstyle/memberLogin.jsp';
 		return;
-	}else{document.location.href='/ezenstyle/orderInput.jsp';}
-}
+	}else if(<%=dto.getG_stock()==0%>){
+		window.alert('품절상품입니다. 1대1문의를 이용해주세요.')	
+	}else{
+		window.location.href='../ezenstyle/orderInput.jsp';
+		}
+	}
 </script>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>
@@ -101,6 +105,7 @@ function buy{
 			<% 
 			if(dto.getG_stock()==0){
 			%>
+				<input type = hidden name="g_stock" value = <%=dto.getG_stock()%>>
 				<span>[품절]</span>
 			<% 
 			}else{
@@ -123,8 +128,8 @@ function buy{
 			</td>
 		</tr>
 		<tr>
-			<td ><input id="button1" type = "button" value = "바로구매" onclick="buy()"></td>
-			<td ><input id="button2" type = "submit" value = "장바구니"></td>
+			<td ><input id="button1" name= "button" type = "submit" value = "바로구매"></td>
+			<td ><input id="button2" name="button" type = "submit" value = "장바구니"></td>
 		</tr>
 		<tr>
 			<td> &nbsp; </td>
