@@ -3,10 +3,16 @@
 <%@ page import="com.ezenstyle.member.*"%>
 <%@ page import="com.ezenstyle.cart.*"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <jsp:useBean id="cdao" class="com.ezenstyle.cart.CartDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 String sid=(String)session.getAttribute("sid");
+
+DecimalFormat df = new DecimalFormat("###,###,###,###");
+
+int total=0;
+
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +24,7 @@ String sid=(String)session.getAttribute("sid");
 section img{
 	width: 150px;
 	height: 200px;
-	margin-right: -80px;
+	margin-right: -60px;
 }
 .blind {
   position: absolute;
@@ -69,12 +75,15 @@ cursor: pointer;
 font-size:20px;
 margin-right:50px;
 }
-
+#div1{
+	text-align:center;
+}
+#div2{
+	display: flex;
+	justify-content: center;
+}
 </style>
 <script>
-function openpopup(){
-	
-}
 
 </script>
 </head>
@@ -95,7 +104,7 @@ if(sid==null){
 	<article id="art1">
 		<h3>장바구니</h3>
 		<form name="qtt">
-		<table border="1" cellspacing="0">
+		<table>
 		<caption class="blind" >장바구니 목록</caption>
 		<tr>
 		<%
@@ -109,8 +118,8 @@ if(sid==null){
 		%>
 				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
 				<td colspan="2">상품명:<%=arr.get(i).getG_name() %></td>
-				<td rowspan="3" align="right">가격:<%=arr.get(i).getG_price()*arr.get(i).getOrdernum()%></td>
-				<td align="right"><input type="button" value="X" class="btn1" onclick="deleteCart()"></td>
+				<td rowspan="3" align="right">가격:<%=df.format(arr.get(i).getG_price()*arr.get(i).getOrdernum())%></td>
+				<td align="right"><input type="button" value="X" class="btn1" onclick="location.href='deleteCart_ok.jsp?c_idx=<%=arr.get(i).getC_idx() %>&g_idx=<%= arr.get(i).getG_idx() %>'"></td>
 			</tr>
 			<tr>
 				<td colspan="2" ><%=arr.get(i).getG_category() %></td>
@@ -118,22 +127,25 @@ if(sid==null){
 			</tr>
 			<tr>
 				<td >사이즈:Free</td>
-				<td><input type="button" value="주문수정" onclick="javascript:window.open('openPopup.jsp?c_idx=<%=arr.get(i).getC_idx()%>','popup','width=50,heigth=50,top=100');">
+				<td>수량:<%=arr.get(i).getOrdernum() %><input type="button" value="주문수정" onclick="javascript:window.open('openPopup.jsp?c_idx=<%=arr.get(i).getC_idx()%>','popup','width=50,heigth=50,top=100');">
 			</tr>
 			<tr>
 			<%
+			total=total+arr.get(i).getG_price(); // 총 가격 누적
 			}
 		}
 		%>
 			</tr>
 		</table>
+		<div id="div1">
+			<label>총 가격 | <%=df.format(total) %></label>
+		</div>
+		<div id="div2">
+			<input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:location.href='/ezenstyle/main.jsp'">
+			<input type="button" value="결제하기" class="btn2" onclick="location.href='/ezenstyle/orderInput.jsp'">
+		</div>
 		</form>
-		<table>
-			<tr align="center">
-			<td><input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:location.href='/ezenstyle/main.jsp'"></td>
-			<td><input type="button" value="결제하기" class="btn2" onclick="location.href='/ezenstyle/orderInput.jsp'"></td>
-			</tr>
-		</table>
+		
 	</article>	
 </section>
 <%@include file="../footer.jsp" %>

@@ -38,8 +38,8 @@ int g_stock=cdao.getStock(dto.getG_idx());
 			</tr>
 			<tr>
 				<th>수량</th>
-				<th>
-				<select name="ordernum" onchange="ordernumUpdate()">
+				<td>
+				<select name="ordernum">
 				<%
 				
 					for(int i=1;i<=g_stock;i++){
@@ -52,9 +52,11 @@ int g_stock=cdao.getStock(dto.getG_idx());
 					}
 				%>
 				</select>
-				</th>
+				</td>
+				<input type="hidden" name="c_idx" value="<%=dto.getC_idx()%>">
 			</tr>
 		</table>
+		<div><input type="submit" value="수정하기"><input type="button" value="수정 취소" onclick="window.close()"></div>
 		</form>	
 	</article>
 </section>
