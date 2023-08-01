@@ -37,6 +37,7 @@ for(int i=0;i<arr.size();i++){
 	int result=odao.insertOrder(dto);
 	
 	if(result>0){
+		cdao.updateStock(ordernum, arr.get(i).getG_idx());
 		count=odao.deleteCart(arr.get(i).getC_idx());
 		sum=sum+count;
 	}else{
