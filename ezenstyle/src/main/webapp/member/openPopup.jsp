@@ -24,8 +24,11 @@ int g_stock=cdao.getStock(dto.getG_idx());
 <title>Insert title here</title>
 <style>
 img{
-	width:140px;
-	height:180px;
+	width:260px;
+	height:350px;
+}
+div{
+	margin-left: 50px;
 }
 </style>
 </head>
@@ -33,10 +36,8 @@ img{
 <section>
 	<article>
 		<form name="openPopup" action="openPopup_ok.jsp">
-		<table>
-			<tr>
-				<td><img src="/ezenstyle/goods/imgs/<%=dto.getG_nfile() %>" alt="상품 이미지"></td>
-			</tr>
+		<img src="/ezenstyle/goods/imgs/<%=dto.getG_nfile() %>" alt="상품 이미지">
+		<table border="1" cellspacing="0">
 			<tr>
 				<th>상품명:</th>
 				<td><%=dto.getG_name() %></td>
@@ -65,7 +66,7 @@ img{
 				<input type="hidden" name="c_idx" value="<%=dto.getC_idx()%>">
 			</tr>
 		</table>
-		<div><input type="submit" value="수정하기"><input type="button" value="수정 취소" onclick="window.close()"></div>
+		<div><input type="submit" value="수정하기">&nbsp;&nbsp;&nbsp;<input type="button" value="수정 취소" onclick="window.close()"></div>
 		</form>	
 	</article>
 </section>
