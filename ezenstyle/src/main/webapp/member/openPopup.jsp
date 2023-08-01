@@ -22,12 +22,21 @@ int g_stock=cdao.getStock(dto.getG_idx());
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+img{
+	width:140px;
+	height:180px;
+}
+</style>
 </head>
 <body>
 <section>
 	<article>
 		<form name="openPopup" action="openPopup_ok.jsp">
 		<table>
+			<tr>
+				<td><img src="/ezenstyle/goods/imgs/<%=dto.getG_nfile() %>" alt="상품 이미지"></td>
+			</tr>
 			<tr>
 				<th>상품명:</th>
 				<td><%=dto.getG_name() %></td>
@@ -37,7 +46,7 @@ int g_stock=cdao.getStock(dto.getG_idx());
 				<td><%=dto.getG_category() %></td>
 			</tr>
 			<tr>
-				<th>수량</th>
+				<th>수량 변경:</th>
 				<td>
 				<select name="ordernum">
 				<%
