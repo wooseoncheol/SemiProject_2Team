@@ -11,7 +11,7 @@ function search(){
 }
 </script>
 <style>
-.r {
+.v {
 display: none;
 }
 a{
@@ -49,7 +49,7 @@ color:black;
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=accessories">ACCESSORIES</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=shoes">SHOES</a></li>
 			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" class="search" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
-			<input class="r" type="submit" value=" ">
+			<input class="v" type="submit" value=" ">
 		</ul>
 	</form>
 	</nav>
