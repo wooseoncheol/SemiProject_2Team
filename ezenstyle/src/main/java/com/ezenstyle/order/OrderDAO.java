@@ -230,7 +230,7 @@ public class OrderDAO {
 	public int adminCancel(String orderdate1) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="delete from semi_order where orderdate=to_date(?,'yyyymmddhh24miss')";
+			String sql="update semi_order set o_state='취소 완료' where orderdate=to_date(?,'yyyymmddhh24miss')";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, orderdate1);
 			int count=ps.executeUpdate();

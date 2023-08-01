@@ -45,6 +45,7 @@ border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 }
 .u {
+height: 45px;
 border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 text-indent: 30px;
@@ -104,53 +105,81 @@ text-align: center;
 		</table>
 		<% 
 		} else {
-			
+
 			%>
 			
 			<table><%
 			for(int i=0;i<arr.size();i++) {
-		%>
-				<tr>
+			if (arr.get(i).getRn()==1) {						
+				%>
+				<tr class="u">
+				<td>주문번호: <%=arr.get(i).getO_idx() %></td>
+				</tr>
+				<tr class="u">
 				<td>고객 이름: <%=arr.get(i).getName() %></td>
 				</tr>
-				<tr>
+				<tr class="u">
 				<td>구매 날짜: <%=arr.get(i).getOrderdate() %></td>
 				</tr>
-				<tr>
+				<tr class="u">
 				<td>상품 이름: <%=arr.get(i).getG_name() %>
 				</tr>
-				<tr>
-				<td>배송지: <%=arr.get(i).getAdr() %> 배송현황: 
+				<tr class="u">
+				<td>배송지: <%=arr.get(i).getAdr() %> 
+				</tr>
+				<tr class="u">
+				<td>배송현황: 
 				
 				<%switch (arr.get(i).getDel_state()) {
-				case 0:out.println("배송 시작");
-				
-				break;
-				case 1:out.println("배송 중");break;
-				case 2:out.println("배송 중");break;
+				case 0:out.println("결제 완료");
+					if (arr.get(i).getO_state().equals("결제 취소 요청")) {
+						%>
+						</td>
+						</tr>
+						<tr class="g">
+						<td><a href="adminOrder_ok.jsp?orderdate1=<%=arr.get(i).getOrderdate1() %>">결제 취소 요청</a></td>
+						</tr>
+						<%
+					} else {
+						%>
+						</td>
+						</tr>
+						<tr class="g">
+						<td>취소 가능</td>
+						</tr>
+						<%
+					}
+				;break;
+				case 1:out.println("배송 시작");
+					%>
+					<tr class="u">
+					<td>취소 불가</td>
+					</tr>
+					<%
+					break;	
+				case 2:out.println("배송 중");
+					%>
+					<tr class="u">
+					<td>취소 불가</td>
+					</tr>
+					<%
+					break;
 				case 3:out.println("배송 완료");
+					%>
+					<tr>
+					<td>취소 불가</td>
+					</tr>
+					<%
 				}
 				%>
 				
 				</td>
-				</tr>
-				<tr>
-				<td>RN : <%=arr.get(i).getRn() %>
-				</tr>
-				<tr>
-				<td>MAX : <%=arr.get(i).getMax() %></td>
-				</tr>
-				<tr>
-				<td><a href="adminOrder_ok.jsp?orderdate1=<%=arr.get(i).getOrderdate1() %>">결제 취소</a></td>
-				</tr>
-				<tr>
-				<td><hr></td>
-				</tr>
 				<tr>
 				<td><br></td>
 				</tr>
 		<%
 			} 
+		}
 			%></table>
 				
 			<%
