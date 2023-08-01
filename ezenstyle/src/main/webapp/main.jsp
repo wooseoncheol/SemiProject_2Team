@@ -2,12 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.goods.*" %>  
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%	
+	DecimalFormat df = new DecimalFormat("###,###,###");
+%>
 <link rel="stylesheet" type="text/css" href="css/semiLayout.css">
 <style>
 h2{
@@ -85,7 +89,7 @@ p{
 				</a>
 				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
-				<p><%=arr.get(i).getG_price() %>원</p>
+				<p><%=df.format(arr.get(i).getG_price())%>원</p>
 				</td>
 				<%
 			}

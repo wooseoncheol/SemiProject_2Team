@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.goods.*" %>
+<%@ page import="java.text.*" %>
 <jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 <%
+DecimalFormat df = new DecimalFormat("###,###,###");
+
 String idx_s = request.getParameter("idx"); 
 int idx = Integer.parseInt(idx_s); 
 GoodsDTO dto = idao.showGoodscontent(idx);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -77,6 +81,7 @@ outline:none;
 <input type = hidden name="idx" value = <%=dto.getIdx() %>>
 <input type = hidden name="g_nfile" value = <%=dto.getG_nfile()%>>
 <input type = hidden name="g_category" value = <%=dto.getG_category()%>>
+ <input type="hidden" name=g_price value="<%=dto.getG_price()%>">
 <table>
 		<tr>
 			<td rowspan="3" id= "img"><img src="/ezenstyle/goods/imgs/<%=dto.getG_nfile() %>"></td>
@@ -84,7 +89,7 @@ outline:none;
 			<td colspan = "2">
 			<ul>
 			<li><input id= "title" type="text" name=g_name value="<%=dto.getG_name()%>" readonly class=g_inf></li>
-			<li>가격: <input type="text" name=g_price value="<%=dto.getG_price()%>" readonly class=g_inf></li>
+			<li>가격: <%=df.format(dto.getG_price()) %>원</li>
 			<li>색상: <input type="text" name=g_color value="<%=dto.getG_color()%>" readonly class=g_inf></li>
 			<li>사이즈: <input type="text" name=g_size value="<%=dto.getG_size()%>" readonly class=g_inf></li>
 			<li>구매수량:

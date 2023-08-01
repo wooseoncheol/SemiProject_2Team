@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.goods.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO" scope="session"></jsp:useBean>
 <%String category_s = request.getParameter("category"); %>
 <%String category = category_s.toUpperCase(); %>
@@ -11,7 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%	
-	
+	DecimalFormat df = new DecimalFormat("###,###,###");
 	
 	int totalCnt = idao.getTotalCnt(category_s);
 	int listSize=6;
@@ -78,7 +79,7 @@ margin: 0px, auto;
 			<ul><a href = "goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
 			<li id = "img"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>"></li>
 			<li><%=arr.get(i).getG_name() %></li>
-			<li><%=arr.get(i).getG_price() %>원</li>
+			<li><%=df.format(arr.get(i).getG_price() )%>원</li>
 			</a></ul>
 		</td>
 		<%if((i+1)%3==0){
