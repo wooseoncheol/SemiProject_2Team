@@ -131,7 +131,7 @@ if(sid==null){
 			</tr>
 			<tr>
 			<%
-			total=total+arr.get(i).getG_price(); // 총 가격 누적
+			total=total+(arr.get(i).getOrdernum()*arr.get(i).getG_price()); // 총 가격 누적
 			}
 		}
 		%>
@@ -141,7 +141,7 @@ if(sid==null){
 			<label>총 가격 | <%=df.format(total) %></label>
 		</div>
 		<div id="div2">
-			<input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:location.href='/ezenstyle/main.jsp'">
+			<input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:history.go(-1)">
 			<input type="button" value="결제하기" class="btn2" onclick="location.href='/ezenstyle/orderInput.jsp'">
 		</div>
 		</form>
