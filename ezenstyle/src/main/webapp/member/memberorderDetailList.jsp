@@ -17,19 +17,28 @@
 #box3{flex:1;padding-top: 15px;background-color: skyblue;}
 li{list-style-type:none;}
 #memberbye{color: red;}
-#subject1{font-size: 20px;}
 #tablelist{margin:0px auto; width:500px;}
 .b {
 height: 200px;
 width: 200px;
 object-fit:contain;
 }
+.btn1{
+margin-left:15px;
+width:100px;
+height:40px;
+background-color: white;
+border-style: solid;
+border-top-color:#E7E7E7;
+border-left-color:#E7E7E7;
+border-bottom-color: #E7E7E7;
+border-right-color: #E7E7E7;
+border-radius: 5px;
+}
 </style>
-
 </head>
 <body>
 <%@include file="../header.jsp" %>
-
 <div id="container">
 <div id="box1">
 <ul id="ul1">
@@ -41,12 +50,12 @@ object-fit:contain;
 </div>
 <div id="box2">
 <%
+	String detailorderdate = request.getParameter("detailorderdate");
 	String userid=(String)session.getAttribute("sid");
 	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
-	arr=odao.orderList(userid);
+	arr=odao.orderDetailList(userid,detailorderdate);
 %>
-<h2> 구매내역</h2>
-<table id="tablelist" border = "1">
+<table id="tablelist" border="1">
 <%
 	if(arr==null||arr.size()==0) {
 		%>
@@ -54,42 +63,20 @@ object-fit:contain;
 		<%
 	}else{
 		for(int i=0; i < arr.size(); i++){
-			if(arr.get(i).getRn() == 1){
-			%>
-				<tr onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>'"><td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td><td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
-				<% if(arr.get(i).getMax() >= 2){
-					%>
-					외 <%= arr.get(i).getMax() -1 %> 건 </td>
-					<%
-				}
-				%>
-				<tr><td>주문번호 : <%= arr.get(i).getO_idx() %> / <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
-				<tr><td>구매날짜 : <%=arr.get(i).getOrderdate1() %></td></tr>
-				<tr><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
-				<tr><td>배송상태 : <%=arr.get(i).getDetailorderdate() %>
-				<% 
-				switch(arr.get(i).getDel_state()){
-				case 0 : out.println(arr.get(i).getO_state());break;
-				case 1 : out.println("배송 시작");break;
-				case 2 : out.println("배송 중");break;
-				case 3 : out.println("배송 완료");break;
-				}
-				%></td></tr>
-				
+			%><tr><td rowspan="4"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td><td><a id ="subject1" >상품 이름 : <%= arr.get(i).getG_name() %></a></tr>
+			<tr><td>수량 : <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
+			<tr><td>사이즈 : <%= arr.get(i).getG_size()%></td></tr>
+			<tr><td>배송 상태 : <%= arr.get(i).getO_state()%></td></tr>
 			<%
-			
-			}
-			
 		}
-		
 	}
-%>
+		%>
+
 </table>
 </div>
 <div id="box3">
-<h1>hi</h1>
+<button class="btn1" onclick="location.href='memberorderDetailList_ok.jsp?detailorderdate=<%=detailorderdate%>'">주문 취소</button>
 </div>
-
 </div>
 <%@include file="../footer.jsp" %>
 </body>
