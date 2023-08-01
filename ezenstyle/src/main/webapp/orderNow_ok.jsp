@@ -30,11 +30,11 @@ String o_state="결제 완료";
 
 OrderDTO dto=new OrderDTO(sid,name,addr,tel,g_nfile,g_name,g_price,g_size,ordernum,g_category,o_state);
 
-int result=cdao.updateStock(ordernum, idx);
-odao.insertOrder(dto);
+int result=odao.insertOrder(dto);
+
 if(result>0){
 	msg=result>0?"결제가 완료되었습니다":"결제가 실패하였습니다";
-	
+	cdao.updateStock(ordernum, idx);
 }else{
 	msg="결제가 등록 실패. 고객센터 문의바랍니다!";
 }
