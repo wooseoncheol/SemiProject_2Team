@@ -460,8 +460,8 @@ public class GoodsDAO {
 			ps.setString(1,id);
 			ps.setInt(2,idx);
 			ps.setString(3,dto.getG_nfile());
-			ps.setString(4,dto.getG_category());
-			ps.setString(5,dto.getG_name());
+			ps.setString(4,dto.getG_name());
+			ps.setString(5,dto.getG_category());
 			ps.setInt(6,dto.getG_price());
 			ps.setString(7, dto.getG_size());
 			ps.setInt(8,dto.getG_stock());
@@ -524,4 +524,56 @@ public class GoodsDAO {
 			} catch (Exception e2) { }
 		}
 	}
+	
+	/**수정할 상품이 장바구니 테이블에 있는지 확인하는 메소드*/
+	   public int existCartGoods(int g_idx) {
+	      try {
+	         conn=com.ezenstyle.db.EzenDB.getConn();
+	         
+	         String sql="select count(*) from semi_cart where g_idx=?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setInt(1, g_idx);
+	         rs=ps.executeQuery();
+	         int count=0;
+	         if(rs.next()) {
+	            count=rs.getInt(1);
+	         }
+	         return count;
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         return -1;
+	      }finally {
+	         try {
+	            if(rs!=null)rs.close();
+	            if(ps!=null)ps.close();
+	            if(conn!=null)conn.close();
+	         } catch (Exception e2) {
+	            // TODO: handle exception
+	         }
+	      }
+	   }
+	   /**상품 정보 수정 김시연*/
+	   public int cartUpdate(int g_idx, String g_name, String g_size, int g_price) {
+	      try {
+	         conn=com.ezenstyle.db.EzenDB.getConn();
+	         String sql="update semi_cart set g_name=?, g_price=?, g_size=? where g_idx=? ";
+	         ps=conn.prepareStatement(sql);
+	         ps.setString(1, g_name);
+	         ps.setInt(2, g_price);
+	         ps.setString(3, g_size);
+	         ps.setInt(4, g_idx);
+	         int count=ps.executeUpdate();
+	         return count;
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         return -1;
+	      } finally {
+	         try {
+	            if(ps!=null)ps.close();
+	            if(conn!=null)conn.close();
+	         } catch (Exception e2) { }
+	         
+	      }
+	      
+	   }
 }

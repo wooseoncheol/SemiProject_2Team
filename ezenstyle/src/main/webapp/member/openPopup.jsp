@@ -29,12 +29,12 @@ int g_stock=cdao.getStock(dto.getG_idx());
 		<form name="openPopup" action="openPopup_ok.jsp">
 		<table>
 			<tr>
-				<th>상품이름</th>
-				<td><%=dto.getG_name()%></td>
-			</tr>
+				<th>상품명:</th>
+				<td><%=dto.getG_name() %></td>
+			</tr>	
 			<tr>
-				<th>상품 카테고리</th>
-				<td><%=dto.getG_category()%></td>
+				<th>상품 카테고리:</th>
+				<td><%=dto.getG_category() %></td>
 			</tr>
 			<tr>
 				<th>수량</th>

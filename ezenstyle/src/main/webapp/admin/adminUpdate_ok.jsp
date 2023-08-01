@@ -17,6 +17,11 @@ String detail=request.getParameter("detail");
 
 int result=adao.adminUpdate(idx, name, color, size, stock, price, detail);
 String msg=result>0?"수정이 완료되었습니다.":"수정에 실패했습니다.";
+
+int result2=adao.existCartGoods(idx);
+if(result2>0){
+   adao.cartUpdate(idx, name, size, price);   
+}
 %>
 <script>
 window.alert('<%=msg %>');
