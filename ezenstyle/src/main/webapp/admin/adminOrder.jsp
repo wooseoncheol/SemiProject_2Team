@@ -104,7 +104,10 @@ text-align: center;
 		</table>
 		<% 
 		} else {
-			%><table><%
+			
+			%>
+			
+			<table><%
 			for(int i=0;i<arr.size();i++) {
 		%>
 				<tr>
@@ -120,7 +123,9 @@ text-align: center;
 				<td>배송지: <%=arr.get(i).getAdr() %> 배송현황: 
 				
 				<%switch (arr.get(i).getDel_state()) {
-				case 0:out.println("배송 시작");break;
+				case 0:out.println("배송 시작");
+				
+				break;
 				case 1:out.println("배송 중");break;
 				case 2:out.println("배송 중");break;
 				case 3:out.println("배송 완료");
@@ -136,6 +141,9 @@ text-align: center;
 				<td>MAX : <%=arr.get(i).getMax() %></td>
 				</tr>
 				<tr>
+				<td><a href="adminOrder_ok.jsp?orderdate1=<%=arr.get(i).getOrderdate1() %>">결제 취소</a></td>
+				</tr>
+				<tr>
 				<td><hr></td>
 				</tr>
 				<tr>
@@ -143,8 +151,10 @@ text-align: center;
 				</tr>
 		<%
 			} 
-			%></table><%
-			
+			%></table>
+				
+			<%
+
 		}
 		%>
 	

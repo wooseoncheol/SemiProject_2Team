@@ -16,6 +16,8 @@ public class OrderDTO {
 	private int ordernum;
 	private String g_category;
 	private Date orderdate;
+	private String orderdate1;
+	private String detailorderdate;
 	private String o_state;
 	private int del_state;
 	private int max;
@@ -26,8 +28,8 @@ public class OrderDTO {
 	}
 
 	public OrderDTO(int o_idx, String id, String name, String adr, String tel, String g_nfile, String g_name,
-			int g_price, String g_size, int ordernum, String g_category, Date orderdate, String o_state, int del_state,
-			int max, int rn) {
+			int g_price, String g_size, int ordernum, String g_category, Date orderdate, String orderdate1,
+			String detailorderdate, String o_state, int del_state, int max, int rn) {
 		super();
 		this.o_idx = o_idx;
 		this.id = id;
@@ -41,11 +43,15 @@ public class OrderDTO {
 		this.ordernum = ordernum;
 		this.g_category = g_category;
 		this.orderdate = orderdate;
+		this.orderdate1 = orderdate1;
+		this.detailorderdate = detailorderdate;
 		this.o_state = o_state;
 		this.del_state = del_state;
 		this.max = max;
 		this.rn = rn;
 	}
+
+
 
 	public OrderDTO(String id, String name, String adr, String tel, String g_nfile, String g_name, int g_price,
 			String g_size, int ordernum, String g_category, String o_state) {
@@ -83,19 +89,36 @@ public class OrderDTO {
 		this.o_state = o_state;
 	}
 	
-	public OrderDTO(int rn, int max, int o_idx, String name, String adr, String g_name, Date orderdate, String o_state, int del_state) {
+	public OrderDTO(Date orderdate, int rn, int max, int o_idx, String name, String adr, String g_name, String orderdate1, String o_state, int del_state) {
+		this.orderdate=orderdate;
 		this.max=max;
 		this.o_idx=o_idx;
 		this.name=name;
 		this.adr=adr;
 		this.g_name=g_name;
-		this.orderdate=orderdate;
+		this.orderdate1=orderdate1;
 		this.o_state=o_state;
 		this.del_state=del_state;
 		this.rn=rn;
 	}
-
 	
+
+	public String getDetailorderdate() {
+		return detailorderdate;
+	}
+
+	public void setDetailorderdate(String detailorderdate) {
+		this.detailorderdate = detailorderdate;
+	}
+
+	public String getOrderdate1() {
+		return orderdate1;
+	}
+
+	public void setOrderdate1(String orderdate1) {
+		this.orderdate1 = orderdate1;
+	}
+
 	public int getRn() {
 		return rn;
 	}
