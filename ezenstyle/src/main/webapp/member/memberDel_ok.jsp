@@ -12,11 +12,11 @@ if(userid.equals("")|| userid==null){
 int result = ddao.memberDel(userid);
 String msg = "";
 if(result > 0){
-	msg = "잘가..";
+	msg = "회원탈퇴가 처리되었습니다.";
 	session.invalidate();
 }
 else{
-	msg = "탈퇴실패 ㅋ";
+	msg = "회원탈퇴에 실패했습니다.";
 }
 
 %>

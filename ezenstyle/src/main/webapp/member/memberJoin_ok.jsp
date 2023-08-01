@@ -14,7 +14,7 @@ String pwd1 = request.getParameter("pwd1");
 String pwd = request.getParameter("pwd");
 if(pwd.equals(pwd1)){
 	int count = mdao.memberInsert(mdto);
-	msg = count > 0? "가입축 ㅋ":"가입실패!";
+	msg = count > 0? "가입을 축하합니다!":"가입실패!";
 }else{
 	msg="비밀번호가 다릅니다";
 }
