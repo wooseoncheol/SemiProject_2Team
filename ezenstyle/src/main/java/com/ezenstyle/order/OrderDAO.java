@@ -78,26 +78,25 @@ public class OrderDAO {
 	public ArrayList<OrderDTO> adminOrder() {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select * from (select adr, g_name, name, o_idx, orderdate, o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate";
+			String sql="select * from (select adr, g_name, name, o_idx, orderdate, to_char(orderdate,'yyyymmddhh24miss') as \"orderdate1\", o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
-			System.out.println("성공");
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
+			System.out.println("성공1");
 			ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
+			System.out.println("성공2");
 			while(rs.next()) {	
-				System.out.println("성공2");	
 				int max=rs.getInt("max");
 				int o_idx=rs.getInt("o_idx");
 				String name=rs.getString("name");
 				String adr=rs.getString("adr"); 
 				String g_name=rs.getString("g_name");
-				java.util.Date orderdate1=rs.getDate("orderdate");
-				String orderdate=sdf.format(orderdate1);
+				java.sql.Date orderdate=rs.getDate("orderdate");
+				String orderdate1=rs.getString("orderdate1");
 				String o_state=rs.getString("o_state");
 				int del_state=rs.getInt("del_state");
 				int rn=rs.getInt("rn");
 				
-				OrderDTO dto=new OrderDTO(rn, max, o_idx, name, adr, g_name, orderdate, o_state, del_state);
+				OrderDTO dto=new OrderDTO(orderdate, rn, max, o_idx, name, adr, g_name, orderdate1, o_state, del_state);
 				arr.add(dto);
 				}
 				return arr;
@@ -160,6 +159,28 @@ public class OrderDAO {
 				
 			}
 		}
+	}
+	
+	/**고객 배송 결제 취소_재영*/
+	public int adminCancel(String orderdate1) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="delete from semi_order where orderdate=to_date(?,'yyyymmddhh24miss')";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, orderdate1);
+			int count=ps.executeUpdate();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) { }
+			
+		}
+		
 	}
 
 }
