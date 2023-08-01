@@ -109,7 +109,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 <ul id="ul1">
 	<li><h4>내 정보 보기 및 수정</h4></li>
 	<li><a href="/ezenstyle/member/memberCart.jsp">장바구니</a></li>
-	<li><br><a>구매 내역</a></li>
+	<li><br><a href="/ezenstyle/member/memberOrderHistory.jsp" >구매 내역</a></li>
 	<li><span><br><br><br><br><a href="memberDel.jsp" id="memberbye">[회원탈퇴]</a></span></li>
 </ul>
 </div>

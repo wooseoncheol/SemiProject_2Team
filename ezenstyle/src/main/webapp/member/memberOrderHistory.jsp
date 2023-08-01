@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.ezenstyle.order.*" %>
+<jsp:useBean id="odao" class="com.ezenstyle.order.OrderDAO"></jsp:useBean>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
+<style type="text/css">
+#container {display: flex;padding-top: 30px;}
+#box1{flex:1;padding-top: 15px;background-color: blue;}
+#box2{flex:2;padding-top: 32px;background-color: orange;}
+#box3{flex:1;padding-top: 15px;background-color: skyblue;}
+li{list-style-type:none;}
+#memberbye{color: red;}
+#subject1{font-size: 20px;}
+#tablelist{margin:0px auto; width:500px;}
+.b {
+height: 200px;
+width: 200px;
+object-fit:contain;
+}
+</style>
+
+</head>
+<body>
+<%@include file="../header.jsp" %>
+
+<div id="container">
+<div id="box1">
+<ul id="ul1">
+	<li><a href="/ezenstyle/member/memberMypage.jsp">내 정보 보기 및 수정</a><br></li>
+	<li><a href="/ezenstyle/member/memberCart.jsp">장바구니</a></li>
+	<li><h4>구매 내역</h4></li>
+	<li><span><br><br><br><br><a href="memberDel.jsp" id="memberbye">[회원탈퇴]</a></span></li>
+</ul>
+</div>
+<div id="box2">
+<%
+	String userid=(String)session.getAttribute("sid");
+	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
+	arr=odao.orderList(userid);
+%>
+<h2> 구매내역</h2>
+<table id="tablelist" border = "1">
+<%
+	if(arr==null||arr.size()==0) {
+		%>
+			<tr><td>구매한 상품이 없습니다.</td></tr>
+		<%
+	}else{
+		for(int i=0; i < arr.size(); i++){
+			if(arr.get(i).getRn() == 1){
+			%>
+				<tr><td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td><td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
+				<% if(arr.get(i).getMax() >= 2){
+					%>
+					외 <%= arr.get(i).getMax() -1 %> 건 </td>
+					<%
+				}
+				%>
+				<tr><td>주문번호 : <%= arr.get(i).getO_idx() %> / <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
+				<tr><td>구매날짜 : <%=arr.get(i).getOrderdate() %></td></tr>
+				<tr><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
+				<tr><td>배송상태 : <%=arr.get(i).getO_state() %></td></tr>
+			<%
+			
+			}
+			
+		}
+		
+	}
+%>
+</table>
+</div>
+<div id="box3">
+<h1>hi</h1>
+</div>
+
+</div>
+<%@include file="../footer.jsp" %>
+</body>
+</html>

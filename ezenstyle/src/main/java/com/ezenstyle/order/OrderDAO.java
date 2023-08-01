@@ -1,6 +1,7 @@
 package com.ezenstyle.order;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class OrderDAO {
@@ -81,6 +82,7 @@ public class OrderDAO {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			System.out.println("성공");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
 			ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
 			while(rs.next()) {	
 				System.out.println("성공2");	
@@ -89,7 +91,8 @@ public class OrderDAO {
 				String name=rs.getString("name");
 				String adr=rs.getString("adr"); 
 				String g_name=rs.getString("g_name");
-				java.sql.Date orderdate=rs.getDate("orderdate");
+				java.util.Date orderdate1=rs.getDate("orderdate");
+				String orderdate=sdf.format(orderdate1);
 				String o_state=rs.getString("o_state");
 				int del_state=rs.getInt("del_state");
 				int rn=rs.getInt("rn");
@@ -108,6 +111,54 @@ public class OrderDAO {
 				if(conn!=null)conn.close();
 			} catch (Exception e2) {}
 			
+		}
+	}
+	
+	/** 구매 내역 리스트 유성진*/
+	public ArrayList<OrderDTO> orderList(String id){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql = "select * from (select o_idx, name, adr, tel, g_nfile, g_name, g_price, g_size, ordernum, orderdate ,TO_CHAR(orderdate,'YYYY_MM_dd_HH24:MI:SS') as \"orderdate1\",g_category, o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate";
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
+			
+			while(rs.next()) {
+				int o_idx=rs.getInt("o_idx");
+				String name=rs.getString("name");
+				String adr=rs.getString("adr");
+				String tel = rs.getString("tel");
+				String g_nfile = rs.getString("g_nfile");
+				String g_name = rs.getString("g_name");
+				int g_price = rs.getInt("g_price");
+				String g_size = rs.getString("g_size");
+				int ordernum = rs.getInt("ordernum");
+				String g_category = rs.getString("g_category");
+				java.sql.Date orderdate2 = rs.getDate("orderdate");
+				String orderdate1 = sdf.format(orderdate2);
+				String detailorderdate=rs.getString("orderdate1");
+				String o_state=rs.getString("o_state");
+				int max=rs.getInt("max");
+				int del_state=rs.getInt("del_state");
+				int rn=rs.getInt("rn");
+				System.out.println("성공");
+				OrderDTO dto=new OrderDTO(o_idx, id, name, adr, tel, g_nfile, g_name, g_price, g_size, ordernum, g_category, orderdate1, detailorderdate, o_state, del_state, max, rn);
+				arr.add(dto);
+			}
+			return arr;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e1) {
+				
+			}
 		}
 	}
 
