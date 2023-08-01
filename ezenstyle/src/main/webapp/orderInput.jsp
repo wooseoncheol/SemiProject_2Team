@@ -125,7 +125,7 @@ section h3{
 .btn2{
 width:200px;
 height:50px;
-background-color:light-gray;
+background-color:#D3D3D3;
 border-style: solid;
 border-top-color:#E7E7E7;
 border-left-color:#E7E7E7;
@@ -139,7 +139,7 @@ margin-right:50px;
 .btn3{
 width:200px;
 height:50px;
-background-color:gray;
+background-color:#708090;
 border-style: solid;
 border-top-color:#E7E7E7;
 border-left-color:#E7E7E7;
@@ -184,18 +184,18 @@ if(sid==null){
 			for(int i=0;i<arr.size();i++){
 				%>
 				<tr class="tablet3">
-				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
-				<td colspan="2"><%=arr.get(i).getG_name() %></td>
+				<td rowspan="3" style="padding-top: 5px;"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
+				<td colspan="2" style="padding-top: 10px;"><%=arr.get(i).getG_name() %></td>
 				<td rowspan="3" align="right" style="color:#696969;"><b>
 				<%=df.format(arr.get(i).getG_price()*arr.get(i).getOrdernum()) %>원</b></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2" ><%=arr.get(i).getG_category() %></td>
+				<td colspan="2" style="padding-bottom:50px; color:#A9A9A9;"><%=arr.get(i).getG_category() %></td>
 				<td></td>
 			</tr>
 			<tr class="tableb3">
-				<td colspan="3">사이즈:<%=arr.get(i).getG_size() %> | 수량:<%=arr.get(i).getOrdernum() %></td>
+				<td colspan="3"  style="padding-bottom:15px;">사이즈 : <%=arr.get(i).getG_size() %> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 수량 : <%=arr.get(i).getOrdernum() %></td>
 			</tr>
 			
 				<%
@@ -244,11 +244,11 @@ if(sid==null){
 				<td>+</td>				
 				<td><%=df.format(dilprice) %>원</td>	
 				<td>=</td>			
-				<td><%=df.format(sum) %>원</td>
+				<td><b><%=df.format(sum) %>원</b></td>
 			</tr>
 		</table>
 		<div align="center">
-			<input type="button" value="장바구니로 가기" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
+			<input type="button" value="장바구니" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
 			<input type="submit" value="결제하기" class="btn3">
 		</div>
 	</form>
