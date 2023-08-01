@@ -27,15 +27,14 @@ String g_size=dto1.getG_size();
 int ordernum=Integer.parseInt(ordernum1);
 String g_category=dto1.getG_category();
 String o_state="결제 완료";
-int g_idx = dto1.getIdx();
 
 OrderDTO dto=new OrderDTO(sid,name,addr,tel,g_nfile,g_name,g_price,g_size,ordernum,g_category,o_state);
 
-int result=odao.insertOrder(dto);
-
+int result=cdao.updateStock(ordernum, idx);
+odao.insertOrder(dto);
 if(result>0){
 	msg=result>0?"결제가 완료되었습니다":"결제가 실패하였습니다";
-	cdao.updateStock(ordernum, g_idx);
+	
 }else{
 	msg="결제가 등록 실패. 고객센터 문의바랍니다!";
 }

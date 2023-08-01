@@ -455,13 +455,7 @@ public class GoodsDAO {
 	public int insertCart(GoodsDTO dto, int g_stock, int idx, String id) {
 		try {
 			conn = com.ezenstyle.db.EzenDB.getConn();
-			String sql = "update semi_goods set g_stock = (g_stock-?) where idx = ?";
-			ps= conn.prepareStatement(sql);
-			ps.setInt(1, g_stock);
-			ps.setInt(2, idx);
-			ps.executeUpdate();
-			
-			sql = "insert into semi_cart values(semi_cart_c_idx.nextval,?,?,?,?,?,?,?,?)";
+			String sql = "insert into semi_cart values(semi_cart_c_idx.nextval,?,?,?,?,?,?,?,?)";
 			ps= conn.prepareStatement(sql);
 			ps.setString(1,id);
 			ps.setInt(2,idx);

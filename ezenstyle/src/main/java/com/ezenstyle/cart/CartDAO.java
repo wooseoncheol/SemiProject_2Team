@@ -91,11 +91,11 @@ public class CartDAO {
 		}
 	}
 	
-	//장바구니에서 삭제 시 상품 테이블에서 수량 변경
+	//상품 테이블에서 수량 변경
 	public int updateStock(int ordernum,int g_idx) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="update semi_goods set g_stock=g_stock+? where g_idx=?";
+			String sql="update semi_goods set g_stock=g_stock-? where idx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, ordernum);
 			ps.setInt(2, g_idx);
