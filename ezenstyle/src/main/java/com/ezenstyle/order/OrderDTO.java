@@ -50,6 +50,29 @@ public class OrderDTO {
 		this.max = max;
 		this.rn = rn;
 	}
+	
+	public OrderDTO(int o_idx, String id, String name, String adr, String tel, String g_nfile, String g_name,
+			int g_price, String g_size, int ordernum, String g_category, String orderdate1,
+			String detailorderdate, String o_state, int del_state, int max, int rn) {
+		super();
+		this.o_idx = o_idx;
+		this.id = id;
+		this.name = name;
+		this.adr = adr;
+		this.tel = tel;
+		this.g_nfile = g_nfile;
+		this.g_name = g_name;
+		this.g_price = g_price;
+		this.g_size = g_size;
+		this.ordernum = ordernum;
+		this.g_category = g_category;
+		this.orderdate1 = orderdate1;
+		this.detailorderdate = detailorderdate;
+		this.o_state = o_state;
+		this.del_state = del_state;
+		this.max = max;
+		this.rn = rn;
+	}
 
 
 
