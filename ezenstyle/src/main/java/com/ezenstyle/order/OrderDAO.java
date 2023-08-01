@@ -77,11 +77,14 @@ public class OrderDAO {
 	public ArrayList<OrderDTO> adminOrder() {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select name, adr, g_name, orderdate, o_state, trunc((sysdate-orderdate)) as \"del_state\" from semi_order";
+			String sql="select * from (select adr, g_name, name, o_idx, orderdate, o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
+			System.out.println("성공");
 			ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
-			while(rs.next()) {			
+			while(rs.next()) {	
+				System.out.println("성공2");	
+				int max=rs.getInt("max");
 				int o_idx=rs.getInt("o_idx");
 				String name=rs.getString("name");
 				String adr=rs.getString("adr"); 
@@ -89,8 +92,9 @@ public class OrderDAO {
 				java.sql.Date orderdate=rs.getDate("orderdate");
 				String o_state=rs.getString("o_state");
 				int del_state=rs.getInt("del_state");
+				int rn=rs.getInt("rn");
 				
-				OrderDTO dto=new OrderDTO(o_idx, name, adr, g_name, orderdate, o_state, del_state);
+				OrderDTO dto=new OrderDTO(rn, max, o_idx, name, adr, g_name, orderdate, o_state, del_state);
 				arr.add(dto);
 				}
 				return arr;

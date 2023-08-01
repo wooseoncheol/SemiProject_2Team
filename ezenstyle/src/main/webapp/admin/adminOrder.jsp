@@ -98,7 +98,7 @@ text-align: center;
 		<table>
 		<thead>
 			<tr class="q">
-				<td>등록된 상품이 없습니다.</td>
+				<td>결제된 상품이 없습니다.</td>
 			</tr>
 		</thead>
 		</table>
@@ -128,6 +128,12 @@ text-align: center;
 				%>
 				
 				</td>
+				</tr>
+				<tr>
+				<td>RN : <%=arr.get(i).getRn() %>
+				</tr>
+				<tr>
+				<td>MAX : <%=arr.get(i).getMax() %></td>
 				</tr>
 				<tr>
 				<td><hr></td>

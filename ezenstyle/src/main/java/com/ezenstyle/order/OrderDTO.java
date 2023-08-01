@@ -19,15 +19,15 @@ public class OrderDTO {
 	private String o_state;
 	private int del_state;
 	private int max;
+	private int rn;
 	
 	public OrderDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	public OrderDTO(int o_idx, String id, String name, String adr, String tel, String g_nfile, String g_name,
 			int g_price, String g_size, int ordernum, String g_category, Date orderdate, String o_state, int del_state,
-			int max) {
+			int max, int rn) {
 		super();
 		this.o_idx = o_idx;
 		this.id = id;
@@ -44,9 +44,8 @@ public class OrderDTO {
 		this.o_state = o_state;
 		this.del_state = del_state;
 		this.max = max;
+		this.rn = rn;
 	}
-
-
 
 	public OrderDTO(String id, String name, String adr, String tel, String g_nfile, String g_name, int g_price,
 			String g_size, int ordernum, String g_category, String o_state) {
@@ -84,7 +83,7 @@ public class OrderDTO {
 		this.o_state = o_state;
 	}
 	
-	public OrderDTO(int max, int o_idx, String name, String adr, String g_name, Date orderdate, String o_state, int del_state) {
+	public OrderDTO(int rn, int max, int o_idx, String name, String adr, String g_name, Date orderdate, String o_state, int del_state) {
 		this.max=max;
 		this.o_idx=o_idx;
 		this.name=name;
@@ -93,9 +92,18 @@ public class OrderDTO {
 		this.orderdate=orderdate;
 		this.o_state=o_state;
 		this.del_state=del_state;
+		this.rn=rn;
 	}
 
 	
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
 	public int getMax() {
 		return max;
 	}
