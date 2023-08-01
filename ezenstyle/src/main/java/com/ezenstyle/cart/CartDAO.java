@@ -73,7 +73,7 @@ public class CartDAO {
 				String g_size=rs.getString("g_size");
 				int ordernum=rs.getInt("ordernum");
 				
-				CartDTO dto=new CartDTO(c_idx, id, g_idx, g_nfile, g_name, g_category, g_price, g_size, ordernum);
+				CartDTO dto=new CartDTO(c_idx, id, g_idx, g_nfile, g_category, g_name, g_price, g_size, ordernum);
 				arr.add(dto);
 			}
 			return arr;
