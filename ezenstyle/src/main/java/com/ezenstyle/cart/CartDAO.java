@@ -92,28 +92,28 @@ public class CartDAO {
 	}
 	
 	//장바구니에서 삭제 시 상품 테이블에서 수량 변경
-//	public int updateStock(int ordernum,int g_idx) {
-//		try {
-//			conn=com.ezenstyle.db.EzenDB.getConn();
-//			String sql="update semi_goods set g_stock=g_stock+? where g_idx=?";
-//			ps=conn.prepareStatement(sql);
-//			ps.setInt(1, ordernum);
-//			ps.setInt(2, g_idx);
-//			int count=ps.executeUpdate();
-//			return count;
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//			return -1;
-//		}finally {
-//			try {
-//				if(ps!=null)ps.close();
-//				if(conn!=null)conn.close();
-//			}catch(Exception e2) {
-//				e2.printStackTrace();
-//			}
-//		}
-//	}
+	public int updateStock(int ordernum,int g_idx) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="update semi_goods set g_stock=g_stock+? where g_idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, ordernum);
+			ps.setInt(2, g_idx);
+			int count=ps.executeUpdate();
+			return count;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 	
 	//재고 가져오는 메서드
 	public int getStock(int g_idx) {
