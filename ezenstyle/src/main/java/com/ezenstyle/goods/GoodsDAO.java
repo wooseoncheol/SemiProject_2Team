@@ -45,7 +45,7 @@ public class GoodsDAO {
 		}
 		
 	}
-	
+	/**메인페이지 베스트 상품 top5 출력 메소드_김시연*/
 	public ArrayList<GoodsDTO> bestItemList(){
 		
 		int count=0;
@@ -97,6 +97,7 @@ public class GoodsDAO {
 			}
 		}
 	}
+	/**메인페이지 신상품 top5 출력 메소드_김시연*/
 	public ArrayList<GoodsDTO> newItemList(){
 		
 		int count=0;
@@ -135,6 +136,47 @@ public class GoodsDAO {
 
 			return arr2;
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+	public ArrayList<GoodsDTO> categoryItemList(String category){
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			
+			String sql="select * from semi_goods where g_category=? order by readnum desc";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, category);
+			rs=ps.executeQuery();
+			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
+			int count=0;
+			while(rs.next()) {
+				if(count==4) {break;}
+				int idx=rs.getInt("idx");
+				String g_name=rs.getString("g_name");
+				String g_ofile=rs.getString("g_ofile");
+				String g_nfile=rs.getString("g_nfile");
+				String g_color=rs.getString("g_color");
+				String g_size=rs.getString("g_size");
+				int g_stock=rs.getInt("g_stock");
+				int g_price=rs.getInt("g_price");
+				String g_detail=rs.getString("g_detail");
+				int readnum=rs.getInt("readnum");
+				
+				GoodsDTO dto=new GoodsDTO(idx, g_name, g_ofile, g_nfile, g_color, g_size, g_stock, g_price, category, g_detail, readnum);
+				arr.add(dto);
+				count++;
+			}
+			return arr;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

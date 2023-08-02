@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.goods.*" %>
 <%@ page import="java.text.*" %>
+<%@ page import="java.util.*" %>
 <jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 <%
 DecimalFormat df = new DecimalFormat("###,###,###");
@@ -74,12 +75,53 @@ outline:none;
 #detail{
 	line-height: 25px;
 }
+#div1{
+	margin:50px auto;
+	width:880px;
+	height:150px; 
+}
+#bannerimg{
+	width:880px;
+	height:150px;
+}
+p{
+	margin-left: 30px;
+	margin-top: -2px;
+}
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+#a{
+	margin-left:30px;
+	width:200px;
+	height:300px;
+}
+#ca{
+	margin-left:30px;
+	color: gray;
+	font-size:12px;
+}
+#div2{
+	margin:50px auto;
+	width:880px;
+
+}
+#div2 h4{
+	margin-left: 30px;
+	margin-top: 5px;
+	margin-bottom:3px;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>
 <body>
 <%@include file = "../header.jsp" %>
 <section>
+<article>
 <form name = "fm" action="/ezenstyle/goods/goodsContent_ok.jsp">
 <input type = hidden name="idx" value = <%=dto.getIdx() %>>
 <input type = hidden name="g_nfile" value = <%=dto.getG_nfile()%>>
@@ -131,6 +173,43 @@ outline:none;
 		</tr>
 	</table>
 </form>
+</article>
+<article>
+	<div id="div1">
+		<img src="/ezenstyle/img/content_bn.png" alt="광고 배너" id="bannerimg">
+	</div>
+	<div id="div2">
+		<h3>이런 상품은 어떠세요?</h3>
+		<table>
+		<caption class="blind">추천 상품 목록</caption>
+			<tr>
+			<%
+			ArrayList<GoodsDTO> arr=idao.categoryItemList(dto.getG_category());
+			
+			if(arr==null || arr.size()==0){
+				%>
+				<td style="color:gray;">
+				상품 준비중입니다.
+				</td>
+				<%
+			}else{
+				for(int i=0;i<arr.size();i++){
+					%>
+					<td>
+					<a href="/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx() %>">
+					<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" alt="상품이미지" id="a"><br>
+					</a>
+					<h4><%=arr.get(i).getG_name() %></h4>
+					<p><%=df.format(arr.get(i).getG_price()) %>원</p>
+					</td>
+					<%
+				}
+			}
+			%>
+			</tr>
+		</table>
+	</div>
+</article>
 </section>
 <%@include file = "../footer.jsp" %>
 </body>
