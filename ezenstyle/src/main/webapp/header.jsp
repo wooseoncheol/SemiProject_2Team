@@ -41,7 +41,7 @@ color:black;
    %>
 	<nav>
 	<img src="/ezenstyle/img/logo.png"  id="logo" onclick="javascript:location.href='/ezenstyle/main.jsp'" style="cursor:pointer;">
-	<form name="searchForm" action="search.jsp">
+	<form name="searchForm" action="/ezenstyle/search.jsp">
 		<ul>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=man">MAN</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=woman">WOMAN</a></li>
