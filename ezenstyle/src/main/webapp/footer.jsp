@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
+<jsp:useBean id="mdao2" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
 <style>
 a {
 text-decoration:none;
@@ -50,7 +50,7 @@ margin:0px auto;
 		if (adminid==null||adminid.equals("")) {
 			adminid="";
 		} else {
-			int result2=mdao.adminPage(adminid);
+			int result2=mdao2.adminPage(adminid);
 			if (result2>0) {
 				%>
 				<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
