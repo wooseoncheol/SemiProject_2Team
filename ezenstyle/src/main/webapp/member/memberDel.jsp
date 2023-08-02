@@ -36,14 +36,17 @@ color: red;
 
 <section>
 	<article>
+	<form name="memberDel" action="memberDel_ok.jsp">
 		<br>
-		<h2>정말로 회원탈퇴를 하시겠습니까??</h2>
+		<h2>정말로 회원탈퇴를 하시겠습니까?</h2>
 		<br>
 		<h4 id="texth4">구매내역 및 장바구니의 내용이 전부 사라집니다!</h4>
 		<br>
-		<button class="btn1" onclick="location.href='memberDel_ok.jsp'">회원 탈퇴</button>
-		<button class="btn1" onclick="location.href='memberMypage.jsp'">뒤로 가기</button>
-		
+		<h5>탈퇴하시려면 비밀번호를 입력해주세요.</h5>
+		<input type="button" class="btn1" value="뒤로 가기" onclick="location.href='memberMypage.jsp'">
+		<input type="text" name="checkpwd">
+		<input type="submit" class="btn1" value="회원 탈퇴">
+		</form>
 	</article>
 </section>
 

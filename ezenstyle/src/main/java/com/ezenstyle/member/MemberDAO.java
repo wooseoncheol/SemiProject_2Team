@@ -369,6 +369,32 @@ public class MemberDAO {
 			}
 		}
 	}
+	//탈퇴 시 비밀번호 확인-염한별 
+	public String pwdDelete(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select pwd from semi_member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs=ps.executeQuery();
+			String pwd="";
+			if(rs.next()) {
+				pwd=rs.getString("pwd");
+			}
+			return pwd;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				
+			}
+		}
+	}
 	
 	// 회원 탈퇴
 	public int memberDel(String id) {
