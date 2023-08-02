@@ -30,15 +30,13 @@ border-bottom: 3px solid #F0F0F0;
 text-align: center;
 }
 
-table tbody {
-height: 300px;
-}
-
 table tbody td {
 border-bottom: 3px solid #F0F0F0;
 text-align: center;
 }
-
+.q{
+height: 45px;
+}
 table tfoot {
 height: 50px;
 }
@@ -138,7 +136,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 				} else {
 					for (int i=0;i<arr.size();i++){
 						%>
-						<tr>
+						<tr class="q">
 						<%
 						if (arr.get(i).getRef()==0){ 
 						%>

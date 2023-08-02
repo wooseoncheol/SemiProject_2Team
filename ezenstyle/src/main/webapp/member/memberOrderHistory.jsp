@@ -12,17 +12,58 @@
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style type="text/css">
 #container {display: flex;padding-top: 30px;}
-#box1{flex:1;padding-top: 15px;background-color: blue;}
-#box2{flex:2;padding-top: 32px;background-color: orange;}
-#box3{flex:1;padding-top: 15px;background-color: skyblue;}
-li{list-style-type:none;}
-#memberbye{color: red;}
-#subject1{font-size: 20px;}
-#tablelist{margin:0px auto; width:500px;}
+#box1{flex:1;padding-top: 15px;}
+#box2{flex:3;padding-top: 32px;display: flex;}
+#box3{flex:1;padding-top: 15px;}
+
+#box1 ul{
+padding-left: 100px;
+}
+#box1 ul li{
+list-style-type:none;
+height: 50px;
+}
+#box2 table{
+margin:0px auto;
+}
+.g_pic{
+width:200px;
+height: 200px;
+}
+table {
+margin-right: auto;
+margin-left: auto;
+margin-top: 100px;
+margin-bottom: 100px;
+width: 650px;
+border-collapse: collapse;
+}
+.g {
+height: 40px;
+text-align:center;
+border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #F0F0F0;
+}
+.h {
+height: 40px;
+text-align:center;
+border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #F0F0F0;
+}
 .b {
 height: 200px;
 width: 200px;
 object-fit:contain;
+}
+.a {
+margin: 0px;
+padding: 0px;
+width: 200px;
+border-collapse: collapse;
+}
+.b {display:block;}
+.q{
+text-align: center;
 }
 </style>
 
@@ -45,28 +86,29 @@ object-fit:contain;
 	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
 	arr=odao.orderList(userid);
 %>
-<h2> 구매내역</h2>
-<table id="tablelist" border = "1">
+
+<table id="tablelist">
+<tr class="g"><th colspan="2">구매 내역</th></tr>
 <%
 	if(arr==null||arr.size()==0) {
 		%>
-			<tr><td>구매한 상품이 없습니다.</td></tr>
+			<tr class="g"><td>구매한 상품이 없습니다.</td></tr>
 		<%
 	}else{
 		for(int i=0; i < arr.size(); i++){
 			if(arr.get(i).getRn() == 1){
 			%>
-				<tr onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>'"><td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td><td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
+				<tr class="g" onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>'"><td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td><td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
 				<% if(arr.get(i).getMax() >= 2){
 					%>
 					외 <%= arr.get(i).getMax() -1 %> 건 </td>
 					<%
 				}
 				%>
-				<tr><td>주문번호 : <%= arr.get(i).getO_idx() %> / <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
-				<tr><td>구매날짜 : <%=arr.get(i).getOrderdate1() %></td></tr>
-				<tr><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
-				<tr><td>배송상태 : <%=arr.get(i).getDetailorderdate() %>
+				<tr class="g"><td>주문번호 : <%= arr.get(i).getO_idx() %> / <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
+				<tr class="g"><td>구매날짜 : <%=arr.get(i).getOrderdate1() %></td></tr>
+				<tr class="g"><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
+				<tr class="g"><td>배송상태 : <%=arr.get(i).getDetailorderdate() %>
 				<% 
 				switch(arr.get(i).getDel_state()){
 				case 0 : out.println(arr.get(i).getO_state());break;
@@ -75,6 +117,7 @@ object-fit:contain;
 				case 3 : out.println("배송 완료");break;
 				}
 				%></td></tr>
+				<tr><td><br></td></tr>
 				
 			<%
 			

@@ -16,7 +16,7 @@ margin-right: auto;
 margin-left: auto;
 margin-top: 100px;
 margin-bottom: 100px;
-width: 800px;
+width: 900px;
 border-collapse: collapse;
 
 }
@@ -30,8 +30,8 @@ border-bottom: 3px solid #F0F0F0;
 text-align: center;
 }
 
-table tbody {
-height: 300px;
+.q{
+height: 45px;
 }
 
 table tbody td {
@@ -44,6 +44,7 @@ height: 50px;
 }
 
 .a{
+width: 300px;
 text-align: left;
 padding-left: 180px;
 }
@@ -147,7 +148,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 					} else {
 						for (int i=0;i<arr.size();i++){
 							%>
-							<tr>
+							<tr class="q">
 								<td class="b"><%=arr.get(i).getIdx()%></td>
 								<td><%=arr.get(i).getId() %></td>
 								<td class="a">
