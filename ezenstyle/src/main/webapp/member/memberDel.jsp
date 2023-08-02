@@ -36,7 +36,7 @@ color: red;
 
 <section>
 	<article>
-	<form name="memberDel" action="memberDel_ok.jsp">
+	<form name="memberDel" action="memberDel_ok.jsp" method="post">
 		<br>
 		<h2>정말로 회원탈퇴를 하시겠습니까?</h2>
 		<br>
@@ -44,7 +44,7 @@ color: red;
 		<br>
 		<h5>탈퇴하시려면 비밀번호를 입력해주세요.</h5>
 		<input type="button" class="btn1" value="뒤로 가기" onclick="location.href='memberMypage.jsp'">
-		<input type="text" name="checkpwd">
+		<input type="password" name="checkpwd">
 		<input type="submit" class="btn1" value="회원 탈퇴">
 		</form>
 	</article>
