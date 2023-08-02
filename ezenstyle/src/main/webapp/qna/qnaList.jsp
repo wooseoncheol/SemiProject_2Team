@@ -51,6 +51,11 @@ padding-left: 180px;
 .b {
 width: 100px;
 }
+.bb {
+padding-top: 50px;
+margin-top: 50px;
+margin-left: 80px;
+}
 </style>
 </head>
 <%
@@ -59,7 +64,7 @@ if(id==null){
 	%>
 	<script>
 	window.alert('로그인 후 이용 가능하십니다.');
-	location.href='/ezenstyle/main.jsp';
+	location.href='/ezenstyle/member/memberLogin.jsp';
 	</script>
 	<%
 	return;
@@ -87,7 +92,7 @@ if(cp%pageSize==0) {userGroup--;}
 <%@ include file="/header.jsp" %>
 <section>
 	<article>
-		<h3>1대1 문의게시판</h3>
+		<h3 class="bb">1대1 문의게시판</h3>
 		<form>
 			<table>
 				<thead>

@@ -50,6 +50,11 @@ font-weight: bold;
 .b {
 color: red;
 }
+.bb {
+padding-top: 50px;
+margin-top: 50px;
+margin-left: 80px;
+}
 </style>
 </head>
 <%
@@ -73,7 +78,7 @@ if(cp%pageSize==0) {userGroup--;}
 <%@ include file="/header.jsp" %>
 <section>
 	<article>
-		<h3>자주하는 질문 게시판 & 공지</h3>
+		<h3 class="bb">자주하는 질문 게시판 & 공지</h3>
 		<form>
 			<table>
 				<thead>

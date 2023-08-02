@@ -26,10 +26,6 @@ height: 50px;
 #box2 table{
 margin:0px auto;
 }
-.g_pic{
-width:200px;
-height: 200px;
-}
 table {
 margin-right: auto;
 margin-left: auto;
@@ -50,26 +46,11 @@ border-bottom: 3px solid #F0F0F0;
 border-top: 3px solid #F0F0F0;
 text-indent: 30px;
 }
-.h {
-height: 40px;
-text-align:center;
-border-bottom: 3px solid #F0F0F0;
-border-top: 3px solid #F0F0F0;
+#aa a:link {
+	color:blue;
 }
-.b {
-height: 200px;
-width: 200px;
-object-fit:contain;
-}
-.a {
-margin: 0px;
-padding: 0px;
-width: 200px;
-border-collapse: collapse;
-}
-.b {display:block;}
-.q{
-text-align: center;
+#aa a:visited {
+	color:blue;
 }
 </style>
 </head>
@@ -108,26 +89,20 @@ text-align: center;
 
 			%>
 			
-			<table><%
+			<table id="aa"><%
 			for(int i=0;i<arr.size();i++) {
 			if (arr.get(i).getRn()==1) {						
 				%>
 				<tr class="u">
 				<td>주문번호: <%=arr.get(i).getO_idx() %></td>
-				</tr>
-				<tr class="u">
 				<td>고객 이름: <%=arr.get(i).getName() %></td>
 				</tr>
 				<tr class="u">
 				<td>구매 날짜: <%=arr.get(i).getOrderdate() %></td>
-				</tr>
-				<tr class="u">
 				<td>상품 이름: <%=arr.get(i).getG_name() %>
 				</tr>
 				<tr class="u">
 				<td>배송지: <%=arr.get(i).getAdr() %> 
-				</tr>
-				<tr class="u">
 				<td>배송현황: 
 				
 				<%
@@ -164,21 +139,21 @@ text-align: center;
 				;break;
 				case 1:out.println("배송 시작");
 					%>
-					<tr class="u">
+					<tr class="g">
 					<td>취소 불가</td>
 					</tr>
 					<%
 					break;	
 				case 2:out.println("배송 중");
 					%>
-					<tr class="u">
+					<tr class="g">
 					<td>취소 불가</td>
 					</tr>
 					<%
 					break;
 				case 3:out.println("배송 완료");
 					%>
-					<tr>
+					<tr class="g">
 					<td>취소 불가</td>
 					</tr>
 					<%
