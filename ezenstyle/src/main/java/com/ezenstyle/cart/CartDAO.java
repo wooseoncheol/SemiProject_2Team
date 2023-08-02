@@ -57,7 +57,7 @@ public class CartDAO {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			ArrayList<CartDTO> arr=new ArrayList<CartDTO>();
-			String sql="select * from semi_cart where id=?";
+			String sql="select semi_cart.*, semi_goods.g_stock as g_stock from semi_cart,semi_goods where semi_cart.g_idx=semi_goods.idx and id = ?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
 			rs=ps.executeQuery();
@@ -66,6 +66,7 @@ public class CartDAO {
 				int c_idx=rs.getInt("c_idx");
 				id=rs.getString("id");
 				int g_idx=rs.getInt("g_idx");
+				int g_stock=rs.getInt("g_stock");
 				String g_nfile=rs.getString("g_nfile");
 				String g_category=rs.getString("g_category");
 				String g_name=rs.getString("g_name");
@@ -73,7 +74,7 @@ public class CartDAO {
 				String g_size=rs.getString("g_size");
 				int ordernum=rs.getInt("ordernum");
 				
-				CartDTO dto=new CartDTO(c_idx, id, g_idx, g_nfile, g_category, g_name, g_price, g_size, ordernum);
+				CartDTO dto=new CartDTO(c_idx, id, g_idx, g_stock, g_nfile, g_category, g_name, g_price, g_size, ordernum);
 				arr.add(dto);
 			}
 			return arr;
@@ -165,4 +166,5 @@ public class CartDAO {
 			}
 		}
 	}
+	
 }

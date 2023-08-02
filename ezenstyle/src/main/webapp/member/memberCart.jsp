@@ -35,7 +35,7 @@ section img{
   overflow: hidden;
 }
 section table{
-	width:800px;
+	width:1000px;
 	height:130px;
 	margin:0px auto;
 	border-collapse: collapse;
@@ -45,6 +45,10 @@ section table td{
 }
 section h3{
 	margin-left:15px;
+}
+select{
+width:50px;
+height:25px;
 }
 .btn1{
 width:30px;
@@ -108,7 +112,7 @@ margin-right:50px;
 	border-bottom: 3px solid #C0C0C0;
 }
 #pricetable{
-	width:800px;
+	width:1000px;
 	height:130px;
 	margin-right: auto;
 	margin-left: auto;
@@ -126,7 +130,13 @@ margin-right:50px;
 }
 </style>
 <script>
-
+function handleOnChange(e, idx) {
+	  // 선택된 데이터 가져오기
+	  const value = e.value;
+	  
+	  // 데이터 출력
+	  location.href="/ezenstyle/member/memberCart_ok.jsp?c_idx="+idx+"&ordernum="+value
+	}
 </script>
 </head>
 <body>
@@ -171,7 +181,21 @@ if(sid==null){
 			</tr>
 			<tr>
 				<td >사이즈:Free</td>
-				<td>수량:<%=arr.get(i).getOrdernum() %><input type="button" value="주문수정" onclick="javascript:window.open('openPopup.jsp?c_idx=<%=arr.get(i).getC_idx()%>','popup','width=50,heigth=50,top=100');">
+				<td>수량:
+				<select name = 'g_stock' id='<%=arr.get(i).getC_idx()%>' onchange="handleOnChange(this, <%=arr.get(i).getC_idx()%>)">
+				<% 
+					for(int j = 1 ; j<=arr.get(i).getG_stock(); j++){
+				%>		<%if(j!=arr.get(i).getOrdernum()){ %>
+						<option value=<%=j%>><%=j %></option>
+						<% 
+						}else {
+							%>
+							<option value=<%=arr.get(i).getOrdernum()%> selected="selected"><%=arr.get(i).getOrdernum()%></option>
+							<%
+						}
+					}
+				%>
+			</select>
 			</tr>
 			<tr class="tableb3">
 			<%
