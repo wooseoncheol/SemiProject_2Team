@@ -112,6 +112,13 @@ p{
 	margin-left: 30px;
 	margin-top: -2px;
 }
+select {
+border-radius: 15px;
+border: 2px solid #BDBDBD;
+height: 30px;
+width: 60px;
+padding: .2em .3em;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>

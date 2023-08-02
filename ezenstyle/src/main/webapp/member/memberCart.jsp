@@ -22,6 +22,13 @@ int sum=0;
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
+select {
+border-radius: 15px;
+border: 2px solid #BDBDBD;
+height: 30px;
+width: 60px;
+padding: .2em .3em;
+}
 section img{
 	width: 150px;
 	height: 200px;
@@ -45,10 +52,6 @@ section table td{
 }
 section h3{
 	margin-left:15px;
-}
-select{
-width:50px;
-height:25px;
 }
 .btn1{
 width:30px;
@@ -134,7 +137,6 @@ function handleOnChange(e, idx) {
 	  // 선택된 데이터 가져오기
 	  const value = e.value;
 	  
-	  // 데이터 출력
 	  location.href="/ezenstyle/member/memberCart_ok.jsp?c_idx="+idx+"&ordernum="+value
 	}
 </script>
