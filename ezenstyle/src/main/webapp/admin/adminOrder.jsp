@@ -130,8 +130,20 @@ text-align: center;
 				<tr class="u">
 				<td>배송현황: 
 				
-				<%switch (arr.get(i).getDel_state()) {
-				case 0:out.println("결제 완료");
+				<%
+				if (arr.get(i).getO_state().equals("취소 완료")) {
+					%>
+					<%=arr.get(i).getO_state() %>
+					</td>
+					</tr>
+					<tr class="g">
+					<td>구매 취소 완료</td>
+					</tr>
+					<%
+				} else {
+				
+				switch (arr.get(i).getDel_state()) {
+				case 0:out.println(arr.get(i).getO_state());
 					if (arr.get(i).getO_state().equals("결제 취소 요청")) {
 						%>
 						</td>
@@ -178,7 +190,8 @@ text-align: center;
 				<td><br></td>
 				</tr>
 		<%
-			} 
+				} 
+			}
 		}
 			%></table>
 				

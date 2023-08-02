@@ -78,7 +78,7 @@ public class OrderDAO {
 	public ArrayList<OrderDTO> adminOrder() {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select * from (select adr, g_name, name, o_idx, orderdate, to_char(orderdate,'yyyymmddhh24miss') as \"orderdate1\", o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate";
+			String sql="select * from (select adr, g_name, name, o_idx, orderdate, to_char(orderdate,'yyyymmddhh24miss') as \"orderdate1\", o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate order by b.orderdate desc";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			System.out.println("성공1");
@@ -117,7 +117,7 @@ public class OrderDAO {
 	public ArrayList<OrderDTO> orderList(String id){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql = "select * from (select o_idx, id ,name, adr, tel, g_nfile, g_name, g_price, g_size, ordernum, orderdate ,TO_CHAR(orderdate,'YYYY_MM_dd_HH24:MI:SS') as \"orderdate1\",g_category, o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate and id = ?";
+			String sql = "select * from (select o_idx, id ,name, adr, tel, g_nfile, g_name, g_price, g_size, ordernum, orderdate ,TO_CHAR(orderdate,'YYYY_MM_dd_HH24:MI:SS') as \"orderdate1\",g_category, o_state, row_number()over(partition by orderdate order by orderdate desc) as \"rn\" from semi_order) a, (select orderdate, count(orderdate) as \"max\", trunc((sysdate-orderdate)) as \"del_state\" from semi_order group by orderdate) b where a.orderdate=b.orderdate and id = ? order by b.orderdate desc";
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			ps=conn.prepareStatement(sql);
 			ps.setString(1,id);
