@@ -84,26 +84,13 @@ outline:none;
 	width:880px;
 	height:150px;
 }
-p{
-	margin-left: 30px;
-	margin-top: -2px;
-}
+
 .blind {
   position: absolute;
   width: 1px;
   height: 1px;
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
-#a{
-	margin-left:30px;
-	width:200px;
-	height:300px;
-}
-#ca{
-	margin-left:30px;
-	color: gray;
-	font-size:12px;
 }
 #div2{
 	margin:50px auto;
@@ -114,6 +101,16 @@ p{
 	margin-left: 30px;
 	margin-top: 5px;
 	margin-bottom:3px;
+}
+#a{
+	margin-left:30px;
+	width:200px;
+	height:300px;
+}
+
+p{
+	margin-left: 30px;
+	margin-top: -2px;
 }
 </style>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
@@ -194,6 +191,19 @@ p{
 				<%
 			}else{
 				for(int i=0;i<arr.size();i++){
+					if(arr.get(i).getIdx()==idx){
+						if(arr.size()==1){
+							%>
+							<td style="color:gray;">
+							COMING SOON !
+							</td>
+							<%
+							return;
+						}else{
+							continue;
+						}
+						
+					}
 					%>
 					<td>
 					<a href="/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx() %>">
