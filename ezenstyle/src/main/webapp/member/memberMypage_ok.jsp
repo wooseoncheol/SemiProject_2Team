@@ -9,8 +9,10 @@
 <jsp:setProperty property="*" name="mdto"/>
 <jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
 
-<% 
-int count = mdao.updateInfo2(mdto);
+<%
+
+String userid=(String)session.getAttribute("sid");
+int count = mdao.updateInfo2(mdto,userid);
 String msg = count>0? "정보 수정 완료": "정보 수정 실패";
 %>
 

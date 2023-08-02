@@ -224,16 +224,17 @@ public class MemberDAO {
 	}
 	
 	/** 마이페이지 _정보수정_2 메소드_유성진*/
-	public int updateInfo2(MemberDTO dto) {
+	public int updateInfo2(MemberDTO dto,String id) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="update semi_member set name=?, pwd=?, email=?, adr=?, tel=? ";
+			String sql="update semi_member set name=?, pwd=?, email=?, adr=?, tel=? where id=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, dto.getName());
 			ps.setString(2, dto.getPwd());
 			ps.setString(3, dto.getEmail());
 			ps.setString(4, dto.getAdr());
 			ps.setString(5, dto.getTel());
+			ps.setString(6, id);
 			int count = ps.executeUpdate();
 			
 			return count;
