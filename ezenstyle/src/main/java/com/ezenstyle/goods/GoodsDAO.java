@@ -16,7 +16,7 @@ public class GoodsDAO {
 	public int goodsInsert(GoodsDTO dto) {
 		try{
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql = "insert into semi_goods values(semi_goods_idx.nextval,?,?,?,?,?,?,?,?,?,0)";
+			String sql = "insert into semi_goods values(semi_goods_idx.nextval,?,?,?,?,upper(?),upper(?),?,?,?,0)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, dto.getG_category());
 			ps.setString(2, dto.getG_name());
@@ -345,7 +345,7 @@ public class GoodsDAO {
 	public int adminUpdate(int idx, String name, String color, String size, int stock, int price, String detail) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="update semi_goods set g_name=?, g_color=?, g_size=?, g_stock=?, "
+			String sql="update semi_goods set g_name=?, g_color=upper(?), g_size=upper(?), g_stock=?, "
 					+ "g_price=?, g_detail=? where idx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, name);
