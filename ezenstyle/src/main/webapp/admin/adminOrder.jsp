@@ -34,6 +34,9 @@ margin-bottom: 100px;
 width: 650px;
 border-collapse: collapse;
 }
+.q{
+text-align: center;
+}
 .g {
 height: 40px;
 text-align:center;
