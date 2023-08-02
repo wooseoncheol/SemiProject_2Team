@@ -25,14 +25,16 @@ public class MemberDAO {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			System.out.println("연결성공");
-			String sql = "insert into semi_member values(semi_member_idx.nextval,?,?,?,?,?,?,0)";
+			String sql = "insert into semi_member values(semi_member_idx.nextval,?,?,?,?,?,?,?,?,0)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, dto.getId());
 			ps.setString(2, dto.getName());
 			ps.setString(3, dto.getPwd());
-			ps.setString(4, dto.getEmail());
-			ps.setString(5, dto.getAdr());
-			ps.setString(6, dto.getTel());
+			ps.setString(4, dto.getQuestion());
+			ps.setString(5, dto.getAnswer());
+			ps.setString(6, dto.getEmail());
+			ps.setString(7, dto.getAdr());
+			ps.setString(8, dto.getTel());
 			
 			int count = ps.executeUpdate();
 			return count;
@@ -251,13 +253,15 @@ public class MemberDAO {
 	}
 	
 	/**아이디 찾기 메소드 윤지영*/
-	public String getUserId(String name,String tel) {
+	public String getUserId(String name,String tel,String question, String answer) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select id from semi_member where name=? and tel=?";
+			String sql="select id from semi_member where name=? and tel=? and question=? and answer=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setString(2, tel);
+			ps.setString(3, question);
+			ps.setString(4, answer);
 			rs=ps.executeQuery();
 			
 			if(rs.next()) {

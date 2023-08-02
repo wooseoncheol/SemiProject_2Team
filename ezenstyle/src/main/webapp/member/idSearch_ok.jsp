@@ -63,7 +63,7 @@ table td input{
 		<tr>
 			<th id="a">
 				<%
-				String result=mdao.getUserId(mdto.getName(), mdto.getTel());
+				String result=mdao.getUserId(mdto.getName(), mdto.getTel(), mdto.getQuestion(),mdto.getAnswer());
 				if(result==null){
 					out.println("이름 또는 전화번호가 틀렸습니다.");
 				}

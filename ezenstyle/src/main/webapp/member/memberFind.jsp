@@ -9,18 +9,30 @@
 <style>
 #idsearch{
 	margin-left: 150px;
-	margin-top: 80px;
+	margin-top: 50px;
 	margin-right: 170px;
+	margin-bottom: 50px;
 	float: left;
 }
 #pwdsearch{
-	margin-top: 50px;
+	margin-top: 80px;
 	margin-right: 50px;
 	float: left;
-	margin-bottom: 50px;
 }
 th{
 	text-align: center;
+}
+#question{
+	width:350px;
+	border-style: solid;
+	border-width: 2px;
+	outline:none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: ;
+	border-color: #898989;
+	font-size: 17px;
 }
 #se{
 	padding-bottom: 50px;
@@ -58,16 +70,34 @@ th{
 			<th align="center" id="se">아이디 찾기</th>
 		</tr>
 		<tr>
-			<td>USER NAME</td>
+			<td>이름</td>
 		</tr>
 		<tr>
 			<td><br><input type="text" name="name" id="a"></td>
 		</tr>
 		<tr>
-			<td><br>PHONE NUMBER</td>
+			<td><br>휴대전화</td>
 		</tr>
 		<tr>
 			<td><br><input type="text" name="tel" id="a"></td>
+		</tr>
+		<tr>
+			<td><br>본인확인 질문</td>
+		</tr>
+		<tr>
+			<td><br><select id="question" name="question" required>
+          		<option value="가장 좋아하는 동물은?">가장 좋아하는 동물은?</option>
+            	<option value="자신의 출신 초등학교는?">자신의 출신 초등학교는?</option>
+            	<option value="가장 감명깊게 읽은 책의 제목은?">가장 감명깊게 읽은 책의 제목은?</option>
+            	<option value="자신의 반려동물 이름은?">자신의 반려동물 이름은?</option>
+            	<option value="자신의 보물1호는?">자신의 보물1호는?</option>
+            	</select></td>
+		</tr>
+		<tr>
+			<td><br>본인확인 답변</td>
+		</tr>
+		<tr>
+			<td><br><input id="a" type="text" name="answer" required="required"></td>
 		</tr>
 		<tr>
 			<td><br><br><input type="submit" value="아이디 찾기"  id="b">
@@ -80,19 +110,19 @@ th{
 			<th align="center" id="se">비밀번호 찾기</th>
 		</tr>
 		<tr>
-			<td>USER ID</td>
+			<td>아이디</td>
 		</tr>
 		<tr>
 			<td><br><input type="text" name="id" id="a"></td>
 		</tr>
 		<tr>
-			<td><br>USER NAME</td>
+			<td><br>이름</td>
 		</tr>
 		<tr>
 			<td><br><input type="text" name="name" id="a"></td>
 		</tr>
 		<tr>
-			<td><br>PHONE NUMBER</td>
+			<td><br>휴대전화</td>
 		</tr>
 		<tr>
 			<td><br><input type="text" name="tel" id="a"></td>

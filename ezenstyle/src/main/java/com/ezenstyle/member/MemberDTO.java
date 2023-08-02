@@ -5,6 +5,8 @@ public class MemberDTO {
 	private String id;//회원 아이디
 	private String name;//회원 이름 
 	private String pwd;//회원 비밀번호
+	private String question;//본인확인 질문
+	private	String answer;//본인확인 답변
 	private String email;//회원 이메일
 	private String adr;//회원 주소
 	private String tel;//회원 전화번호
@@ -14,6 +16,21 @@ public class MemberDTO {
 		System.out.println("DTO호출");//test
 	}
 	
+	public MemberDTO(int idx, String id, String name, String pwd, String question, String answer, String email,
+			String adr, String tel, int mgr) {
+		super();
+		this.idx = idx;
+		this.id = id;
+		this.name = name;
+		this.pwd = pwd;
+		this.question = question;
+		this.answer = answer;
+		this.email = email;
+		this.adr = adr;
+		this.tel = tel;
+		this.mgr = mgr;
+	}
+
 	public MemberDTO(String id, String name, String tel) {
 		super();
 		this.id = id;
@@ -76,6 +93,21 @@ public class MemberDTO {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 	public String getEmail() {
 		return email;

@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
 .div1{
-height:500px;
+height:600px;
 width:450px;
 padding-top:50px;
 margin: 0px auto;
@@ -27,6 +27,17 @@ border-right: 0px;
 border-bottom: ;
 border-color: #898989;
 font-size: 17px;
+}
+#question{
+	width:205px;
+	border-style: solid;
+	border-width: 2px;
+	outline:none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: ;
+	border-color: #898989;
 }
 #t{
 font-size: 9px;
@@ -99,6 +110,20 @@ function checkNumber(event) {
 		</tr>
 		<tr>
 			<td>비밀번호 확인* </td><td>&nbsp;&nbsp;<input class="a" type="password" name="pwd" required="required"></td>
+		</tr>
+		<tr>
+			<td>본인확인 질문*</td>
+			<td>&nbsp;&nbsp;<select id="question" name="question" required>
+          		<option value="가장 좋아하는 동물은?">가장 좋아하는 동물은?</option>
+            	<option value="자신의 출신 초등학교는?">자신의 출신 초등학교는?</option>
+            	<option value="가장 감명깊게 읽은 책의 제목은?">가장 감명깊게 읽은 책의 제목은?</option>
+            	<option value="자신의 반려동물 이름은?">자신의 반려동물 이름은?</option>
+            	<option value="자신의 보물1호는?">자신의 보물1호는?</option>
+            	</select></td>
+		</tr>
+		<tr>
+			<td>본인확인 답변*</td>
+			<td>&nbsp;&nbsp;<input class="a" type="text" name="answer" required="required"></td>
 		</tr>
 		<tr>
 			<td>주소 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="adr" required="required"></td>
