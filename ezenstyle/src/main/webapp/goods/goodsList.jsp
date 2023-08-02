@@ -31,6 +31,13 @@
 	if(cp%pageSize==0){
 		userGroup--;
 	}
+	
+	String lt_s=request.getParameter("listtype");
+	int lt = 0 ;
+	if(lt_s==null){
+		lt = 0;
+	}else{lt= Integer.parseInt(lt_s);}
+	
 %>
 <style>
 img{
@@ -61,18 +68,41 @@ height: 250px;
 section fieldset{
 margin: 0px, auto;
 }
+select {
+border-radius: 15px;
+border: 2px solid #BDBDBD;
+height: 30px;
+width: 100px;
+padding: .2em .3em;
+}
 </style>
+<script>
+function list(e, category){
+	const value = e.value;
+	location.href="/ezenstyle/goods/goodsList.jsp?listtype="+value+"&category="+category;
+}
+</script>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>
 <body>
 <%@include file = "../header.jsp" %>
 <section>
 <h3><%=category%></h3>
+<div class= "select" align = "right" >
+<select onchange="list(this, '<%=request.getParameter("category")%>')">
+	<option value="0" disabled <%if(lt==0){%>selected="selected"<%}%>>==정렬==</option>
+	<option value="1"<%if(lt==1){%>selected="selected"<%}%>>가격높은순</option>
+	<option value="2"<%if(lt==2){%>selected="selected"<%}%>>가격낮은순</option>
+	<option value="3"<%if(lt==3){%>selected="selected"<%}%>>인기높은순</option>
+	<option value="4"<%if(lt==4){%>selected="selected"<%}%>>인기낮은순</option>
+</select>
+</div>
 <article>
 <table>
 	<tr>
 	<%
-	ArrayList<GoodsDTO> arr = idao.showGoodsList(category_s, cp, listSize);
+	
+	ArrayList<GoodsDTO> arr = idao.showGoodsList(category_s, cp, listSize, lt);
 	for (int i = 0 ; i<arr.size(); i++){
 		%>
 		<td>

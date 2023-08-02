@@ -255,15 +255,33 @@ public class GoodsDAO {
 		}
 	}
 	// 카테고리별 상품리스트 출력 메소드 -우선철
-	public ArrayList<GoodsDTO> showGoodsList(String category, int cp, int ls){
+	public ArrayList<GoodsDTO> showGoodsList(String category, int cp, int ls, int listtype){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			int start=(cp-1)*ls+1;
 			int end=cp*ls;
-			String sql=	 "select * from "
-						+"(select rownum as rnum,a.* from "
-						+"(select * from semi_goods where g_category = ? order by idx desc)a)b "
-						+"where rnum>=? and rnum<=?";
+			String sql= "select * from "
+					+"(select rownum as rnum,a.* from "
+					+"(select * from semi_goods where g_category = ? order by idx desc)a)b "
+					+"where rnum>=? and rnum<=?";
+			switch(listtype) {
+			case 1 : sql= "select * from "
+					+"(select rownum as rnum,a.* from "
+					+"(select * from semi_goods where g_category = ? order by g_price desc)a)b "
+					+"where rnum>=? and rnum<=?";break;
+			case 2 : sql= "select * from "
+					+"(select rownum as rnum,a.* from "
+					+"(select * from semi_goods where g_category = ? order by g_price)a)b "
+					+"where rnum>=? and rnum<=?";break;
+			case 3 : sql= "select * from "
+					+"(select rownum as rnum,a.* from "
+					+"(select * from semi_goods where g_category = ? order by readnum desc)a)b "
+					+"where rnum>=? and rnum<=?";break;
+			case 4 : sql= "select * from "
+					+"(select rownum as rnum,a.* from "
+					+"(select * from semi_goods where g_category = ? order by readnum)a)b "
+					+"where rnum>=? and rnum<=?";break;	
+			}
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, category);
 			ps.setInt(2, start);
