@@ -22,7 +22,7 @@
 	int g_price = Integer.parseInt(g_price_s);
 	String g_category = mr.getParameter("g_category");
 	String g_detail = mr.getParameter("g_detail");
-													
+	if(g_detail==null||g_detail.equals("")){g_detail = " ";}										
 	String g_ofile=mr.getOriginalFileName("upload");
 	String g_nfile=mr.getFilesystemName("upload");
 

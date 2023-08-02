@@ -95,7 +95,7 @@ cursor: pointer;
 	<table>
 	<tr class="uu">
 		<td rowspan="7" class="filebox">
-    	<input type="file" name="upload"></td>
+    	<input type="file" name="upload" required="required"></td>
 		<td class="uuu">카테고리</td>
 		<td class="uuu">
 		<select name="g_category">
@@ -108,23 +108,23 @@ cursor: pointer;
 	</tr>
 	<tr class="u">
 	<td>상품 이름</td>
-	<td><input type="text" name="g_name"></td>
+	<td><input type="text" name="g_name" required="required"></td>
 	</tr>
 	<tr class="u">
 	<td>가격</td>
-	<td><input type="number" name="g_price"></td>
+	<td><input type="number" name="g_price" required="required"></td>
 	</tr>
 	<tr class="u">
 	<td>색상</td>
-	<td><input type="text" name="g_color"></td>
+	<td><input type="text" name="g_color" required="required"></td>
 	</tr>
 	<tr class="u">
 	<td>사이즈</td>
-	<td><input type="text" name="g_size"></td>
+	<td><input type="text" name="g_size" required="required"></td>
 	</tr>
 	<tr class="u">
 	<td>재고</td>
-	<td><input type="number" name="g_stock"></td>
+	<td><input type="number" name="g_stock" required="required"></td>
 	</tr>
 	<tr class="gg">
 	<td colspan="2"><textarea rows="10" cols="55" name="g_detail" placeholder="상세정보"></textarea></td>
