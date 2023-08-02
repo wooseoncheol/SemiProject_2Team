@@ -13,15 +13,12 @@
 <style type="text/css">
 #container {display: flex;padding-top: 30px;}
 #box1{flex:1;padding-top: 15px;}
-#box2{flex:3;padding-top: 32px;display: flex;}
-#box3{flex:1;padding-top: 15px;}
-
-#box1 ul{
-padding-left: 100px;
-}
+#box2{flex:2;padding-top: 10px;display: flex;}
+#box3{flex:0.5;padding-top: 15px;}
+#ul1{margin-left:70px;padding-top:5px; }
+.tname{text-align: center;}
 #box1 ul li{
 list-style-type:none;
-height: 50px;
 }
 #box2 table{
 margin:0px auto;
@@ -35,8 +32,14 @@ margin-right: auto;
 margin-left: auto;
 margin-top: 100px;
 margin-bottom: 100px;
-width: 650px;
+width: 500px;
 border-collapse: collapse;
+}
+.gh {
+align-items: center;
+height: 70px;
+text-align:center;
+font-size: 25px;
 }
 .g {
 height: 40px;
@@ -65,6 +68,13 @@ border-collapse: collapse;
 .q{
 text-align: center;
 }
+#memberbye{
+color: red;
+}
+#subject1{
+font-weight: bold;
+font-size: 17px;
+}
 </style>
 
 </head>
@@ -74,10 +84,10 @@ text-align: center;
 <div id="container">
 <div id="box1">
 <ul id="ul1">
-	<li><a href="/ezenstyle/member/memberMypage.jsp">내 정보 보기 및 수정</a><br></li>
+	<li><a href="/ezenstyle/member/memberMypage.jsp">내 정보 보기 및 수정</a><br><br></li>
 	<li><a href="/ezenstyle/member/memberCart.jsp">장바구니</a></li>
 	<li><h4>구매 내역</h4></li>
-	<li><span><br><br><br><br><a href="memberDel.jsp" id="memberbye">[회원탈퇴]</a></span></li>
+	
 </ul>
 </div>
 <div id="box2">
@@ -88,7 +98,7 @@ text-align: center;
 %>
 
 <table id="tablelist">
-<tr class="g"><th colspan="2">구매 내역</th></tr>
+<tr class="gh"><th colspan="2">구매 내역</th></tr>
 <%
 	if(arr==null||arr.size()==0) {
 		%>
@@ -98,17 +108,19 @@ text-align: center;
 		for(int i=0; i < arr.size(); i++){
 			if(arr.get(i).getRn() == 1){
 			%>
-				<tr class="g" onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>'"><td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td><td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
+				<tr class="g" onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>'">
+				<td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td>
+				<td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
 				<% if(arr.get(i).getMax() >= 2){
 					%>
 					외 <%= arr.get(i).getMax() -1 %> 건 </td>
 					<%
 				}
 				%>
-				<tr class="g"><td>주문번호 : <%= arr.get(i).getO_idx() %> / <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
+				<tr class="g"><td>주문번호 : <%= arr.get(i).getO_idx() %> / 수량 : <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
 				<tr class="g"><td>구매날짜 : <%=arr.get(i).getOrderdate1() %></td></tr>
 				<tr class="g"><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
-				<tr class="g"><td>배송상태 : <%=arr.get(i).getDetailorderdate() %>
+				<tr class="g"><td>배송상태 : 
 				<% 
 				switch(arr.get(i).getDel_state()){
 				case 0 : out.println(arr.get(i).getO_state());break;
@@ -130,7 +142,7 @@ text-align: center;
 </table>
 </div>
 <div id="box3">
-<h1>hi</h1>
+
 </div>
 
 </div>

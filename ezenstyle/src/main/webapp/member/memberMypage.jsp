@@ -17,12 +17,10 @@ String upwd = request.getParameter("pwd");
 <style>
 #container {display: flex;padding-top: 30px;}
 #box1{flex:1;padding-top: 15px;}
-#box2{flex:1;padding-top: 32px;}
+#box2{flex:1;padding-top: 32px;display: flex;}
 #box3{flex:1.5;padding-top: 15px;}
 #ul1{margin-left:70px;}
-.tname{
-text-align: center;
-}
+.tname{text-align: center;}
 #box2 table{margin-left:50px;}
 #box2 table tr th{padding-bottom: 30px;}
 #box2 table tr td{height: 45px;}
