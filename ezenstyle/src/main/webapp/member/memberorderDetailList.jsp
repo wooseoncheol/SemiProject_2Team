@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <%@ page import="com.ezenstyle.order.*" %>
 <jsp:useBean id="odao" class="com.ezenstyle.order.OrderDAO"></jsp:useBean>
 
@@ -83,6 +84,7 @@ font-size: 13px;
 </div>
 <div id="box2">
 <%
+	DecimalFormat df = new DecimalFormat("###,###,###");
 	String detailorderdate = request.getParameter("detailorderdate");
 	String userid=(String)session.getAttribute("sid");
 	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
@@ -99,7 +101,7 @@ font-size: 13px;
 		for(int i=0; i < arr.size(); i++){
 			%><tr class="gh"><td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td>
 			<td><a id ="subject1" >상품 이름 : <%= arr.get(i).getG_name() %></a></tr>
-			<tr class="g"><td>수량 : <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
+			<tr class="g"><td>수량 : <%=arr.get(i).getOrdernum() %>개 / <%=df.format(arr.get(i).getG_price() * arr.get(i).getOrdernum())%>원</td></tr>
 			<tr class="g"><td>사이즈 : <%= arr.get(i).getG_size()%></td></tr>
 			<tr class="g"><td>구매날짜 : <%=arr.get(i).getOrderdate() %></td></tr>
 			<tr class="gf"><td>배송 상태 : <%= arr.get(i).getO_state()%></td></tr>

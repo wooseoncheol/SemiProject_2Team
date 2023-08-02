@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.ezenstyle.order.*" %>
+<%@ page import="java.text.*" %>
 <jsp:useBean id="odao" class="com.ezenstyle.order.OrderDAO"></jsp:useBean>
 
 <!DOCTYPE html>
@@ -92,6 +93,7 @@ font-size: 17px;
 </div>
 <div id="box2">
 <%
+	DecimalFormat df = new DecimalFormat("###,###,###");
 	String userid=(String)session.getAttribute("sid");
 	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
 	arr=odao.orderList(userid);
@@ -117,7 +119,7 @@ font-size: 17px;
 					<%
 				}
 				%>
-				<tr class="g"><td>주문번호 : <%= arr.get(i).getO_idx() %> / 수량 : <%=arr.get(i).getOrdernum() %>개 / <%=arr.get(i).getG_price() * arr.get(i).getOrdernum() %>원</td></tr>
+				<tr class="g"><td>주문번호 : <%= arr.get(i).getO_idx() %> / 수량 : <%=arr.get(i).getOrdernum() %>개 / <%=df.format(arr.get(i).getG_price() * arr.get(i).getOrdernum() )%>원</td></tr>
 				<tr class="g"><td>구매날짜 : <%=arr.get(i).getOrderdate1() %></td></tr>
 				<tr class="g"><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
 				<tr class="g"><td>배송상태 : 
