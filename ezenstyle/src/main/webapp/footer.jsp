@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="adao" class="com.ezenstyle.admin.AdminDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
 <style>
 a {
 text-decoration:none;
@@ -47,13 +47,17 @@ margin:0px auto;
 	<a href="/ezenstyle/notice/noticeList.jsp">공지사항</a>
 	<% 
 		String adminid=(String)session.getAttribute("sid");
-		int result2=adao.adminPage(adminid);
-		if (result2>0) {
-			%>
-			<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
-			<%
+		if (adminid==null||adminid.equals("")) {
+			adminid="";
 		} else {
-			
+			int result2=mdao.adminPage(adminid);
+			if (result2>0) {
+				%>
+				<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
+				<%
+			} else {
+				return;
+			}
 		}
 	%>
 	</div>
