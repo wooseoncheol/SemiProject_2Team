@@ -176,9 +176,10 @@ if(sid==null){
 		
 		if(arr==null || arr.size()==0){
 			%>
-			<tr>
-				<td>장바구니에 담긴 상품이 없습니다</td>
-			</tr>
+			<script>
+				window.alert('장바구니에 담긴 상품이 없습니다');
+				window.location=document.referrer;
+			</script>
 			<%
 		}else{
 			for(int i=0;i<arr.size();i++){
