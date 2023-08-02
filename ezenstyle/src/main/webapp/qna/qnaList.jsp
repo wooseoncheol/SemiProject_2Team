@@ -186,7 +186,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 				} else {
 					for (int i=0;i<arr.size();i++){
 						%>
-						<tr>
+						<tr class="q">
 							<td class="b"><%=arr.get(i).getIdx()%></td>
 							<td></td>
 							<td class="a">

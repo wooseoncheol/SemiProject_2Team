@@ -48,7 +48,7 @@ section table{
 	border-collapse: collapse;
 }
 section table td{
-	font-size:18px;
+	font-size:15px;
 }
 section h3{
 	margin-left:15px;
@@ -71,33 +71,28 @@ padding-top: -10px;
 	color:black;
 }
 .btn2{
-width:200px;
-height:50px;
-background-color:#696969
+width:120px;
+height:40px;
+background-color:white;
 border-style: solid;
-border-top-color:#E7E7E7;
-border-left-color:#E7E7E7;
-border-bottom-color: #E7E7E7;
-border-right-color: #E7E7E7;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
 border-radius: 7px;
 cursor: pointer;
-font-size:20px;
-margin-right:50px;
 }
 .btn3{
-width:200px;
-height:50px;
-color:white;
-background-color:black;
+width:120px;
+height:40px;
+background-color:white;
 border-style: solid;
-border-top-color:#E7E7E7;
-border-left-color:#E7E7E7;
-border-bottom-color: #E7E7E7;
-border-right-color: #E7E7E7;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
 border-radius: 7px;
 cursor: pointer;
-font-size:20px;
-margin-right:50px;
 }
 .tablet2{
 	border-top: 3px solid #C0C0C0;
@@ -130,6 +125,7 @@ margin-right:50px;
 #div2{
 	display: flex;
 	justify-content: center;
+	margin-bottom: 50px;
 }
 </style>
 <script>
@@ -173,8 +169,8 @@ if(sid==null){
 		%>
 			<tr class="tablet3">
 				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
-				<td colspan="2">상품명:<%=arr.get(i).getG_name() %></td>
-				<td rowspan="3" align="right">가격:<%=df.format(arr.get(i).getG_price()*arr.get(i).getOrdernum())%></td>
+				<td colspan="2">상품명: <%=arr.get(i).getG_name() %></td>
+				<td rowspan="3" align="right">가격: <%=df.format(arr.get(i).getG_price()*arr.get(i).getOrdernum())%></td>
 				<td align="right"><input type="button" value="X" class="btn1" onclick="location.href='deleteCart_ok.jsp?c_idx=<%=arr.get(i).getC_idx() %>&g_idx=<%= arr.get(i).getG_idx() %>'"></td>
 			</tr>
 			<tr>
@@ -182,7 +178,7 @@ if(sid==null){
 				<td></td>
 			</tr>
 			<tr>
-				<td >사이즈:Free</td>
+				<td >사이즈: Free</td>
 				<td>수량:
 				<select name = 'g_stock' id='<%=arr.get(i).getC_idx()%>' onchange="handleOnChange(this, <%=arr.get(i).getC_idx()%>)">
 				<% 
@@ -213,6 +209,7 @@ if(sid==null){
 			}
 			sum=total+dilprice;
 			%>
+			<br>
 		<h3>결제금액</h3>
 		<table id="pricetable">
 			<tr class="tablet2">
@@ -232,6 +229,7 @@ if(sid==null){
 		</table>
 		<div id="div2">
 			<input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:history.go(-1)">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" value="결제하기" class="btn3" onclick="location.href='/ezenstyle/orderInput.jsp'">
 		</div>
 		</form>
