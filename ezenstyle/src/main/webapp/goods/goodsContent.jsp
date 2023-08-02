@@ -71,6 +71,9 @@ outline:none;
 width: 40px;
 outline:none;
 }
+#detail{
+	line-height: 25px;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 </head>
@@ -114,7 +117,7 @@ outline:none;
 			}
 			%>
 			</li>
-			<li>상세정보 :<input type="text" name=g_detail value= "<%=dto.getG_detail()%>" readonly class=g_inf></li>
+			<li id="detail"><%=dto.getG_detail().replaceAll("\n", "<br>")%></li>
 			</ul>
 			</td>
 		</tr>
