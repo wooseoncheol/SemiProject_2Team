@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.ezenstyle.member.*" %>
 <%@ page import="com.ezenstyle.goods.*" %>
+<%@ page import="java.text.*" %>
 <jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 <jsp:useBean id="mdao" class="com.ezenstyle.member.MemberDAO"></jsp:useBean>
 <%
@@ -12,6 +13,12 @@ String ordernum=request.getParameter("g_stock");
 int idx = Integer.parseInt(idx_s);
 GoodsDTO dto1 = idao.showGoodscontent(idx);
 MemberDTO dto = mdao.printMember(sid);
+
+DecimalFormat df=new DecimalFormat("###,###,###,###");
+
+int total=0;
+int dilprice=3000;
+int sum=0;
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +33,7 @@ section li{
 section img{
 	width: 150px;
 	height: 200px;
-	margin-right: -80px;
+	margin-right: -95px;
 }
 .blind {
   position: absolute;
@@ -43,9 +50,71 @@ section table{
 	margin-top: 10px;
 	margin-bottom: 100px;
 	border-collapse: collapse;
+	
+	
+}
+#addr th{
+	width:200px;
+}
+.tablet th{
+	padding-top:10px;
+	border-top: 3px solid #708090;
+}
+.tablet td{
+	padding-top:10px;
 	border-top: 3px solid #F0F0F0;
-	border-bottom: 3px solid #F0F0F0;
 
+}
+.tablet2{
+	border-top: 3px solid #C0C0C0;
+	border-bottom: 3px solid #F0F0F0;
+	color: gray;
+}
+.tableb th{
+	padding-bottom:12px;
+	border-bottom: 3px solid #708090;
+}
+.tableb td{
+	padding-bottom:12px;
+	border-bottom: 3px solid #F0F0F0;
+}
+.tableb2{
+	border-bottom: 3px solid #C0C0C0;
+	
+}
+.tablet3{
+	border-top: 3px solid #C0C0C0;
+}
+.tableb3{
+	border-bottom: 3px solid #C0C0C0;
+}
+#pricetable{
+	width:800px;
+	height:130px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	margin-bottom: 100px;
+	border-collapse: collapse;
+	text-align: center;
+}
+.textbox1{
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #A9A9A9;
+	width:120px;
+	margin-left:20px;
+	font-size:15px;
+}
+.textbox2{
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #A9A9A9;
+	width:230px;
+	margin-left:20px;
+	font-size:15px;
 }
 section table td{
 	font-size:18px;
@@ -57,7 +126,7 @@ section h3{
 .btn2{
 width:200px;
 height:50px;
-background-color:light-gray;
+background-color:#D3D3D3;
 border-style: solid;
 border-top-color:#E7E7E7;
 border-left-color:#E7E7E7;
@@ -71,7 +140,7 @@ margin-right:50px;
 .btn3{
 width:200px;
 height:50px;
-background-color:gray;
+background-color:#708090;
 border-style: solid;
 border-top-color:#E7E7E7;
 border-left-color:#E7E7E7;
@@ -103,19 +172,22 @@ if(sid==null){
 		<form name="orderNow" action="orderNow_ok.jsp" method="post">
 			<table>
 				<caption class="blind" >결제 예정 목록</caption>
-				<tr>
-				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=dto1.getG_nfile()%>"></td>
-				<td colspan="2"><%=dto1.getG_name() %></td>
-				<td rowspan="3" align="right"><%=dto1.getG_price() %></td>
+				<tr class="tablet3">
+				<td rowspan="3" style="padding-top: 5px; width: 157px;"><img src="/ezenstyle/goods/imgs/<%=dto1.getG_nfile()%>"></td>
+				<td colspan="2" style="padding-top: 10px;"><%=dto1.getG_name() %></td>
+				<td rowspan="3" align="right" style="color:#696969;"><b><%=df.format(dto1.getG_price()) %>원</b></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2" ><%=dto1.getG_category() %></td>
+				<td colspan="2" style="padding-bottom:50px; color:#A9A9A9;"><%=dto1.getG_category() %></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td colspan="3">사이즈:<%=dto1.getG_size() %> | 수량:<%=ordernum %></td>
+			<tr class="tableb3">
+				<td colspan="3" style="padding-bottom:15px;">사이즈:<%=dto1.getG_size() %> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 수량:<%=ordernum %></td>
 			</tr>
+			<%
+				total=total+dto1.getG_price();
+			%>
 			</table>
 		</form>
 	</article>
@@ -124,26 +196,50 @@ if(sid==null){
 	<form name="orderNow" action="orderNow_ok.jsp" method="post">
 	<input type="hidden" name="idx" value="<%=idx %>">
 	<input type="hidden" name="g_stock" value="<%=ordernum %>">
-		<table>
-			<tr>
-				<td>받으시는 분</td>
-				<td><input type="text" name="name" value="<%=dto.getName() %>"></td>
+		<table id="addr">
+			<tr class="tablet">
+				<th>받으시는 분</th>
+				<td><input type="text" name="name" value="<%=dto.getName() %>" class="textbox1"></td>
 			</tr>
 			<tr>
-				<td>주소</td>
-				<td><input type="text" name="addr" value="<%=dto.getAdr() %>"></td>
+				<th>전화번호</th>
+				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1"></td>
 			</tr>
-			<tr>
-				<td>전화번호</td>
-				<td><input type="text" name="tel" value="<%=dto.getTel() %>"></td>
+			<tr class="tableb">
+				<th>주소</th>
+				<td><input type="text" name="addr" value="<%=dto.getAdr() %>" class="textbox2"></td>
+			</tr>
+		</table>
+		<%
+			if(total>=50000){ //5만원 이상 구매시 배송비 무료
+				dilprice=0;
+			}
+			sum=total+dilprice;
+			%>
+		<h3>결제</h3>
+		<table id="pricetable">
+			<tr class="tablet2">
+				<td>상품 금액</td>	
+				<td>&nbsp;</td>			
+				<td>배송비</td>
+				<td>&nbsp;</td>				
+				<td>총 결제 금액</td>				
+			</tr>	
+			<tr class="tableb2">
+				<td><%=df.format(total) %>원</td>
+				<td>+</td>				
+				<td><%=df.format(dilprice) %>원</td>	
+				<td>=</td>			
+				<td><b><%=df.format(sum) %>원</b></td>
 			</tr>
 		</table>
 		<div align="center">
-			<input type="button" value="장바구니로 가기" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
+			<input type="button" value="장바구니" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
 			<input type="submit" value="결제하기" class="btn3">
 		</div>
 	</form>
 	</article>
+	<br>
 </section>
 <%@include file="../footer.jsp" %>
 </body>
