@@ -44,11 +44,10 @@ a {
 text-decoration: none;
 }
 .a{
-color: red;
 font-weight: bold;
 }
 .b {
-color: red;
+font-weight: bold;
 }
 .bb {
 padding-top: 50px;
@@ -153,7 +152,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 							<td class="b"><%=arr.get(i).getWritedate() %></td>
 							<td class="b"><%=arr.get(i).getReadnum() %></td>
 						</tr>
-						<tr class="q">
+						<tr>
 						<%} else {%>
 							<td><%=arr.get(i).getRef() %></td>
 							<td><a href="noticeContent.jsp?idx=<%=arr.get(i).getIdx()%>&readnum=<%=arr.get(i).getReadnum()%>"><%=arr.get(i).getSubject() %></a></td>	

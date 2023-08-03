@@ -103,6 +103,12 @@ display: none;
 .vb {
 margin-left: 50px;
 }
+a:visited {
+ color: black
+}
+a:link {
+ color: black
+}
 </style>
 <header>
 	<%
