@@ -18,6 +18,7 @@ a{
 text-decoration-line: none;
 color:black;
 }
+
 </style>
 <header>
 	<%
@@ -48,7 +49,7 @@ color:black;
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=kid">KID</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=accessories">ACCESSORIES</a></li>
 			<li><a href= "/ezenstyle/goods/goodsList.jsp?category=shoes">SHOES</a></li>
-			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" class="search" onclick="search()"></li><!-- 절대경로로 수정_유성진-->
+			<li><input type="text" name="userInput" ><img src="/ezenstyle/img/search.png" class="search" onclick="search()" style="cursor:pointer;"></li><!-- 절대경로로 수정_유성진-->
 			<input class="v" type="submit" value=" ">
 		</ul>
 	</form>

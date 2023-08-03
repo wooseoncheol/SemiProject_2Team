@@ -103,6 +103,14 @@ text-indent: 30px;
 				<tr class="u">
 				<td>구매 날짜: <%=arr.get(i).getOrderdate() %></td>
 				<td>상품 이름: <%=arr.get(i).getG_name() %>
+				<%int max=arr.get(i).getMax()-1; 
+				
+				if (max==0){
+					out.println("");
+				} else {
+					out.println("외 "+max+"건");
+				}
+				%>
 				</tr>
 				<tr class="u">
 				<td>배송지: <%=arr.get(i).getAdr() %> 
