@@ -32,7 +32,7 @@ section li{
 section img{
 	width: 150px;
 	height: 200px;
-	margin-right: -95px;
+	margin-right: -105px;
 }
 .blind {
   position: absolute;
@@ -42,18 +42,18 @@ section img{
   overflow: hidden;
 }
 section table{
-	width:800px;
+	width:1000px;
 	height:130px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 10px;
+	margin-top: 0px;
 	margin-bottom: 100px;
 	border-collapse: collapse;
 	
 	
 }
 #addr th{
-	width:200px;
+	width:300px;
 }
 .tablet th{
 	padding-top:10px;
@@ -88,7 +88,7 @@ section table{
 	border-bottom: 3px solid #C0C0C0;
 }
 #pricetable{
-	width:800px;
+	width:1000px;
 	height:130px;
 	margin-right: auto;
 	margin-left: auto;
@@ -102,7 +102,7 @@ section table{
 	border-left: none;
 	border-right: none;
 	border-bottom: 2px solid #A9A9A9;
-	width:120px;
+	width:150px;
 	margin-left:20px;
 	font-size:15px;
 }
@@ -111,7 +111,7 @@ section table{
 	border-left: none;
 	border-right: none;
 	border-bottom: 2px solid #A9A9A9;
-	width:230px;
+	width:260px;
 	margin-left:20px;
 	font-size:15px;
 }
@@ -119,13 +119,13 @@ section table td{
 	font-size:18px;
 }
 section h3{
-	margin-top:100px;
-	margin-left:200px;
+	margin-top:50px;
+	margin-left:100px;
 }
 .btn2{
 width:200px;
 height:50px;
-background-color:#D3D3D3;
+background-color:white;
 border-style: solid;
 border-top-color:#E7E7E7;
 border-left-color:#E7E7E7;
@@ -139,7 +139,7 @@ margin-right:50px;
 .btn3{
 width:200px;
 height:50px;
-background-color:#708090;
+background-color:#DDE6ED;
 border-style: solid;
 border-top-color:#E7E7E7;
 border-left-color:#E7E7E7;
@@ -149,6 +149,9 @@ border-radius: 7px;
 cursor: pointer;
 font-size:20px;
 margin-right:50px;
+}
+.gimg{
+	object-fit: cover;
 }
 </style>
 
@@ -185,7 +188,8 @@ if(sid==null){
 			for(int i=0;i<arr.size();i++){
 				%>
 				<tr class="tablet3">
-				<td rowspan="3" style="padding-top: 5px;"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
+				<td rowspan="3">
+				<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" class="gimg"></td>
 				<td colspan="2" style="padding-top: 10px;"><%=arr.get(i).getG_name() %></td>
 				<td rowspan="3" align="right" style="color:#696969;"><b>
 				<%=df.format(arr.get(i).getG_price()*arr.get(i).getOrdernum()) %>원</b></td>
@@ -248,7 +252,7 @@ if(sid==null){
 				<td><b><%=df.format(sum) %>원</b></td>
 			</tr>
 		</table>
-		<div align="center">
+		<div align="center" style="margin-bottom: 30px;">
 			<input type="button" value="장바구니" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
 			<input type="submit" value="결제하기" class="btn3">
 		</div>
