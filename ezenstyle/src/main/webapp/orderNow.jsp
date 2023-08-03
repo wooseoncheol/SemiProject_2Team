@@ -151,6 +151,9 @@ cursor: pointer;
 font-size:20px;
 margin-right:50px;
 }
+.gimg{
+object-fit: cover;
+}
 </style>
 <script>
 function checkNumber(event) {
@@ -158,6 +161,16 @@ function checkNumber(event) {
 	    return true;
 	  }
 	  return false;
+}
+function formatPhoneNumber(input) {
+    var phoneNumber = input.value.replace(/\D/g, '');
+
+    if (phoneNumber.length >= 4 && phoneNumber.length <= 7) {
+        phoneNumber = phoneNumber.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+    } else if (phoneNumber.length >= 8) {
+        phoneNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
+    }
+    input.value = phoneNumber;
 }
 </script>
 </head>
@@ -181,7 +194,7 @@ if(sid==null){
 			<table>
 				<caption class="blind" >결제 예정 목록</caption>
 				<tr class="tablet3">
-				<td rowspan="3" style="padding-top: 5px; width: 157px;"><img src="/ezenstyle/goods/imgs/<%=dto1.getG_nfile()%>"></td>
+				<td rowspan="3" style="padding-top: 5px; width: 157px;"><img src="/ezenstyle/goods/imgs/<%=dto1.getG_nfile()%>" class="gimg"></td>
 				<td colspan="2" style="padding-top: 10px;"><%=dto1.getG_name() %></td>
 				<td rowspan="3" align="right" style="color:#696969;"><b><%=df.format(dto1.getG_price()) %>원</b></td>
 				<td></td>
@@ -211,7 +224,7 @@ if(sid==null){
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1" onkeypress="return checkNumber(event)"></td>
+				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1" onkeypress="return checkNumber(event)" onkeyup="formatPhoneNumber(this)" maxlength="13"></td>
 			</tr>
 			<tr class="tableb">
 				<th>주소</th>

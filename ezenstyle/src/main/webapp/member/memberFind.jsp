@@ -68,6 +68,16 @@ function checkNumber(event) {
 	  }
 	  return false;
 }
+function formatPhoneNumber(input) {
+    var phoneNumber = input.value.replace(/\D/g, '');
+
+    if (phoneNumber.length >= 4 && phoneNumber.length <= 7) {
+        phoneNumber = phoneNumber.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+    } else if (phoneNumber.length >= 8) {
+        phoneNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
+    }
+    input.value = phoneNumber;
+}
 </script>
 </head>
 <body>
@@ -87,7 +97,7 @@ function checkNumber(event) {
 			<td><br>휴대전화</td>
 		</tr>
 		<tr>
-			<td><br><input type="text" name="tel" id="a" onkeypress="return checkNumber(event)"></td>
+			<td><br><input type="text" name="tel" id="a" onkeypress="return checkNumber(event)" onkeyup="formatPhoneNumber(this)" maxlength="13"></td>
 		</tr>
 		<tr>
 			<td><br>본인확인 질문</td>

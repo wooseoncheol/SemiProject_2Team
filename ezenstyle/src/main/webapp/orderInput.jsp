@@ -154,7 +154,24 @@ margin-right:50px;
 	object-fit: cover;
 }
 </style>
+<script>
+function checkNumber(event) {
+	  if(event.key >= 0 && event.key <= 9) {
+	    return true;
+	  }
+	  return false;
+}
+function formatPhoneNumber(input) {
+  var phoneNumber = input.value.replace(/\D/g, '');
 
+  if (phoneNumber.length >= 4 && phoneNumber.length <= 7) {
+      phoneNumber = phoneNumber.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+  } else if (phoneNumber.length >= 8) {
+      phoneNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
+  }
+  input.value = phoneNumber;
+}
+</script>
 </head>
 <body>
 <%
@@ -222,7 +239,7 @@ if(sid==null){
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1"></td>
+				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1" onkeypress="return checkNumber(event)" onkeyup="formatPhoneNumber(this)" maxlength="13"></td>
 			</tr>
 			<tr class="tableb">
 				<th>주소</th>
