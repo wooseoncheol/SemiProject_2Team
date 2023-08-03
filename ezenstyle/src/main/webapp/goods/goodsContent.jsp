@@ -215,7 +215,7 @@ padding: .2em .3em;
 							COMING SOON !
 							</td>
 							<%
-							return;
+							break;
 						}else{
 							continue;
 						}
