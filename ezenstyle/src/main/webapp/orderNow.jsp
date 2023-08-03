@@ -152,6 +152,14 @@ font-size:20px;
 margin-right:50px;
 }
 </style>
+<script>
+function checkNumber(event) {
+	  if(event.key >= 0 && event.key <= 9) {
+	    return true;
+	  }
+	  return false;
+}
+</script>
 </head>
 <body>
 <%
@@ -203,7 +211,7 @@ if(sid==null){
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1"></td>
+				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1" onkeypress="return checkNumber(event)"></td>
 			</tr>
 			<tr class="tableb">
 				<th>주소</th>

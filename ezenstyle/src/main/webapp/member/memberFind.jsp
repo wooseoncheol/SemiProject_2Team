@@ -61,6 +61,14 @@ th{
 	cursor: pointer;
 }
 </style>
+<script>
+function checkNumber(event) {
+	  if(event.key >= 0 && event.key <= 9) {
+	    return true;
+	  }
+	  return false;
+}
+</script>
 </head>
 <body>
 <%@include file="/header.jsp" %>
@@ -79,7 +87,7 @@ th{
 			<td><br>휴대전화</td>
 		</tr>
 		<tr>
-			<td><br><input type="text" name="tel" id="a"></td>
+			<td><br><input type="text" name="tel" id="a" onkeypress="return checkNumber(event)"></td>
 		</tr>
 		<tr>
 			<td><br>본인확인 질문</td>
