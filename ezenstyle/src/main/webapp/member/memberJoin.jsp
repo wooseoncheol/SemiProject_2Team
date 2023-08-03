@@ -10,16 +10,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
-<script>
-	function gojoin(){
-		var uid = document.memberjoin.id.value;
-		if(uid == null || uid==''){
-			window.alert('아아디를 입력하세요!');
-		}else {
-			document.memberjoin.submit();
-		}
-	}
-</script>
 <style>
 .div1{
 height:600px;
@@ -88,6 +78,22 @@ text-align: center;
 
 </style>
 <script>
+//id가 null일때, 비밀번호와 비밀번호 확인과 다를때
+function gojoin(){
+	var uid = document.memberjoin.id.value;
+	var upwd = document.memberjoin.pwd.value;
+	var upwd1 = document.memberjoin.pwd1.value;
+	
+	if(uid == null || uid==''){
+		window.alert('아아디를 입력하세요!');
+	}else {
+		if(upwd == upwd1){
+			document.memberjoin.submit();
+		}else{
+			window.alert('비밀번호가 다릅니다');
+		}
+	}
+}
 function show(){
 	window.open('idcheck.jsp','popup','width=570,height=200,top=400,left=1300');
 }
