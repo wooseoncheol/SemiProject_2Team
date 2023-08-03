@@ -5,6 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
 <jsp:useBean id="cdao" class="com.ezenstyle.cart.CartDAO"></jsp:useBean>
+<jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean> 
 <%
 request.setCharacterEncoding("utf-8");
 String sid=(String)session.getAttribute("sid");
@@ -95,7 +96,6 @@ border-radius: 7px;
 cursor: pointer;
 }
 .tablet2{
-	border-top: 3px solid #C0C0C0;
 	border-bottom: 3px solid #F0F0F0;
 	color: gray;
 }
@@ -114,7 +114,7 @@ cursor: pointer;
 	height:130px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 10px;
+	margin-top: -120px;
 	margin-bottom: 100px;
 	border-collapse: collapse;
 	text-align: center;
@@ -126,6 +126,75 @@ cursor: pointer;
 	display: flex;
 	justify-content: center;
 	margin-bottom: 50px;
+}
+#emptyMsg{
+	text-align:center;
+}
+h2{
+	color:#27374D;
+}
+h4{
+	color:#526D82;
+}
+.btn4{
+	width:200px;
+	height:50px;
+	background-color: black;
+	color:white;
+	font-size: 16px;
+	border-radius: 7px;
+	cursor: pointer;
+}
+#a{
+	margin-left:30px;
+	width:200px;
+	height:300px;
+	object-fit: cover;
+}
+#ca{
+	margin-left:30px;
+	color: gray;
+	font-size:12px;
+}
+.emptyCart{
+	text-align: center;
+}
+#cartList{
+	width:1000px;
+	height:130px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: -100px;
+	margin-bottom: 100px;
+	border-collapse: collapse;
+}
+#recimg{
+	margin-left:30px;
+	width:200px;
+	height:300px;
+	object-fit: cover;
+}
+#recimg img{
+	width:180px;
+	height:260px;
+	object-fit: cover;
+}
+h4{
+	margin-left: 30px;
+	margin-top: 5px;
+	margin-bottom:3px;
+}
+#ca{
+	margin-left:30px;
+	color: gray;
+	font-size:12px;
+}
+p{
+	margin-left: 30px;
+	margin-top: -2px;
+}
+.cartimg{
+	object-fit: cover;
 }
 </style>
 <script>
@@ -161,14 +230,52 @@ if(sid==null){
 		if(arr==null || arr.size()==0){
 			%>
 			<tr>
-			<td colspan="2">장바구니에 담긴 상품이 없습니다.</td>
+			<td colspan="2" id="emptyMsg" ><h2>장바구니에 담긴 상품이 없습니다.</h2><br></td></tr>
+			<tr class="emptyCart">
+			<td>
+			<h4>쇼핑을 계속하시겠습니까?</h4><br>
+			<input type="button" value="쇼핑 계속하기>>" class="btn4" onclick="location.href='/ezenstyle/main.jsp'"><br><br><hr><br>
+			</td>
 			</tr>
+			</table>
+			<h2>이런 상품은 어떠세요?</h2>
+			<table>
+			<caption class="blind">인기 상품 목록</caption>
+			<tr>
+			<%
+			ArrayList<GoodsDTO> arr2=gdao.bestItemList();
+			
+			if(arr2==null || arr2.size()==0){
+				%>
+				<td colspan="5" align="center">
+				등록된 상품이 없습니다.
+				</td>
+				<%
+			}else{
+				for(int i=0;i<arr2.size();i++){
+					%>
+					<td id="recimg">
+					<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr2.get(i).getIdx()%>">
+					<img src="/ezenstyle/goods/imgs/<%=arr2.get(i).getG_nfile()%>" alt="상품이미지"><br>
+					</a>
+					<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
+					<h4><%=arr2.get(i).getG_name()%></h4>
+					<p><%=df.format(arr2.get(i).getG_price())%>원</p>
+					</td>
+					<%
+				}
+			}
+			%>
+			</tr>
+		</table>
+			<br><br><br>
 			<% 
 		}else{	
 			for(int i=0;i<arr.size();i++){	
-		%>
+		%>  
+		    <table id="cartList">
 			<tr class="tablet3">
-				<td rowspan="3"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
+				<td rowspan="3"><img class="cartimg" src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>"></td>
 				<td colspan="2">상품명: <%=arr.get(i).getG_name() %></td>
 				<td rowspan="3" align="right">가격: <%=df.format(arr.get(i).getG_price()*arr.get(i).getOrdernum())%></td>
 				<td align="right"><input type="button" value="X" class="btn1" onclick="location.href='deleteCart_ok.jsp?c_idx=<%=arr.get(i).getC_idx() %>&g_idx=<%= arr.get(i).getG_idx() %>'"></td>
@@ -199,10 +306,9 @@ if(sid==null){
 			<%
 			total=total+(arr.get(i).getOrdernum()*arr.get(i).getG_price()); // 총 가격 누적
 			}
-		}
 		%>
 			</tr>
-		</table>
+			</table>
 		<%
 			if(total>=50000){ //5만원 이상 구매시 배송비 무료
 				dilprice=0;
@@ -210,32 +316,33 @@ if(sid==null){
 			sum=total+dilprice;
 			%>
 			<br>
-		<h3>결제금액</h3>
-		<table id="pricetable">
-			<tr class="tablet2">
-				<td>상품 금액</td>	
-				<td>&nbsp;</td>			
-				<td>배송비</td>
-				<td>&nbsp;</td>				
-				<td>총 결제 금액</td>				
-			</tr>	
-			<tr class="tableb2">
-				<td><%=df.format(total) %>원</td>
-				<td>+</td>				
-				<td><%=df.format(dilprice) %>원</td>	
-				<td>=</td>			
-				<td><b><%=df.format(sum) %>원</b></td>
-			</tr>
-		</table>
-		<div id="div2">
-			<input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:history.go(-1)">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" value="결제하기" class="btn3" onclick="location.href='/ezenstyle/orderInput.jsp'">
-		</div>
+			<table id="pricetable">
+				<tr class="tablet2">
+					<td>상품 금액</td>	
+					<td>&nbsp;</td>			
+					<td>배송비</td>
+					<td>&nbsp;</td>				
+					<td>총 결제 금액</td>				
+				</tr>	
+				<tr class="tableb2">
+					<td><%=df.format(total) %>원</td>
+					<td>+</td>				
+					<td><%=df.format(dilprice) %>원</td>	
+					<td>=</td>			
+					<td><b><%=df.format(sum) %>원</b></td>
+				</tr>
+			</table>
+			<div id="div2">
+				<input type="button" value="계속 쇼핑하기" class="btn2" onclick="javascript:history.go(-1)">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="결제하기" class="btn3" onclick="location.href='/ezenstyle/orderInput.jsp'">
+			</div>
+		<%
+		}
+		%>
 		</form>
-		
 	</article>	
-</section>
+	</section>
 <%@include file="../footer.jsp" %>
 </body>
 </html>
