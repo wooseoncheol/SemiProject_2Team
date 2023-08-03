@@ -40,9 +40,10 @@
 	
 %>
 <style>
-img{
+section	 img{
 width: 150px;
 height: 250px;
+object-fit: cover;
 }
 section h3{
 font-style: italic;
@@ -60,10 +61,12 @@ section td{
 padding-right: 100px;
 font-size: 15px;
 }
+
 #img {
 background-color: skyblue;
 width: 150px;
 height: 250px;
+
 }
 section fieldset{
 margin: 0px, auto;

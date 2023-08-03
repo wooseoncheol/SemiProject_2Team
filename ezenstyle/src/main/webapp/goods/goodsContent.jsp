@@ -32,8 +32,8 @@ font-size:15px;
 #title{
 font-size: 30px;
 }
-img{
-
+section img{
+object-fit: cover;
 width: 500px;
 height: 600px; 
 }
