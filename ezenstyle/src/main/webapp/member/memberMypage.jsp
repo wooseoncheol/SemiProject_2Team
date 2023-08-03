@@ -17,7 +17,7 @@ String upwd = request.getParameter("pwd");
 <style>
 #container {display: flex;padding-top: 30px;}
 #box1{flex:1;padding-top: 15px;}
-#box2{flex:1;padding-top: 32px;display: flex;}
+#box2{flex:1;padding-top: 32px;}
 #box3{flex:1.5;padding-top: 15px;}
 #ul1{margin-left:70px;}
 .tname{text-align: center;}
@@ -74,8 +74,19 @@ font-size: 17px;
 #memberbye{
 color: red;
 }
+#tbody111{
+margin-bottom: 150px;
+}
 
 </style>
+<script>
+function checkNumber(event) {
+	  if(event.key >= 0 && event.key <= 9) {
+	    return true;
+	  }
+	  return false;
+}
+</script>
 </head>
 <body>
 <%
@@ -121,13 +132,14 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 	if(arr==null||arr.size()==0){
 		%>
 		<tr>
-			<td>에러</td>
+			<td>정보를 불러오기 실패</td>
 		</tr>
 		<%
 	}else{
 		for(int i = 0 ; i < arr.size();i++){
 			MemberDTO dto=arr.get(i);
 			%>
+			<tbody id="tbody111">
 			<tr>
 			<td> 이름 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getName()%></td>
 			</tr>
@@ -135,7 +147,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 			<td> 아이디 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getId()%></td>
 			</tr>
 			<tr>
-			<td> 비밀번호 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getId()%></td>
+			<td> 비밀번호 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getPwd()%></td>
 			</tr>
 			<tr>
 			<td> 주소 </td><td>&nbsp;&nbsp;&nbsp;<%=dto.getAdr()%></td>
@@ -150,6 +162,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 			<td>
 			</td>
 			</tr>
+			</tbody>
 			<%
 		}
 	}
@@ -173,19 +186,33 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 }else{
 	%>
 	<tr>
-	<td>이름  &nbsp;&nbsp;</td><td><input class="a" type="text" name="name" value="<%=dto1.getName() %>"> </td>
+	<td>이름  &nbsp;&nbsp;</td><td><input class="a" type="text" name="name" required="required" value="<%=dto1.getName() %>"> </td>
 	</tr>
 	<tr>
-	<td>비밀번호  &nbsp;&nbsp;</td><td><input class="a" type="text" name="pwd" value="<%=dto1.getPwd() %>"> </td>
+	<td>비밀번호  &nbsp;&nbsp;</td><td><input class="a" type="text" name="pwd" required="required" value="<%=dto1.getPwd() %>"> </td>
 	</tr>
 	<tr>
-	<td>주소  &nbsp;&nbsp;</td><td><input class="a" type="text" name="adr" value="<%=dto1.getAdr() %>"> </td>
+	<td>주소  &nbsp;&nbsp;</td><td><input class="a" type="text" name="adr" required="required" value="<%=dto1.getAdr() %>"> </td>
 	</tr>
 	<tr>
-	<td>휴대전화  &nbsp;&nbsp;</td><td><input class="a" type="text" name="tel" value="<%=dto1.getTel() %>"> </td>
+	<td>휴대전화  &nbsp;&nbsp;</td><td><input class="a" type="text" name="tel" required="required" value="<%=dto1.getTel() %>" onkeypress="return checkNumber(event)"> </td>
 	</tr>
 	<tr>
-	<td>이메일  &nbsp;&nbsp;</td><td><input class="a" type="text" name="email" value="<%=dto1.getEmail() %>"> </td>
+	<td>이메일  &nbsp;&nbsp;</td><td><input class="a" type="text" name="email" required="required" value="<%=dto1.getEmail() %>"> </td>
+	</tr>
+	<tr>
+	<td>본인 확인 질문 &nbsp;&nbsp;</td>
+	<td><select id="question" name="question" required="required">
+        <option value="가장 좋아하는 동물은?" <%if(dto1.getQuestion().equals("가장 좋아하는 동물은?")){%>selected="selected"<%} %>>가장 좋아하는 동물은?</option>
+        <option value="자신의 출신 초등학교는?" <%if(dto1.getQuestion().equals("자신의 출신 초등학교는?")){%>selected="selected"<%} %>>자신의 출신 초등학교는?</option>
+        <option value="가장 감명깊게 읽은 책의 제목은?" <%if(dto1.getQuestion().equals("가장 감명깊게 읽은 책의 제목은?")){%>selected="selected"<%} %>>가장 감명깊게 읽은 책의 제목은?</option>
+        <option value="자신의 반려동물 이름은?" <%if(dto1.getQuestion().equals("자신의 반려동물 이름은?")){%>selected="selected"<%} %>>자신의 반려동물 이름은?</option>
+        <option value="자신의 보물1호는?" <%if(dto1.getQuestion().equals("자신의 보물1호는?")){%>selected="selected"<%} %>>자신의 보물1호는?</option>
+         </select></td>
+	</tr>
+	<tr>
+	<td>본인 확인 답변 &nbsp;&nbsp;</td>
+	<td><input class="a" type="text" name="answer" required="required" value="<%=dto1.getAnswer() %>"></td>
 	</tr>
 	<tr>
 	<td colspan="2" class="atd"> <input class="btn2" type="submit" value="수정"> </td>

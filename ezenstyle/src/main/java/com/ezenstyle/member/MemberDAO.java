@@ -144,7 +144,7 @@ public class MemberDAO {
 	public ArrayList<MemberDTO> getuserInfo(String id){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select idx, substr(id,1,1)||lpad('*',4,'*') as mid, name, lpad('*',4,'*') as mpwd, substr(email,1,3)||lpad('*',4,'*') as memail, lpad('*',length(adr),'*') as madr, substr(tel,1,4)||lpad('*',4,'*') as mtel, mgr from semi_member where id = ?";
+			String sql="select idx, substr(id,1,1)||lpad('*',4,'*') as mid, name, substr(pwd,1,1)||lpad('*',3,'*') as mpwd, substr(email,1,3)||lpad('*',4,'*') as memail, lpad('*',length(adr),'*') as madr, substr(tel,1,4)||lpad('*',4,'*') as mtel, mgr from semi_member where id = ?";
 			
 			ArrayList<MemberDTO> arr=new ArrayList<MemberDTO>();
 			ps = conn.prepareStatement(sql);
@@ -203,9 +203,11 @@ public class MemberDAO {
 				String email = rs.getString("email");
 				String adr = rs.getString("adr");
 				String tel = rs.getString("tel");
+				String question = rs.getString("question");
+				String answer = rs.getString("answer");
 				int mgr = rs.getInt("mgr");
 					
-				dto = new MemberDTO(idx, id, name, pwd, email, adr, tel, mgr);
+				dto = new MemberDTO(idx, id, name, pwd, question, answer, email, adr, tel, mgr);
 
 			}return dto;
 
@@ -227,14 +229,16 @@ public class MemberDAO {
 	public int updateInfo2(MemberDTO dto,String id) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="update semi_member set name=?, pwd=?, email=?, adr=?, tel=? where id=?";
+			String sql="update semi_member set name=?, pwd=?, email=?, adr=?, tel=?, question=?, answer=? where id=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, dto.getName());
 			ps.setString(2, dto.getPwd());
 			ps.setString(3, dto.getEmail());
 			ps.setString(4, dto.getAdr());
 			ps.setString(5, dto.getTel());
-			ps.setString(6, id);
+			ps.setString(6, dto.getQuestion());
+			ps.setString(7, dto.getAnswer());
+			ps.setString(8, id);
 			int count = ps.executeUpdate();
 			
 			return count;
