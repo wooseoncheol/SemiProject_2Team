@@ -14,23 +14,25 @@ String userInput=request.getParameter("userInput");
 <link rel="stylesheet" type="text/css" href="css/semiLayout.css">
 <style>
 h4{
-	margin-left:80px;
+	margin-left:65px;
 	margin-top: 5px;
 	margin-bottom:3px;
 }
 
 #goodsIcon{
-	margin-left:80px;
-	width:200px;
-	height:300px;
+	margin-top:30px;
+	margin-left:60px;
+	width:220px;
+	height:320px;
+	object-fit: cover;
 }
 #ca{
-	margin-left:80px;
+	margin-left:65px;
 	color: gray;
 	font-size:12px;
 }
 p{
-	margin-left:80px;
+	margin-left:65px;
 	margin-top: -2px;
 }
 h3{
@@ -55,6 +57,11 @@ label{
 }
 table{
 	clear: both;
+	margin: 0px auto;
+
+}
+#goodsimg{
+	margin-top: 30px;
 }
 </style>
 </head>
@@ -86,10 +93,10 @@ table{
 						}
 						%>
 						<td>
-							<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="goodsIcon"><br>
+							<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="goodsIcon"><br>
 							<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 							<h4><%=arr.get(i).getG_name()%></h4>
-							<p><%=arr.get(i).getG_price() %>원</p>
+							<p><%=arr.get(i).getG_price() %>원</p></a>
 						</td>
 						<% 
 					}
