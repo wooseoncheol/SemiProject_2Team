@@ -56,7 +56,7 @@ margin:0px auto;
 				<a href="/ezenstyle/admin/adminMain.jsp"> 관리자 페이지</a>
 				<%
 			} else {
-				return;
+				System.out.println("오류");
 			}
 		}
 	%>

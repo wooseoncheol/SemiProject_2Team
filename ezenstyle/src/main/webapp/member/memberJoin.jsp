@@ -10,6 +10,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
+<script>
+	function gojoin(){
+		var uid = document.memberjoin.id.value;
+		if(uid == null || uid==''){
+			window.alert('아아디를 입력하세요!');
+		}else {
+			document.memberjoin.submit();
+		}
+	}
+</script>
 <style>
 .div1{
 height:600px;
@@ -102,7 +112,7 @@ function checkNumber(event) {
 			<td>이름 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="name" required="required"></td>
 		</tr>
 		<tr>
-			<td>아이디 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="id" readonly="readonly"></td>
+			<td>아이디 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="id" readonly="readonly" required="required"></td>
 			<td>&nbsp;&nbsp;<input class="btn2" type="button" name="duid" value="중복검사" onclick="show()"></td>
 		</tr>
 		<tr>
@@ -135,7 +145,7 @@ function checkNumber(event) {
 			<td>이메일 * </td><td>&nbsp;&nbsp;<input class="a" type="text" name="email" required="required"></td>
 		</tr>
 		<tr class="atr">
-			<td colspan="3" class="atd"><input class="btn1" type="submit" value="가입">
+			<td colspan="3" class="atd"><input class="btn1" type="button" value="가입" onclick="gojoin()">
 			</td>
 		</tr>
 		</table>

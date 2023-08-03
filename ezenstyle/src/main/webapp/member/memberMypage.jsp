@@ -83,7 +83,7 @@ if(sid==null){
 	%>
 	<script>
 		window.alert('로그인후 이용가능');
-		location.href='/ezenstyle/main.jsp';
+		location.href='/ezenstyle/member/memberLogin.jsp';
 	</script>
 	<%
 	return;

@@ -113,18 +113,21 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 						</td>
 						<%
 						String id=(String)session.getAttribute("sid");
-						int result=ndao.mgrJudge(id);
-						if (result>0) {
-						%>
-						<td align="center">
-						<a href="noticeWrite.jsp">	글쓰기</a>
-						</td>
-						<%
-						} else {
-						%>
-						<td>
-						</td>	
-						<%	
+						if (id==null||id.equals("")) {
+							id="";
+						}else {
+							int result=ndao.mgrJudge(id);
+							if (result>0) {
+								%>
+								<td align="center">
+								<a href="noticeWrite.jsp">	글쓰기</a>
+								</td>
+								<%
+							} else {
+								%>
+								<td></td>	
+								<%	
+							}
 						}
 						%>
 					</tr>
@@ -150,6 +153,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 							<td class="b"><%=arr.get(i).getWritedate() %></td>
 							<td class="b"><%=arr.get(i).getReadnum() %></td>
 						</tr>
+						<tr class="q">
 						<%} else {%>
 							<td><%=arr.get(i).getRef() %></td>
 							<td><a href="noticeContent.jsp?idx=<%=arr.get(i).getIdx()%>&readnum=<%=arr.get(i).getReadnum()%>"><%=arr.get(i).getSubject() %></a></td>	
