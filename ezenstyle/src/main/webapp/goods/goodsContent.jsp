@@ -81,7 +81,7 @@ outline:none;
 	height:150px; 
 }
 #bannerimg{
-	width:880px;
+	width:950px;
 	height:150px;
 }
 
@@ -197,6 +197,16 @@ padding: .2em .3em;
 				</td>
 				<%
 			}else{
+				if(arr.size()==5){
+					for(int i=0;i<arr.size();i++){
+						if(arr.get(i).getIdx()==idx){
+							arr.remove(i);
+						}
+					}
+					if(arr.size()==5){
+						arr.remove(4);
+					}
+				}
 				for(int i=0;i<arr.size();i++){
 					if(arr.get(i).getIdx()==idx){
 						if(arr.size()==1){

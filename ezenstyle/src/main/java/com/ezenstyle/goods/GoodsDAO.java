@@ -160,7 +160,7 @@ public class GoodsDAO {
 			ArrayList<GoodsDTO> arr=new ArrayList<GoodsDTO>();
 			int count=0;
 			while(rs.next()) {
-				if(count==4) {break;}
+				if(count==5) {break;}
 				int idx=rs.getInt("idx");
 				String g_name=rs.getString("g_name");
 				String g_ofile=rs.getString("g_ofile");
