@@ -87,7 +87,7 @@ p{
 				<td>
 				<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
 				<%if(arr.get(i).getG_nfile()!=null){%><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
-				<%}else{%><img src="/ezenstyle/imgs/excepimg.png<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><%}%><br>
+				<%}else{%><img src="/ezenstyle/imgs/excepimg.png<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br><%}%>
 				</a>
 				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 				<h4><%=arr.get(i).getG_name()%></h4>
