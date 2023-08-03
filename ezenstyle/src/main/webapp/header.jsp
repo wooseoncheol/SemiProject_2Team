@@ -50,11 +50,6 @@ a {
 .menu__item:last-child .menu__link {
     border-right: 0;
 }
-.menu__link {
-    display: block;
-    padding: 2px 10px 1px;
-    border-right: 2px dotted #ccd7d7;
-}
 .menu__link:hover .menu__first-word, .menu__link:focus .menu__first-word {
     transform: translate3d(0, -105%, 0);
 }
