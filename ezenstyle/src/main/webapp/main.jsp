@@ -88,10 +88,9 @@ p{
 				<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
 				<%if(arr.get(i).getG_nfile()!=null){%><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
 				<%}else{%><img src="/ezenstyle/imgs/excepimg.png<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br><%}%>
-				</a>
-				<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
+				<b id="ca"><%=arr.get(i).getG_category() %></b>
 				<h4><%=arr.get(i).getG_name()%></h4>
-				<p><%=df.format(arr.get(i).getG_price())%>원</p>
+				<p><%=df.format(arr.get(i).getG_price())%>원</p></a>
 				</td>
 				<%
 			}
@@ -127,10 +126,10 @@ p{
 				<td>
 				<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr2.get(i).getIdx()%>">
 				<img src="/ezenstyle/goods/imgs/<%=arr2.get(i).getG_nfile()%>" alt="상품이미지" id="a"><br>
-				</a>
-				<a id="ca"><b><%=arr2.get(i).getG_category() %></b></a>
+				<b id="ca"><%=arr2.get(i).getG_category() %></b>
 				<h4><%=arr2.get(i).getG_name()%></h4>
-				<p><%=arr2.get(i).getG_price() %>원</p>
+				<p><%=df.format(arr2.get(i).getG_price()) %>원</p>
+				</a>
 				</td>
 				<%
 			}
