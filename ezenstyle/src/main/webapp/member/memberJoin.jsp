@@ -95,7 +95,7 @@ function gojoin(){
 	}
 }
 function show(){
-	window.open('idcheck.jsp','popup','width=570,height=200,top=400,left=1300');
+	window.open('idcheck.jsp','popup','width=400,height=220,top=400,left=1300');
 }
 //tel - 숫자만 입력받게
 function checkNumber(event) {
