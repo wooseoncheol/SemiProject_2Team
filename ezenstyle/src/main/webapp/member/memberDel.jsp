@@ -7,11 +7,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
 <style>
-article{
-width: 800px;
-height: 300px;
-margin: 0px auto;
-text-align: center;
+.ay{
+	margin-top: 80px;
+	text-align: center;
 }
 .btn1{
 margin-left:15px;
@@ -28,7 +26,18 @@ border-radius: 5px;
 #texth4{
 color: red;
 }
-
+table{
+	margin: 90px auto;
+	text-align: center;
+	height: 300px;
+}
+input[type=password] {
+border-top: none;
+border-left: none;
+border-right: none;
+border-bottom: 2px solid #BDBDBD;
+outline: none;
+}
 </style>
 </head>
 <body>
@@ -37,15 +46,25 @@ color: red;
 <section>
 	<article>
 	<form name="memberDel" action="memberDel_ok.jsp" method="post">
-		<br>
-		<h2>정말로 회원탈퇴를 하시겠습니까?</h2>
-		<br>
-		<h4 id="texth4">구매내역 및 장바구니의 내용이 전부 사라집니다!</h4>
-		<br>
-		<h5>탈퇴하시려면 비밀번호를 입력해주세요.</h5>
-		<input type="button" class="btn1" value="뒤로 가기" onclick="location.href='memberMypage.jsp'">
-		<input type="password" name="checkpwd">
-		<input type="submit" class="btn1" value="회원 탈퇴">
+		<h2 class="ay">정말로 회원탈퇴를 하시겠습니까?</h2>
+			<table>
+			<tr>
+				<th colspan="2" id="texth4">구매내역 및 장바구니의 내용이 전부 사라집니다!</th>
+			</tr>
+			<tr>
+				<th colspan="2">탈퇴하시려면 비밀번호를 입력해주세요.</th>
+			</tr>
+			<tr>
+				
+			</tr>	
+			<tr>
+				<td colspan="2"> 비밀번호:&nbsp;&nbsp;<input type="password" name="checkpwd"></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="btn1" value="뒤로 가기" onclick="location.href='memberMypage.jsp'"></td>
+				<td><input type="submit" class="btn1" value="회원 탈퇴"></td>
+			</tr>	
+		</table>
 		</form>
 	</article>
 </section>
