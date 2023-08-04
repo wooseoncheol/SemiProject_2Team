@@ -50,6 +50,7 @@ border-bottom-color:#E7E7E7;
 border-right-color: #E7E7E7;
 background-color: black;
 color : white;
+cursor:pointer;
 }
 #button2{
 text-align: center;
@@ -63,6 +64,11 @@ border-left-color:#E7E7E7;
 border-bottom-color:#E7E7E7;
 border-right-color: #E7E7E7;
 border-radius: 5px;
+cursor:pointer;
+}
+#button2:hover{
+transition: 0.25s;
+background-color: #f0f0f0;
 }
 .g_inf{
 border: 0px;
@@ -106,8 +112,12 @@ outline:none;
 	margin-left:30px;
 	width:200px;
 	height:300px;
+	filter : grayscale(0.7)
 }
-
+#a:hover{
+transition: 0.5s;
+filter : grayscale(0)
+}
 p{
 	margin-left: 30px;
 	margin-top: -2px;
