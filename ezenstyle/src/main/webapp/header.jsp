@@ -131,7 +131,7 @@ a:link {
 		<ul class="menu">
 		
 			 <li class="menu__item">
-      			<a href="/ezenstyle/goods/goodsList.jsp?category=man" class="menu__link">
+      			<a href="/ezenstyle/goods/goodsList.jsp?cp=1&category=man" class="menu__link">
         			<span class="menu__title">
           			<span class="menu__first-word" data-hover="MAN">
            				MAN
@@ -144,7 +144,7 @@ a:link {
     		</li>
 			
 			 <li class="menu__item">
-      			<a href="/ezenstyle/goods/goodsList.jsp?category=woman" class="menu__link">
+      			<a href="/ezenstyle/goods/goodsList.jsp?cp=1&category=woman" class="menu__link">
         			<span class="menu__title">
           			<span class="menu__first-word" data-hover="WOMAN">
            				WOMAN
@@ -157,7 +157,7 @@ a:link {
     		</li>
 					
 			<li class="menu__item">
-      			<a href="/ezenstyle/goods/goodsList.jsp?category=kid" class="menu__link">
+      			<a href="/ezenstyle/goods/goodsList.jsp?cp=1&category=kid" class="menu__link">
         			<span class="menu__title">
           			<span class="menu__first-word" data-hover="KID">
            				KID
@@ -170,7 +170,7 @@ a:link {
     		</li>
 			
 			<li class="menu__item">
-      			<a href="/ezenstyle/goods/goodsList.jsp?category=accessories" class="menu__link">
+      			<a href="/ezenstyle/goods/goodsList.jsp?cp=1&category=accessories" class="menu__link">
         			<span class="menu__title">
           			<span class="menu__first-word" data-hover="ACCESSORIES">
            				ACCESSORIES
@@ -183,7 +183,7 @@ a:link {
     		</li>
 			
 		<li class="menu__item">
-      			<a href="/ezenstyle/goods/goodsList.jsp?category=shoes" class="menu__link">
+      			<a href="/ezenstyle/goods/goodsList.jsp?cp=1&category=shoes" class="menu__link">
         			<span class="menu__title">
           			<span class="menu__first-word" data-hover="SHOES">
            				SHOES

@@ -41,8 +41,8 @@
 %>
 <style>
 section	 img{
-width: 150px;
-height: 250px;
+width: 250px;
+height: 350px;
 object-fit: cover;
 }
 section h3{
@@ -50,22 +50,56 @@ font-style: italic;
 }
 section li{
 list-style-type:none;
-width: 150px;
+width: 100px;
 margin: center;
+margin-top:20px;
 }
 section table{
 margin: 0px auto;
-height: 200px;
+height: 600px;
+border-spacing: 50px 0px;
 }
 section td{
-padding-right: 100px;
 font-size: 15px;
+border-bottom: 3px solid #F0F0F0;
+}
+
+#paging{
+border-bottom: 0px;
+font-weight: bold;
+font-size:20px;
+padding-bottom: 1px;
+padding-top: 40px;
+}
+#paging a{
+color: darkgray;
+}
+
+
+#ca{
+margin-top: 3px;
+color: gray;
+font-size:12px;
 }
 
 #img {
 background-color: skyblue;
-width: 150px;
-height: 250px;
+width: 250px;
+height: 350px;
+}
+
+.goodsname{
+font-weight: bold;
+font-size: 20px;
+margin-top: 3px;
+}
+.goodsprice{
+color: darkgray;
+margin-top: 0px;
+}
+
+ul{ 
+padding-inline-start: 10px;
 
 }
 section fieldset{
@@ -108,11 +142,12 @@ function list(e, category){
 	ArrayList<GoodsDTO> arr = idao.showGoodsList(category_s, cp, listSize, lt);
 	for (int i = 0 ; i<arr.size(); i++){
 		%>
-		<td>
+		<td >
 			<ul><a href = "goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>">
 			<li id = "img"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>"></li>
-			<li><%=arr.get(i).getG_name() %></li>
-			<li><%=df.format(arr.get(i).getG_price() )%>원</li>
+			<li id="ca"><b><%=arr.get(i).getG_category() %></b></li>
+			<li class="goodsname"><%=arr.get(i).getG_name() %></li>
+			<li class="goodsprice"><%=df.format(arr.get(i).getG_price() )%>원</li>
 			</a></ul>
 		</td>
 		<%if((i+1)%3==0){
@@ -125,7 +160,7 @@ function list(e, category){
 	%>
 	</tr>
 	<tr>
-		<td colspan ="3" align = "center">
+		<td colspan ="3" align = "center" id="paging">
 			<%
 		if(userGroup!=0){
 			%> <a href="goodsList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>&category=<%=category_s%>">&lt;&lt;</a> <%
