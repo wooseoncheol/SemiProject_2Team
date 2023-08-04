@@ -102,7 +102,11 @@ height: 350px;
 font-weight: bold;
 font-size: 20px;
 margin-top: 3px;
+width: 200px;
+overflow: hidden;
+text-overflow: ellipsis;
 }
+
 .goodsprice{
 color: darkgray;
 margin-top: 0px;
