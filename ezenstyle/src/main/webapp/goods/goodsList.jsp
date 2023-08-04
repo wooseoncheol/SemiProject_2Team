@@ -6,6 +6,8 @@
 <jsp:useBean id="idao" class="com.ezenstyle.goods.GoodsDAO" scope="session"></jsp:useBean>
 <%String category_s = request.getParameter("category"); %>
 <%String category = category_s.toUpperCase(); %>
+<%String p_cp_s = request.getParameter("cp"); %>
+<%int p_cp = Integer.parseInt(p_cp_s); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,10 +73,18 @@ font-size:20px;
 padding-bottom: 1px;
 padding-top: 40px;
 }
+
+#paging #pagnum{
+font-weight: bold;
+color: black;
+}
+
 #paging a{
 color: darkgray;
 }
-
+#paging a:hover{
+color: black;
+}
 
 #ca{
 margin-top: 3px;
@@ -168,7 +178,7 @@ function list(e, category){
 		%>
 		<%
 		for(int i = userGroup*pageSize+1 ; i<=userGroup*pageSize+pageSize; i++){
-			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>"><%=i%></a>&nbsp;&nbsp;<%
+			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>" <%if(cp==i){%>id="pagnum"<%}%>><%=i%></a>&nbsp;&nbsp;<%
 			if(i==totalpage){
 				break;
 			}
