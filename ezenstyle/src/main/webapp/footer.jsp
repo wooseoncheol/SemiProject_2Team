@@ -11,11 +11,19 @@ width: 30px;
 filter: grayscale(100%);
 margin:0px auto;
 }
+.p:hover {
+transform:scale(1.2);
+transition: transform .4s;
+}
 .r {
 height: 32px;
 width: 32px;
 filter: grayscale(100%);
 margin:0px auto;
+}
+.r:hover {
+transform:scale(1.2);
+transition: transform .4s;
 }
 </style>
 <footer>
