@@ -173,6 +173,7 @@ position : absolute;
 cursor: pointer;
 }
 .imgmypage2:hover {
+transition: all 1s;
 background: url("/ezenstyle/img/pwd3.png");
 background-size: cover;
 width : 35px;
