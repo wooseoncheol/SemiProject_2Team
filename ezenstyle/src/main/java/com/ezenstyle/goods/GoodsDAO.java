@@ -402,11 +402,11 @@ public class GoodsDAO {
 	}
 	
 	/**상품 정보 수정_재영*/
-	public int adminUpdate(int idx, String name, String color, String size, int stock, int price, String detail) {
+	public int adminUpdate(String category, int idx, String name, String color, String size, int stock, int price, String detail) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			String sql="update semi_goods set g_name=?, g_color=upper(?), g_size=upper(?), g_stock=?, "
-					+ "g_price=?, g_detail=? where idx=?";
+					+ "g_price=?, g_detail=?, g_category=? where idx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setString(2, color);
@@ -414,7 +414,8 @@ public class GoodsDAO {
 			ps.setInt(4, stock);
 			ps.setInt(5, price);
 			ps.setString(6, detail);
-			ps.setInt(7, idx);
+			ps.setString(7, category);
+			ps.setInt(8, idx);
 			int count=ps.executeUpdate();
 			return count;
 		} catch (Exception e) {

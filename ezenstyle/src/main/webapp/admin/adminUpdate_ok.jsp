@@ -14,8 +14,9 @@ int stock=Integer.parseInt(stock_s);
 String price_s=request.getParameter("price");
 int price=Integer.parseInt(price_s);
 String detail=request.getParameter("detail");
+String category=request.getParameter("g_category");
 
-int result=adao.adminUpdate(idx, name, color, size, stock, price, detail);
+int result=adao.adminUpdate(category, idx, name, color, size, stock, price, detail);
 String msg=result>0?"수정이 완료되었습니다.":"수정에 실패했습니다.";
 
 int result2=adao.existCartGoods(idx);

@@ -38,6 +38,22 @@ width: 300px;
 object-fit:contain;
 }
 .b {display:block;}
+select {
+border-radius: 15px;
+border: 2px solid #BDBDBD;
+padding: .2em .3em;
+}
+input[type=text] {
+border-top: none;
+border-left: none;
+border-right: none;
+border-bottom: 2px solid #BDBDBD;
+outline: none;
+}
+.uuu{
+text-align: left;
+text-indent: 40px;
+}
 </style>
 </head>
 <body>
@@ -61,11 +77,22 @@ String nfile=request.getParameter("nfile");
 		<form name="adminUpdate" action="adminUpdate_ok.jsp">
 		<h3>상품 수정 페이지</h3>
 			<table>
-				<tbody>
+				<tbody>	
 				<tr class="a">
-					<td rowspan="7"><img src="/ezenstyle/goods/imgs/<%=nfile %>" class="b"></td>
+					<td rowspan="8"><img src="/ezenstyle/goods/imgs/<%=nfile %>" class="b"></td>
 					<td>상품번호</td>
 					<td><input type="text" name="idx" value=<%=idx %> readonly></td>
+				</tr>
+				<tr class="a">
+					<td>카테고리</td>
+					<td class="uuu"><select name="g_category">
+						<option value="man">MAN</option>
+						<option value="woman">WOMAN</option>
+						<option value="kid">KID</option>
+						<option value="accessories">ACCESSORIES</option>
+						<option value="shoes">SHOES</option>
+						</select>
+					</td>
 				</tr>
 				<tr class="a">
 					<td>상품명</td>
