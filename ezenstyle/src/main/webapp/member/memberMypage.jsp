@@ -41,6 +41,7 @@ border-left-color:#E7E7E7;
 border-bottom-color: #E7E7E7;
 border-right-color: #E7E7E7;
 border-radius: 5px;
+display:none;
 }
 .btn2{
 margin-top:20px;
@@ -86,16 +87,115 @@ margin-bottom: 150px;
 	border-color: #D5D5D5;
 }
 
-#box2 fieldset{ text-align: center; border: 0px solid #777; width:800px;}
+#box2 fieldset{ text-align: left; border: 0px solid #777; width:800px; text-indent: 30px;}
 #box2 fieldset legend{ font-size: 25px; font-weight: bold;background: white;}
-#box2 fieldset #t123 {margin:0px auto; margin-top:30px; width:500px; height:200px; border-spacing: 20px 5px;border-collapse: collapse;}
-#box2 fieldset #t124 {margin-left : 270px;}
-#art2{margin-top:50px;}
+#box2 fieldset #t123 {
+margin-left:50px;
+margin-top:50px; 
+width:700px; height:200px; 
+border-spacing: 20px 5px;
+border-collapse: collapse;}
+
+#box2 fieldset #t124 {margin-top: 60px; margin-left: 50px; text-align: left;}
+#art2{margin-top:100px;}
 #hrhrh1{width:500px;margin: 70px auto;}
 h1{display: inline; fon}
-.tr11{border-top: 3px solid #C0C0C0;}
-.texta{font-weight: bold;font-size:17px;}
 .textb{font-weight: bold;font-size:20px;}
+
+.tdmypage1 {
+background-color: #F0F0F0;
+border-color: 1px solid white;
+border-radius: 10px;
+text-align: center;
+width: 200px;
+height: 150px;
+}
+
+.tdmypage2 {
+background-color: #F0F0F0;
+border-color: 1px solid white;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+text-align: center;
+width: 70px;
+}
+
+.tdmypage22 {
+background-color: #F0F0F0;
+border-color: 1px solid white;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+text-align: center;
+width: 300px;
+font-weight: bold;
+font-size: 18px;
+}
+
+.tdmypage3 {
+background-color: #F0F0F0;
+border-color: 1px solid white;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+text-align: center;
+width: 300px;
+}
+
+.tdmypage4 {
+background-color: #F0F0F0;
+border-color: 1px solid white;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+text-align: center;
+width: 300px;
+}
+
+.tdnot{
+width:10px;
+}
+.trnot{
+height:10px;
+}
+.texta {
+font-weight: bold;
+font-size: 20px;
+}
+.imgmypage {
+width : 30px;
+height : 30px;
+margin: auto 60px;
+}
+.imgmypage2 {
+background: url("/ezenstyle/img/pwd2.png") no-repeat;
+background-size: cover;
+width : 25px;
+height : 30px;
+position : absolute;
+cursor: pointer;
+}
+.imgmypage2:hover {
+background: url("/ezenstyle/img/pwd3.png");
+background-size: cover;
+width : 35px;
+height : 30px;
+position : absolute;
+cursor: pointer;
+}
+
+.imgmypage4 {
+width : 30px;
+height : 30px;
+position: relative;
+cursor: pointer;
+}
+
+.imgmypage3 {
+margin: 0px auto;
+}
+.textmypage {
+text-indent: 40px;
+margin: auto 40px;
+float: left;
+}
 
 </style>
 <script>
@@ -104,6 +204,11 @@ function checkNumber(event) {
 	    return true;
 	  }
 	  return false;
+}
+
+function show() {
+	
+	document.updateinfo.submit();
 }
 </script>
 </head>
@@ -147,7 +252,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 	<article>
 		<fieldset>
 			<legend>&nbsp;&nbsp;  내 정보 보기  &nbsp;&nbsp; </legend>
-			<table id="t123">
+			<table id="t123" >
 			<%
 				if(arr==null||arr.size()==0){
 				%>
@@ -161,13 +266,27 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 						%>
 						<tbody id="tbody111">
 						<tr>
-						<td> <a class="texta">이름</a> &nbsp;&nbsp;&nbsp;<%=dto.getName()%></td><td> <a class="texta">주소</a> &nbsp;&nbsp;&nbsp;<%=dto.getAdr()%></td>
+						<td class="tdmypage1"><span class="texta"><%=dto.getName()%></span> 님</td>
+						<td class="tdnot"></td>
+						<td class="tdmypage2">ID </td>
+						<td class="tdmypage22"><%=dto.getId()%> </td>
 						</tr>
-						<tr class="tr11">
-						<td> <a class="texta">아이디</a> &nbsp;&nbsp;&nbsp;<%=dto.getId()%></td><td> <a class="texta">휴대전화</a> &nbsp;&nbsp;&nbsp;<%=dto.getTel()%></td>
+						<tr class="trnot"></tr>
+						<tr>
+						<td colspan="4" class="tdmypage3"> 
+						<img class="imgmypage" src="/ezenstyle/img/number.png">
+						<img class="imgmypage" src="/ezenstyle/img/adr.png">
+						<img class="imgmypage" src="/ezenstyle/img/email.png">
+						<img class="imgmypage" src="/ezenstyle/img/pwd.png">
+						 </td>
 						</tr>
-						<tr class="tr11">
-						<td> <a class="texta">비밀번호</a> &nbsp;&nbsp;&nbsp;<%=dto.getPwd()%></td><td> <a class="texta">이메일</a> &nbsp;&nbsp;&nbsp;<%=dto.getEmail()%></td>
+						<tr >
+						<td colspan="4" class="tdmypage4"> 
+						<span class="textmypage"><%=arr.get(i).getTel() %></span>
+						<span class="textmypage"><%=arr.get(i).getAdr() %></span>
+						<span class="textmypage"><%=arr.get(i).getEmail() %></span>
+						<span class="textmypage"><%=arr.get(i).getPwd() %></span>
+						</td>
 						</tr>
 						</tbody>
 						<%
@@ -184,7 +303,11 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 		<legend>&nbsp;&nbsp;  상세 정보 수정  &nbsp;&nbsp; </legend>
 		<form name="updateinfo" method="post">
 		<ul>
-			<li><br><a class="textb">비밀번호 *</a> <input class="a" type="password" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
+			<li class="imgmypage3">
+			 <input class="a" type="password" name="pwd"> <input class="btn1" type="submit" value="확인">
+			  &nbsp;&nbsp;&nbsp;
+			  <a class="imgmypage2" onclick="show()"></a> 	  
+			 </li>
 		</ul>
 		</form>
 		<form name="updateinfo2" action="memberMypage_ok.jsp" method="post">
