@@ -186,7 +186,7 @@ function list(e, category){
 		%>
 		<%
 		if(userGroup!=(totalpage/pageSize-(totalpage%pageSize==0?1:0))){
-			%> <a href="goodsList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>&category=<%=category_s%>&listtype=<%=lt_s%>">&gt;&gt;</a> <%
+			%> <a href="goodsList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>&category=<%=category_s%>&listtype=<%=lt%>">&gt;&gt;</a> <%
 		}
 		%>
 		</td>
