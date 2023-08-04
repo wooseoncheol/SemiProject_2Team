@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <%@ page import="com.ezenstyle.goods.GoodsDTO" %>
 <jsp:useBean id="gdao" class="com.ezenstyle.goods.GoodsDAO"></jsp:useBean>
 <%
 String userInput=request.getParameter("userInput");
+%>
+<%	
+	DecimalFormat df = new DecimalFormat("###,###,###");
 %>
 <!DOCTYPE html>
 <html>
@@ -96,7 +100,7 @@ table{
 							<a href = "/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx()%>"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" alt="상품이미지" id="goodsIcon"><br>
 							<a id="ca"><b><%=arr.get(i).getG_category() %></b></a>
 							<h4><%=arr.get(i).getG_name()%></h4>
-							<p><%=arr.get(i).getG_price() %>원</p></a>
+							<p><%=df.format(arr.get(i).getG_price()) %>원</p></a>
 						</td>
 						<% 
 					}
