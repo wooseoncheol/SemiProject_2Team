@@ -20,7 +20,6 @@ String upwd = request.getParameter("pwd");
 #box2{flex:2.5;padding-top: 32px;}
 #ul1{margin-left:70px;}
 .tname{text-align: center;font-size:20px;}
-#box2 table{margin-left:50px;}
 #box2 table tr th{padding-bottom: 30px;}
 #box2 table tr td{height: 45px;}
 
@@ -87,11 +86,16 @@ margin-bottom: 150px;
 	border-color: #D5D5D5;
 }
 
-#box2 fieldset{ text-align: center; border: 1px solid #D5D5D5; width:800px;}
-#box2 fieldset legend{ font-size: 25px; font-weight: bold;}
-#box2 fieldset table {margin:0px auto; width:400px; height:200px; border-spacing: 20px 5px;}
+#box2 fieldset{ text-align: center; border: 0px solid #777; width:800px;}
+#box2 fieldset legend{ font-size: 25px; font-weight: bold;background: white;}
+#box2 fieldset #t123 {margin:0px auto; margin-top:30px; width:500px; height:200px; border-spacing: 20px 5px;border-collapse: collapse;}
+#box2 fieldset #t124 {margin-left : 270px;}
 #art2{margin-top:50px;}
-
+#hrhrh1{width:500px;margin: 70px auto;}
+h1{display: inline; fon}
+.tr11{border-top: 3px solid #C0C0C0;}
+.texta{font-weight: bold;font-size:17px;}
+.textb{font-weight: bold;font-size:20px;}
 
 </style>
 <script>
@@ -143,7 +147,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 	<article>
 		<fieldset>
 			<legend>&nbsp;&nbsp;  내 정보 보기  &nbsp;&nbsp; </legend>
-			<table>
+			<table id="t123">
 			<%
 				if(arr==null||arr.size()==0){
 				%>
@@ -157,13 +161,13 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 						%>
 						<tbody id="tbody111">
 						<tr>
-						<td id="td11"> 이름 &nbsp;&nbsp;&nbsp;<%=dto.getName()%></td><td> 주소 &nbsp;&nbsp;&nbsp;<%=dto.getAdr()%></td>
+						<td> <a class="texta">이름</a> &nbsp;&nbsp;&nbsp;<%=dto.getName()%></td><td> <a class="texta">주소</a> &nbsp;&nbsp;&nbsp;<%=dto.getAdr()%></td>
 						</tr>
-						<tr>
-						<td id="td11"> 아이디 &nbsp;&nbsp;&nbsp;<%=dto.getId()%></td><td> 휴대전화 &nbsp;&nbsp;&nbsp;<%=dto.getTel()%></td>
+						<tr class="tr11">
+						<td> <a class="texta">아이디</a> &nbsp;&nbsp;&nbsp;<%=dto.getId()%></td><td> <a class="texta">휴대전화</a> &nbsp;&nbsp;&nbsp;<%=dto.getTel()%></td>
 						</tr>
-						<tr>
-						<td id="td11"> 비밀번호 &nbsp;&nbsp;&nbsp;<%=dto.getPwd()%></td><td> 이메일 &nbsp;&nbsp;&nbsp;<%=dto.getEmail()%></td>
+						<tr class="tr11">
+						<td> <a class="texta">비밀번호</a> &nbsp;&nbsp;&nbsp;<%=dto.getPwd()%></td><td> <a class="texta">이메일</a> &nbsp;&nbsp;&nbsp;<%=dto.getEmail()%></td>
 						</tr>
 						</tbody>
 						<%
@@ -174,16 +178,17 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 			</table>
 		</fieldset>
 	</article>
+	
 	<article id="art2">
 		<fieldset>
 		<legend>&nbsp;&nbsp;  상세 정보 수정  &nbsp;&nbsp; </legend>
 		<form name="updateinfo" method="post">
 		<ul>
-			<li><br>비밀번호 * <input class="a" type="password" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
+			<li><br><a class="textb">비밀번호 *</a> <input class="a" type="password" name="pwd"> <input class="btn1" type="submit" value="확인"></li>
 		</ul>
 		</form>
 		<form name="updateinfo2" action="memberMypage_ok.jsp" method="post">
-		<table>
+		<table id="t124">
 			<%if(dto1 == null){
 				%>
 				
@@ -191,22 +196,22 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 			}else{
 				%>
 				<tr>
-				<td>이름  &nbsp;&nbsp;</td><td><input class="a" type="text" name="name" required="required" value="<%=dto1.getName() %>"> </td>
+				<td><a class="texta">이름</a>  &nbsp;&nbsp;</td><td><input class="a" type="text" name="name" required="required" value="<%=dto1.getName() %>"> </td>
 				</tr>
 				<tr>
-				<td>비밀번호  &nbsp;&nbsp;</td><td><input class="a" type="text" name="pwd" required="required" value="<%=dto1.getPwd() %>"> </td>
+				<td><a class="texta">비밀번호</a>  &nbsp;&nbsp;</td><td><input class="a" type="text" name="pwd" required="required" value="<%=dto1.getPwd() %>"> </td>
 				</tr>
 				<tr>
-				<td>주소  &nbsp;&nbsp;</td><td><input class="a" type="text" name="adr" required="required" value="<%=dto1.getAdr() %>"> </td>
+				<td><a class="texta">주소</a>  &nbsp;&nbsp;</td><td><input class="a" type="text" name="adr" required="required" value="<%=dto1.getAdr() %>"> </td>
 				</tr>
 				<tr>
-				<td>휴대전화  &nbsp;&nbsp;</td><td><input class="a" type="text" name="tel" required="required" value="<%=dto1.getTel() %>" onkeypress="return checkNumber(event)"> </td>
+				<td><a class="texta">휴대전화</a>  &nbsp;&nbsp;</td><td><input class="a" type="text" name="tel" required="required" value="<%=dto1.getTel() %>" onkeypress="return checkNumber(event)"> </td>
 				</tr>
 				<tr>
-				<td>이메일  &nbsp;&nbsp;</td><td><input class="a" type="text" name="email" required="required" value="<%=dto1.getEmail() %>"> </td>
+				<td><a class="texta">이메일</a>  &nbsp;&nbsp;</td><td><input class="a" type="text" name="email" required="required" value="<%=dto1.getEmail() %>"> </td>
 				</tr>
 				<tr>
-				<td>본인 확인 질문 &nbsp;&nbsp;</td>
+				<td><a class="texta">본인 확인 질문</a> &nbsp;&nbsp;</td>
 				<td><select id="question" name="question" required="required">
 			        <option value="가장 좋아하는 동물은?" <%if(dto1.getQuestion().equals("가장 좋아하는 동물은?")){%>selected="selected"<%} %>>가장 좋아하는 동물은?</option>
 			        <option value="자신의 출신 초등학교는?" <%if(dto1.getQuestion().equals("자신의 출신 초등학교는?")){%>selected="selected"<%} %>>자신의 출신 초등학교는?</option>
@@ -216,7 +221,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 			         </select></td>
 				</tr>
 				<tr>
-				<td>본인 확인 답변 &nbsp;&nbsp;</td>
+				<td><a class="texta">본인 확인 답변</a> &nbsp;&nbsp;</td>
 				<td><input class="a" type="text" name="answer" required="required" value="<%=dto1.getAnswer() %>"></td>
 				</tr>
 				<tr>
