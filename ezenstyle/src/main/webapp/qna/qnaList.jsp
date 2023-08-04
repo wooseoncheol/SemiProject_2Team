@@ -26,7 +26,8 @@ height:50px;
 }
 
 table thead th {
-border-bottom: 3px solid #F0F0F0;
+border-top: 3px solid #C0C0C0;
+border-bottom: 3px solid #9DB2BF;
 text-align: center;
 }
 
@@ -40,13 +41,14 @@ text-align: center;
 }
 
 table tfoot {
+border-top: 3px solid #C0C0C0;
 height: 50px;
 }
 
 .a{
-width: 300px;
+
 text-align: left;
-padding-left: 180px;
+
 }
 .b {
 width: 100px;
@@ -55,6 +57,18 @@ width: 100px;
 padding-top: 50px;
 margin-top: 50px;
 margin-left: 80px;
+}
+.btn2{
+width:90px;
+height:30px;
+background-color:white;
+border-style: solid;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
+border-radius: 7px;
+cursor: pointer;
 }
 </style>
 </head>
@@ -92,7 +106,7 @@ if(cp%pageSize==0) {userGroup--;}
 <%@ include file="/header.jsp" %>
 <section>
 	<article>
-		<h3 class="bb">1대1 문의게시판</h3>
+		<h3 class="bb">1:1 문의게시판</h3>
 		<form>
 			<table>
 				<thead>
@@ -100,19 +114,19 @@ if(cp%pageSize==0) {userGroup--;}
 						<th>TYPE</th>
 						<%if (result4>0) { 
 						%>	
-						<th>ID</th>
+						<th style="text-align: left">ID</th>
 						<%
 						}  else {
 						%>
 						<th></th>
 						<% } %>
-						<th>SUBJECT</th>
+						<th style="text-align: left">SUBJECT</th>
 						<th>DATE</th>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
-						<td colspan="3" align="center">
+						<td colspan="4" align="center">
 <%
 if (userGroup!=0) {
 	%><a href="qnaList.jsp?cp=<%=(userGroup-1)%pageSize+pageSize%>">&lt;&lt;</a><%
@@ -132,8 +146,10 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 }
 %>
 						</td>
-						<td align="center">
-						<a href="qnaWrite.jsp">	글쓰기</a>
+					</tr>
+					<tr>
+					<td colspan="4" align="right">
+						<input type="button" value="글쓰기" onclick="location.href='qnaWrite.jsp'" class="btn2">
 						</td>
 					</tr>
 				</tfoot>
@@ -155,7 +171,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 							%>
 							<tr class="q">
 								<td class="b"><%=arr.get(i).getIdx()%></td>
-								<td><%=arr.get(i).getId() %></td>
+								<td  style="text-align: left"><%=arr.get(i).getId() %></td>
 								<td class="a">
 								<% 
 								for (int z=0;z<arr.get(i).getLev();z++){

@@ -32,6 +32,7 @@ section li{
 section img{
 	width: 150px;
 	height: 200px;
+	margin-top:3px;
 	margin-right: -105px;
 }
 .blind {
@@ -42,6 +43,7 @@ section img{
   overflow: hidden;
 }
 section table{
+	background-color:#F1F6F9;
 	width:1000px;
 	height:130px;
 	margin-right: auto;
@@ -61,12 +63,12 @@ section table{
 }
 .tablet td{
 	padding-top:10px;
-	border-top: 3px solid #F0F0F0;
+	border-top: 3px solid #C0C0C0;
 
 }
 .tablet2{
 	border-top: 3px solid #C0C0C0;
-	border-bottom: 3px solid #F0F0F0;
+	border-bottom: 3px solid #9DB2BF;
 	color: gray;
 }
 .tableb th{
@@ -75,7 +77,7 @@ section table{
 }
 .tableb td{
 	padding-bottom:12px;
-	border-bottom: 3px solid #F0F0F0;
+	border-bottom: 3px solid #C0C0C0;
 }
 .tableb2{
 	border-bottom: 3px solid #C0C0C0;
@@ -105,6 +107,7 @@ section table{
 	width:150px;
 	margin-left:20px;
 	font-size:15px;
+	background-color:#F1F6F9;
 }
 .textbox2{
 	border-top: none;
@@ -114,6 +117,7 @@ section table{
 	width:260px;
 	margin-left:20px;
 	font-size:15px;
+	background-color:#F1F6F9;
 }
 section table td{
 	font-size:18px;
@@ -123,33 +127,31 @@ section h3{
 	margin-left:100px;
 }
 .btn2{
-width:200px;
-height:50px;
+width:120px;
+height:40px;
 background-color:white;
 border-style: solid;
-border-top-color:#E7E7E7;
-border-left-color:#E7E7E7;
-border-bottom-color: #E7E7E7;
-border-right-color: #E7E7E7;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
 border-radius: 7px;
 cursor: pointer;
-font-size:20px;
-margin-right:50px;
 }
 .btn3{
-width:200px;
-height:50px;
-background-color:#DDE6ED;
+width:120px;
+height:40px;
+background-color:#393B44;
+color:white;
 border-style: solid;
-border-top-color:#E7E7E7;
-border-left-color:#E7E7E7;
-border-bottom-color: #E7E7E7;
-border-right-color: #E7E7E7;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
 border-radius: 7px;
 cursor: pointer;
-font-size:20px;
-margin-right:50px;
 }
+
 .gimg{
 	object-fit: cover;
 }
@@ -271,6 +273,7 @@ if(sid==null){
 		</table>
 		<div align="center" style="margin-bottom: 30px;">
 			<input type="button" value="장바구니" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="submit" value="결제하기" class="btn3">
 		</div>
 	</form>
