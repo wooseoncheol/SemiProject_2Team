@@ -14,7 +14,11 @@ margin-left: auto;
 margin-top: 100px;
 margin-bottom: 100px;
 width: 700px;
-border-collapse: collapse;
+border-top:3px solid black;
+border-bottom: 3px solid black;
+border-left:3px solid black;
+border-right:3px solid black;
+box-shadow: 20px 20px 5px grey;
 
 }
 
@@ -44,13 +48,43 @@ table tfoot {
 text-align: center;
 height: 50px;
 }
-input[type=submit] {
-background: none;
-border: 1px solid gray;
+#subInput{
+border-top: none;
+	border-right: none;
+	border-left: none;
+	outline:none;
+	font-size: 17px;
 }
-input[type=reset] {
-background: none;
-border: 1px solid gray;
+
+
+h3{
+	margin-left: 50px;
+	margin-bottom: 30px;
+}
+.btn2{
+width:120px;
+height:40px;
+background-color:white;
+border-style: solid;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
+border-radius: 7px;
+cursor: pointer;
+}
+.btn3{
+width:120px;
+height:40px;
+background-color:black;
+color:white;
+border-style: solid;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
+border-radius: 7px;
+cursor: pointer;
 }
 </style>
 <% 
@@ -74,7 +108,7 @@ String id=(String)session.getAttribute("sid");
 		<table>
 		<thead>
 			<tr>
-				<th>제목 &nbsp;&nbsp;&nbsp;<input type="text" name="subject" value="L&nbsp;&nbsp;<%=subject %>">
+				<th>제목 &nbsp;&nbsp;&nbsp;<input type="text" name="subject" value="L&nbsp;&nbsp;<%=subject %>" id="subInput">
 				&nbsp;&nbsp;&nbsp;<%Calendar now=Calendar.getInstance();
 					int y=now.get(Calendar.YEAR);
 					int m=now.get(Calendar.MONTH)+1;
@@ -86,8 +120,8 @@ String id=(String)session.getAttribute("sid");
 		</thead>
 		<tfoot>
 			<tr>
-			<td colspan="2" align="center"><input type="reset" value="다시작성">&nbsp;&nbsp;
-			<input type="submit" value="완료"></td>
+			<td colspan="2" align="center"><input type="reset" value="다시작성" class="btn2">&nbsp;&nbsp;
+			<input type="submit" value="완료" class="btn3"></td>
 		</tr>
 		</tfoot>
 		<tbody>
