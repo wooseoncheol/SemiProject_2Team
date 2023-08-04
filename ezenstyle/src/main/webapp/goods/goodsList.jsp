@@ -126,7 +126,7 @@ padding: .2em .3em;
 <script>
 function list(e, category){
 	const value = e.value;
-	location.href="/ezenstyle/goods/goodsList.jsp?listtype="+value+"&category="+category;
+	location.href="/ezenstyle/goods/goodsList.jsp?cp=1&listtype="+value+"&category="+category;
 }
 </script>
 <link rel="stylesheet" type="text/css" href="../css/semiLayout.css">
@@ -173,12 +173,12 @@ function list(e, category){
 		<td colspan ="3" align = "center" id="paging">
 			<%
 		if(userGroup!=0){
-			%> <a href="goodsList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>&category=<%=category_s%>">&lt;&lt;</a> <%
+			%> <a href="goodsList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>&category=<%=category_s%>&listtype=<%=lt_s%>">&lt;&lt;</a> <%
 		}
 		%>
 		<%
 		for(int i = userGroup*pageSize+1 ; i<=userGroup*pageSize+pageSize; i++){
-			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>" <%if(cp==i){%>id="pagnum"<%}%>><%=i%></a>&nbsp;&nbsp;<%
+			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>&listtype=<%=lt_s%>" <%if(cp==i){%>id="pagnum"<%}%>><%=i%></a>&nbsp;&nbsp;<%
 			if(i==totalpage){
 				break;
 			}
@@ -186,7 +186,7 @@ function list(e, category){
 		%>
 		<%
 		if(userGroup!=(totalpage/pageSize-(totalpage%pageSize==0?1:0))){
-			%> <a href="goodsList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>&category=<%=category_s%>">&gt;&gt;</a> <%
+			%> <a href="goodsList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>&category=<%=category_s%>&listtype=<%=lt_s%>">&gt;&gt;</a> <%
 		}
 		%>
 		</td>
