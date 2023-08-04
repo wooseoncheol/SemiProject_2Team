@@ -33,21 +33,32 @@ margin-top: 100px;
 margin-bottom: 100px;
 width: 650px;
 border-collapse: collapse;
+
 }
 .q{
-text-align: center;
+text-align: left;
 }
 .g {
 height: 40px;
-text-align:center;
-border-bottom: 3px solid #F0F0F0;
+text-align: right;
+border-bottom: 3px solid #526D82;
 border-top: 3px solid #F0F0F0;
 }
-.u {
+.g2 {
+height: 40px;
+text-align: right;
+border-top: 3px solid #526D82;
+}
+.u1 {
 height: 45px;
 border-bottom: 3px solid #F0F0F0;
-border-top: 3px solid #F0F0F0;
-text-indent: 30px;
+border-top:3px solid #526D82;
+
+}
+.u2 {
+height: 45px;
+border-bottom: 3px solid #F0F0F0;
+
 }
 #aa a:link {
 	color:blue;
@@ -96,11 +107,11 @@ text-indent: 30px;
 			for(int i=0;i<arr.size();i++) {
 			if (arr.get(i).getRn()==1) {						
 				%>
-				<tr class="u">
+				<tr class="u1">
 				<td>주문번호: <%=arr.get(i).getO_idx() %></td>
 				<td>고객 이름: <%=arr.get(i).getName() %></td>
 				</tr>
-				<tr class="u">
+				<tr class="u2">
 				<td>구매 날짜: <%=arr.get(i).getOrderdate() %></td>
 				<td>상품 이름: <%=arr.get(i).getG_name() %>
 				<%int max=arr.get(i).getMax()-1; 
@@ -172,7 +183,7 @@ text-indent: 30px;
 				%>
 				
 				</td>
-				<tr>
+				<tr class="g2">
 				<td><br></td>
 				</tr>
 		<%
