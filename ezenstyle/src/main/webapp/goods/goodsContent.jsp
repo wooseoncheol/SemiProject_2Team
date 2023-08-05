@@ -235,9 +235,9 @@ padding: .2em .3em;
 					<td>
 					<a href="/ezenstyle/goods/goodsContent.jsp?idx=<%=arr.get(i).getIdx() %>">
 					<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" alt="상품이미지" id="a"><br>
-					</a>
 					<h4><%=arr.get(i).getG_name() %></h4>
 					<p><%=df.format(arr.get(i).getG_price()) %>원</p>
+					</a>
 					</td>
 					<%
 				}

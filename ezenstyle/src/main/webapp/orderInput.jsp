@@ -237,15 +237,15 @@ if(sid==null){
 		<table id="addr">
 			<tr class="tablet">
 				<th>받으시는 분</th>
-				<td><input type="text" name="name" value="<%=dto.getName() %>" class="textbox1"></td>
+				<td><input type="text" name="name" value="<%=dto.getName() %>" class="textbox1" required="required"></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1" onkeypress="return checkNumber(event)" onkeyup="formatPhoneNumber(this)" maxlength="13"></td>
+				<td><input type="text" name="tel" value="<%=dto.getTel() %>" class="textbox1" onkeypress="return checkNumber(event)" onkeyup="formatPhoneNumber(this)" maxlength="13" required="required"></td>
 			</tr>
 			<tr class="tableb">
 				<th>주소</th>
-				<td><input type="text" name="addr" value="<%=dto.getAdr() %>" class="textbox2"></td>
+				<td><input type="text" name="addr" value="<%=dto.getAdr() %>" class="textbox2" required="required"></td>
 			</tr>
 		</table>
 		<%
