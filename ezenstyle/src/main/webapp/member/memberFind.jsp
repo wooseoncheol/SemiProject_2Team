@@ -131,19 +131,19 @@ function formatPhoneNumber(input) {
 			<td>아이디</td>
 		</tr>
 		<tr>
-			<td><br><input type="text" name="id" id="a"></td>
+			<td><br><input type="text" name="id" id="a" required="required"></td>
 		</tr>
 		<tr>
 			<td><br>이름</td>
 		</tr>
 		<tr>
-			<td><br><input type="text" name="name" id="a"></td>
+			<td><br><input type="text" name="name" id="a" required="required"></td>
 		</tr>
 		<tr>
 			<td><br>휴대전화</td>
 		</tr>
 		<tr>
-			<td><br><input type="text" name="tel" id="a"></td>
+			<td><br><input type="text" name="tel" id="a" required="required"></td>
 		</tr>
 		<tr>
 			<td><br><br><input type="submit" value="비밀번호 찾기" id="b">

@@ -59,12 +59,14 @@ String id=request.getParameter("id");
 <section>
 	<article>
 	<h2>비밀번호 변경</h2>
-		<form name="pwdReset" action="pwdReset_ok.jsp" >
+		<form name="pwdReset" action="pwdReset_ok.jsp" method="post">
 		<input type="hidden" name="id" value="<%=id %>">
 		<div class="div1">
 		<ul>
-			<li><label>PASSWORD</label><br><br><input class="a" type="password" name="pwdre" ></li>
-			<li><br><br><label>PASSWORD 확인</label><br><br><input class="a" type="password" name="pwdrecheck"></li>
+			<li><label>PASSWORD</label><br><br>
+			<input class="a" type="password" name="pwdre" required="required"></li>
+			<li><br><br><label>PASSWORD 확인</label><br><br>
+			<input class="a" type="password" name="pwdrecheck" required="required"></li>
 			
 			<li><br><br><input class="btn2" type="submit" value="CONFIRM" ></li>
 			<li><br></li>
