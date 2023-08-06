@@ -37,6 +37,21 @@ object-fit: cover;
 width: 500px;
 height: 600px; 
 }
+#button0{
+text-align: center;
+margin-left:15px;
+width:300px;
+height:50px;
+background-color: white;
+border-style: solid;
+border-top-color:#E7E7E7;
+border-left-color:#E7E7E7;
+border-bottom-color:#E7E7E7;
+border-right-color: #E7E7E7;
+background-color: black;
+color : white;
+cursor:pointer;
+}
 #button1{
 text-align: center;
 margin-left:15px;
@@ -115,7 +130,7 @@ outline:none;
 	filter : grayscale(0.7)
 }
 #a:hover{
-transition: 0.5s;
+transition: 0.3s;
 filter : grayscale(0)
 }
 p{
@@ -178,8 +193,12 @@ padding: .2em .3em;
 			</td>
 		</tr>
 		<tr>
+		<%if(dto.getG_stock()<=0){ %>
+			<td colspan="2"><input id="button0" name= "button" type = "submit" value = "SOLD OUT"></td>
+			<%}else{ %>
 			<td ><input id="button1" name= "button" type = "submit" value = "바로구매"></td>
 			<td ><input id="button2" name="button" type = "submit" value = "장바구니"></td>
+			<%} %>
 		</tr>
 		<tr>
 			<td> &nbsp; </td>

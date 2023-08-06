@@ -161,7 +161,7 @@ function list(e, category){
 			<li id = "img"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>"></li>
 			<li id="ca"><b><%=arr.get(i).getG_category() %></b></li>
 			<li class="goodsname"><%=arr.get(i).getG_name() %></li>
-			<li class="goodsprice"><%=df.format(arr.get(i).getG_price() )%>원</li>
+			<li class="goodsprice"><%if(arr.get(i).getG_stock()==0){%>[품절]<%}else{%><%=df.format(arr.get(i).getG_price())%>원<%}%></li>
 			</a></ul>
 		</td>
 		<%if((i+1)%3==0){
@@ -177,12 +177,12 @@ function list(e, category){
 		<td colspan ="3" align = "center" id="paging">
 			<%
 		if(userGroup!=0){
-			%> <a href="goodsList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>&category=<%=category_s%>&listtype=<%=lt_s%>">&lt;&lt;</a> <%
+			%> <a href="goodsList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>&category=<%=category_s%>&listtype=<%=lt%>">&lt;&lt;</a> <%
 		}
 		%>
 		<%
 		for(int i = userGroup*pageSize+1 ; i<=userGroup*pageSize+pageSize; i++){
-			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>&listtype=<%=lt_s%>" <%if(cp==i){%>id="pagnum"<%}%>><%=i%></a>&nbsp;&nbsp;<%
+			%>&nbsp;&nbsp;<a href="goodsList.jsp?cp=<%= i%>&category=<%=category_s%>&listtype=<%=lt%>" <%if(cp==i){%>id="pagnum"<%}%>><%=i%></a>&nbsp;&nbsp;<%
 			if(i==totalpage){
 				break;
 			}
