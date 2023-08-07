@@ -43,6 +43,7 @@ section img{
   overflow: hidden;
 }
 section table{
+	background-color:#F1F6F9;
 	width:800px;
 	height:130px;
 	margin-right: auto;
@@ -67,7 +68,7 @@ section table{
 }
 .tablet2{
 	border-top: 3px solid #C0C0C0;
-	border-bottom: 3px solid #F0F0F0;
+	border-bottom: 3px solid #9DB2BF;
 	color: gray;
 }
 .tableb th{
@@ -106,6 +107,7 @@ section table{
 	width:120px;
 	margin-left:20px;
 	font-size:15px;
+	background-color:#F1F6F9;
 }
 .textbox2{
 	border-top: none;
@@ -115,6 +117,7 @@ section table{
 	width:230px;
 	margin-left:20px;
 	font-size:15px;
+	background-color:#F1F6F9;
 }
 section table td{
 	font-size:18px;
@@ -124,32 +127,29 @@ section h3{
 	margin-left:200px;
 }
 .btn2{
-width:200px;
-height:50px;
-background-color:#D3D3D3;
+width:120px;
+height:40px;
+background-color:white;
 border-style: solid;
-border-top-color:#E7E7E7;
-border-left-color:#E7E7E7;
-border-bottom-color: #E7E7E7;
-border-right-color: #E7E7E7;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
 border-radius: 7px;
 cursor: pointer;
-font-size:20px;
-margin-right:50px;
 }
 .btn3{
-width:200px;
-height:50px;
-background-color:#708090;
+width:120px;
+height:40px;
+background-color:#393B44;
+color:white;
 border-style: solid;
-border-top-color:#E7E7E7;
-border-left-color:#E7E7E7;
-border-bottom-color: #E7E7E7;
-border-right-color: #E7E7E7;
+border-top-color:#BDBDBD;
+border-left-color:#BDBDBD;
+border-bottom-color: #BDBDBD;
+border-right-color: #BDBDBD;
 border-radius: 7px;
 cursor: pointer;
-font-size:20px;
-margin-right:50px;
 }
 .gimg{
 object-fit: cover;
@@ -256,6 +256,7 @@ if(sid==null){
 		</table>
 		<div align="center">
 			<input type="button" value="장바구니" class="btn2" onclick="location.href='/ezenstyle/member/memberCart.jsp'">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="submit" value="결제하기" class="btn3">
 		</div>
 	</form>
