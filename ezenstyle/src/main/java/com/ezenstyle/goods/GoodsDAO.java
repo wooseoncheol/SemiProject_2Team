@@ -53,7 +53,7 @@ public class GoodsDAO {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			
-			String sql="select * from semi_goods order by readnum desc";
+			String sql="select * from semi_goods where not(g_stock=0) order by readnum desc";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			
@@ -105,7 +105,7 @@ public class GoodsDAO {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			
-			String sql="select * from semi_goods order by idx desc";
+			String sql="select * from semi_goods where not(g_stock=0) order by idx desc";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			
@@ -153,7 +153,7 @@ public class GoodsDAO {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			
-			String sql="select * from semi_goods where g_category=? order by readnum desc";
+			String sql="select * from semi_goods where g_category=? and not(g_stock=0) order by readnum desc";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, category);
 			rs=ps.executeQuery();
