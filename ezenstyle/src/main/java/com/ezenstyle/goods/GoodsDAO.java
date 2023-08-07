@@ -262,24 +262,24 @@ public class GoodsDAO {
 			int end=cp*ls;
 			String sql= "select * from "
 					+"(select rownum as rnum,a.* from "
-					+"(select * from semi_goods where g_category = ? order by idx desc)a)b "
+					+"(select * from semi_goods where g_category = ? order by decode(g_stock, 0, 1) desc, idx desc)a)b "
 					+"where rnum>=? and rnum<=?";
 			switch(listtype) {
 			case 1 : sql= "select * from "
 					+"(select rownum as rnum,a.* from "
-					+"(select * from semi_goods where g_category = ? order by g_price desc)a)b "
+					+"(select * from semi_goods where g_category = ? order by decode(g_stock, 0, 1) desc, g_price desc)a)b "
 					+"where rnum>=? and rnum<=?";break;
 			case 2 : sql= "select * from "
 					+"(select rownum as rnum,a.* from "
-					+"(select * from semi_goods where g_category = ? order by g_price)a)b "
+					+"(select * from semi_goods where g_category = ? order by decode(g_stock, 0, 1) desc, g_price)a)b "
 					+"where rnum>=? and rnum<=?";break;
 			case 3 : sql= "select * from "
 					+"(select rownum as rnum,a.* from "
-					+"(select * from semi_goods where g_category = ? order by readnum desc)a)b "
+					+"(select * from semi_goods where g_category = ? order by decode(g_stock, 0, 1) desc, readnum desc)a)b "
 					+"where rnum>=? and rnum<=?";break;
 			case 4 : sql= "select * from "
 					+"(select rownum as rnum,a.* from "
-					+"(select * from semi_goods where g_category = ? order by readnum)a)b "
+					+"(select * from semi_goods where g_category = ? order by decode(g_stock, 0, 1) desc, readnum)a)b "
 					+"where rnum>=? and rnum<=?";break;	
 			}
 			ps=conn.prepareStatement(sql);
