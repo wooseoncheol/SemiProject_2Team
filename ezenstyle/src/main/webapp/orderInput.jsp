@@ -207,7 +207,7 @@ if(sid==null){
 			for(int i=0;i<arr.size();i++){
 				%>
 				<tr class="tablet3">
-				<td rowspan="3">
+				<td rowspan="3" style="padding-top: 3px; width: 157px;">
 				<img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile()%>" class="gimg"></td>
 				<td colspan="2" style="padding-top: 10px;"><%=arr.get(i).getG_name() %></td>
 				<td rowspan="3" align="right" style="color:#696969;"><b>
