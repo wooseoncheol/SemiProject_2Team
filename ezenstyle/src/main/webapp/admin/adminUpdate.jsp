@@ -84,7 +84,7 @@ String price_s=request.getParameter("price");
 int price=Integer.parseInt(price_s);
 String detail=request.getParameter("detail");
 String nfile=request.getParameter("nfile");
-
+String category=request.getParameter("category");
 %>	
 		<form name="adminUpdate" action="adminUpdate_ok.jsp">
 		<h3>상품 수정 페이지</h3>
@@ -98,11 +98,11 @@ String nfile=request.getParameter("nfile");
 				<tr class="a">
 					<td>카테고리</td>
 					<td class="uuu"><select name="g_category">
-						<option value="man">MAN</option>
-						<option value="woman">WOMAN</option>
-						<option value="kid">KID</option>
-						<option value="accessories">ACCESSORIES</option>
-						<option value="shoes">SHOES</option>
+						<option value="man" <%if(category.equals("man")) {%>selected="selected"<%} %>>MAN</option>
+						<option value="woman"<%if(category.equals("woman")) {%>selected="selected"<%} %>>WOMAN</option>
+						<option value="kid"<%if(category.equals("kid")) {%>selected="selected"<%} %>>KID</option>
+						<option value="accessories"<%if(category.equals("accessories")) {%>selected="selected"<%} %>>ACCESSORIES</option>
+						<option value="shoes"<%if(category.equals("shoes")) {%>selected="selected"<%} %>>SHOES</option>
 						</select>
 					</td>
 				</tr>
@@ -128,7 +128,7 @@ String nfile=request.getParameter("nfile");
 				</tr>
 				<tr class="a">
 					<td>세부</td>
-					<td><input type="text" name="detail" value=<%=detail %>></td>
+					<td><textarea rows="5" cols="30" name="detail"><%=detail.replaceAll("\r\n", "<br>") %></textarea></td>
 				</tr>
 				<tr class="a">
 					<td colspan="3"><input type="submit" value="수정">
