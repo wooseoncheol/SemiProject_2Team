@@ -9,7 +9,8 @@
 request.setCharacterEncoding("utf-8");
 String sid = (String) session.getAttribute("sid");
 String idx_s = request.getParameter("idx");
-String ordernum=request.getParameter("g_stock");
+String ordernum_s=request.getParameter("g_stock");
+int ordernum=Integer.parseInt(ordernum_s);
 int idx = Integer.parseInt(idx_s);
 GoodsDTO dto1 = idao.showGoodscontent(idx);
 MemberDTO dto = mdao.printMember(sid);
@@ -196,7 +197,7 @@ if(sid==null){
 				<tr class="tablet3">
 				<td rowspan="3" style="padding-top: 5px; width: 157px;"><img src="/ezenstyle/goods/imgs/<%=dto1.getG_nfile()%>" class="gimg"></td>
 				<td colspan="2" style="padding-top: 10px;"><%=dto1.getG_name() %></td>
-				<td rowspan="3" align="right" style="color:#696969;"><b><%=df.format(dto1.getG_price()) %>원</b></td>
+				<td rowspan="3" align="right" style="color:#696969;"><b><%=df.format(dto1.getG_price()*ordernum) %>원</b></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -207,7 +208,7 @@ if(sid==null){
 				<td colspan="3" style="padding-bottom:15px;">사이즈:<%=dto1.getG_size() %> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 수량:<%=ordernum %></td>
 			</tr>
 			<%
-				total=total+dto1.getG_price();
+				total=total+dto1.getG_price()*ordernum;
 			%>
 			</table>
 		</form>
