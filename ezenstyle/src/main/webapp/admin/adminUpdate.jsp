@@ -54,6 +54,18 @@ outline: none;
 text-align: left;
 text-indent: 40px;
 }
+input[type=submit] {
+background: none;
+border: 3px solid #BDBDBD;
+border-radius: 5px;
+cursor: pointer;
+}
+input[type=reset] {
+background: none;
+border: 3px solid #BDBDBD;
+border-radius: 5px;
+cursor: pointer;
+}
 </style>
 </head>
 <body>
