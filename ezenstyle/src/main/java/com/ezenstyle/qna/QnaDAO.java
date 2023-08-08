@@ -96,12 +96,12 @@ public class QnaDAO {
 		 int end=cp*ls;
 		 String sql="select * from "
 					+ "(select rownum as rnum,a.* from  "
-					+ "(select * from semi_qna order by ref desc,sunbun asc) a) b "
-					+ "where rnum>=? and rnum<=? and id=?";
+					+ "(select * from semi_qna where id=? order by ref desc,sunbun asc) a) b "
+					+ "where rnum>=? and rnum<=? ";
 		 ps=conn.prepareStatement(sql);
-		 ps.setInt(1, start);
-		 ps.setInt(2, end);
-		 ps.setString(3, id);
+		 ps.setString(1, id);
+		 ps.setInt(2, start);
+		 ps.setInt(3, end);
 		 rs=ps.executeQuery();
 		 ArrayList<QnaDTO> arr=new ArrayList<QnaDTO>();
 		 if (rs.next()) {
