@@ -113,7 +113,9 @@ font-size: 13px;
 </table>
 </div>
 <div id="box3">
+<%if(arr.get(0).getO_state().equals("결제 완료")){%>
 <button class="btn1" onclick="location.href='memberorderDetailList_ok.jsp?detailorderdate=<%=detailorderdate%>'">주문 취소</button>
+<%} %>
 <div id="span11"><a id="text11"> * 배송중일때는 결제 취소가 <br>불가능 합니다 *</a></div>
 </div>
 </div>
