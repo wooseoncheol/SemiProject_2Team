@@ -93,6 +93,7 @@ String ref=request.getParameter("ref");
 String lev=request.getParameter("lev");
 String sunbun=request.getParameter("sunbun");
 String id=(String)session.getAttribute("sid");
+String id2=request.getParameter("id");
 %>
 </head>
 <body>
@@ -105,6 +106,7 @@ String id=(String)session.getAttribute("sid");
 	<input type="hidden" name="ref" value=<%=ref %>>
 	<input type="hidden" name="lev" value=<%=lev %>>
 	<input type="hidden" name="sunbun" value=<%=sunbun %>>
+	<input type="hidden" name="id2" value=<%=id2 %>>
 		<table>
 		<thead>
 			<tr>

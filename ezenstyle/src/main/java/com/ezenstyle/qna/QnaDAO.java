@@ -275,26 +275,25 @@ public class QnaDAO {
 		}
 	}
 	
-	/**비밀번호 확인_재영*/
-	public String qnaCheck(String id) {
+	/**작성자 변경 메소드_재영*/
+	public int qnaChange(String id2, String id) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select * from semi_member where id=?";
+			String sql="update semi_qna set id=? where id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
-			rs=ps.executeQuery();
-			rs.next();
-			String pwd=rs.getString("pwd");
-			return pwd;
+			ps.setString(1, id2);
+			ps.setString(2, id);
+			int count=ps.executeUpdate();
+			return count;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return -1;
 		} finally {
 			try {
-				if(rs!=null)rs.close();
 				if(ps!=null)ps.close();
 				if(conn!=null)conn.close();
 			} catch (Exception e2) { }
 		}
 	}
+	
 }

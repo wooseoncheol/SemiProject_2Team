@@ -46,7 +46,7 @@ height: 50px;
 }
 
 .a{
-text-indent: 150px;
+text-indent: 200px;
 text-align: left;
 
 }
@@ -71,25 +71,19 @@ border-radius: 7px;
 cursor: pointer;
 }
 </style>
-<script>
-function pwdCheck(aaa){
-	var pwd=aaa;
-	window.open('qnaCheck.jsp?idx='+aaa,'popup','width=500,height=220,top=400,left=400');
-}
-
-</script>
 </head>
 <%
 String id=(String)session.getAttribute("sid");
 if(id==null){
-	%>
-	<script>
-	window.alert('로그인 후 이용 가능하십니다.');
-	location.href='/ezenstyle/member/memberLogin.jsp';
-	</script>
-	<%
-	return;
+   %>
+   <script>
+   window.alert('로그인 후 이용 가능하십니다.');
+   location.href='/ezenstyle/member/memberLogin.jsp';
+   </script>
+   <%
+   return;
 }
+int result4=ndao.mgrJudge(id);   
 %>
 <%
 int totalCnt=qdao.getTotalCnt();
@@ -98,7 +92,7 @@ int pageSize=5;
 
 String cp_s=request.getParameter("cp");
 if (cp_s==null||cp_s.equals("")){
-	cp_s="1";
+   cp_s="1";
 }
 int cp=Integer.parseInt(cp_s);
 
@@ -111,80 +105,116 @@ if(cp%pageSize==0) {userGroup--;}
 <body>
 <%@ include file="/header.jsp" %>
 <section>
-	<article>
-		<h3 class="bb">1:1 문의게시판</h3>
-		<form>
-			<table>
-				<thead>
-					<tr>
-						<th>TYPE</th>
-						<th style="text-align: left">ID</th>
-						<th class="a">SUBJECT</th>
-						<th>DATE</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td colspan="4" align="center">
+   <article>
+      <h3 class="bb">1:1 문의게시판</h3>
+      <form>
+         <table>
+            <thead>
+               <tr>
+                  <th>TYPE</th>
+                  <th class="a">SUBJECT</th>
+                  <th>DATE</th>
+               </tr>
+            </thead>
+            <tfoot>
+               <tr>
+                  <td colspan="4" align="center">
 <%
 if (userGroup!=0) {
-	%><a href="qnaList.jsp?cp=<%=(userGroup-1)%pageSize+pageSize%>">&lt;&lt;</a><%
+   %><a href="qnaList.jsp?cp=<%=(userGroup-1)%pageSize+pageSize%>">&lt;&lt;</a><%
 }
 %>
 <%
 for(int i=userGroup*pageSize+1;i<=userGroup*pageSize+pageSize;i++) {
-	%>&nbsp;&nbsp;<a href="qnaList.jsp?cp=<%=i %>"><%=i %></a>&nbsp;&nbsp;<%
-	if (i==totalPage) {
-		break;
-	}
+   %>&nbsp;&nbsp;<a href="qnaList.jsp?cp=<%=i %>"><%=i %></a>&nbsp;&nbsp;<%
+   if (i==totalPage) {
+      break;
+   }
  }
 %>
 <%
 if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
-	%><a href="qnaList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a><%
+   %><a href="qnaList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a><%
 }
 %>
-						</td>
-					</tr>
-					<tr>
-					<td colspan="4" align="right">
-						<input type="button" value="글쓰기" onclick="location.href='qnaWrite.jsp'" class="btn2">
-						</td>
-					</tr>
-				</tfoot>
-				<tbody>
-				<%
-					ArrayList<QnaDTO> arr=qdao.qnaMgrList(cp, listSize);
-					if (arr==null||arr.size()==0) {
-						%>
-						<tr>
-							<td colspan="4" align="center">등록된 게시글이 없습니다.</td>
-						</tr>
-						<%
-					} else {
-						for (int i=0;i<arr.size();i++){
-							%>
-							<tr class="q">
-								<td class="b"><%=arr.get(i).getIdx()%></td>
-								<td  style="text-align: left"><%=arr.get(i).getId() %></td>
-								<td class="a">
-								<% 
-								for (int z=0;z<arr.get(i).getLev();z++){
-									out.println("&nbsp;&nbsp;");
-								}
-								%>
-								<a href="javascript:pwdCheck(<%=arr.get(i).getIdx()%>)"><%=arr.get(i).getSubject() %></a></td>	
-								<td><%=arr.get(i).getWritedate() %></td>
-							</tr>
-						<%
-						}
-						
-					}
-					%>
-					</tbody>	
-			</table>
-		</form>
-	</article>
+                  </td>
+               </tr>
+               <tr>
+               <td colspan="4" align="right">
+                  <input type="button" value="글쓰기" onclick="location.href='qnaWrite.jsp'" class="btn2">
+                  </td>
+               </tr>
+            </tfoot>
+         
+            <%
+         if (result4>0) {
+            %>
+            <tbody>
+            <%
+               ArrayList<QnaDTO> arr=qdao.qnaMgrList(cp, listSize);
+               if (arr==null||arr.size()==0) {
+                  %>
+                  <tr>
+                     <td colspan="4" align="center">등록된 게시글이 없습니다.</td>
+                  </tr>
+                  <%
+               } else {
+                  for (int i=0;i<arr.size();i++){
+                     %>
+                     <tr class="q">
+                        <td class="b"><%=arr.get(i).getIdx()%></td>
+                        <td class="a">
+                        <% 
+                        for (int z=0;z<arr.get(i).getLev();z++){
+                           out.println("&nbsp;&nbsp;");
+                        }
+                        %>
+                        <a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>   
+                        <td><%=arr.get(i).getWritedate() %></td>
+                     </tr>
+                  <%
+                  }
+                  
+               }
+               %>
+               </tbody>   
+            <%
+         } else {
+         %>
+         <tbody>
+         <%
+            ArrayList<QnaDTO> arr=qdao.qnaList(cp, listSize, id);
+            if (arr==null||arr.size()==0) {
+               %>
+               <tr>
+                  <td colspan="4" align="center">등록된 게시글이 없습니다.</td>
+               </tr>
+               <%
+            } else {
+               for (int i=0;i<arr.size();i++){
+                  %>
+                  <tr class="q">
+                     <td class="b"><%=arr.get(i).getIdx()%></td>
+                     <td></td>
+                     <td class="a">
+                     <% 
+                     for (int z=0;z<arr.get(i).getLev();z++){
+                        out.println("&nbsp;&nbsp;");
+                     }
+                     %>
+                     <a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>   
+                     <td><%=arr.get(i).getWritedate() %></td>
+                  </tr>
+               <%
+               }
+               
+            }
+            %></tbody><%
+         }
+            %>
+         </table>
+      </form>
+   </article>
 </section>
 <%@include file="/footer.jsp" %>
 </body>
