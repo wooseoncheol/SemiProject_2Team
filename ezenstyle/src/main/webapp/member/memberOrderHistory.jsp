@@ -110,7 +110,7 @@ font-size: 17px;
 		for(int i=0; i < arr.size(); i++){
 			if(arr.get(i).getRn() == 1){
 			%>
-				<tr class="g" onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>'">
+				<tr class="g" onclick="location.href='memberorderDetailList.jsp?detailorderdate=<%=arr.get(i).getDetailorderdate()%>&detailstate=<%=arr.get(i).getDel_state()%>'">
 				<td rowspan="5"><img src="/ezenstyle/goods/imgs/<%=arr.get(i).getG_nfile() %>" class="b"></td>
 				<td><a id ="subject1" ><%= arr.get(i).getG_name() %></a>
 				<% if(arr.get(i).getMax() >= 2){

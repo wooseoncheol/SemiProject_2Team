@@ -89,6 +89,8 @@ font-size: 13px;
 	String userid=(String)session.getAttribute("sid");
 	ArrayList<OrderDTO> arr=new ArrayList<OrderDTO>();
 	arr=odao.orderDetailList(userid,detailorderdate);
+	String detailstate_s = request.getParameter("detailstate");
+	int detailstate = Integer.parseInt(detailstate_s);
 %>
 <div id="box21"><h2>구매 상세 내역</h2></div>
 <table id="tablelist">
@@ -104,7 +106,16 @@ font-size: 13px;
 			<tr class="g"><td>수량 : <%=arr.get(i).getOrdernum() %>개 / <%=df.format(arr.get(i).getG_price() * arr.get(i).getOrdernum())%>원</td></tr>
 			<tr class="g"><td>사이즈 : <%= arr.get(i).getG_size()%></td></tr>
 			<tr class="g"><td>구매날짜 : <%=arr.get(i).getOrderdate() %></td></tr>
-			<tr class="gf"><td>배송 상태 : <%= arr.get(i).getO_state()%></td></tr>
+			<tr class="gf"><td>배송 상태 : 
+			
+			<% 
+				switch(detailstate){
+				case 0 : out.println(arr.get(i).getO_state());break;
+				case 1 : out.println("배송 시작");break;
+				case 2 : out.println("배송 중");break;
+				case 3 : out.println("배송 완료");break;
+				}
+			%></td></tr>
 			<%
 		}
 	}
