@@ -46,7 +46,7 @@ height: 50px;
 }
 
 .a{
-
+text-indent: 150px;
 text-align: left;
 
 }
@@ -71,6 +71,13 @@ border-radius: 7px;
 cursor: pointer;
 }
 </style>
+<script>
+function pwdCheck(aaa){
+	var pwd=aaa;
+	window.open('qnaCheck.jsp?idx='+aaa,'popup','width=500,height=220,top=400,left=400');
+}
+
+</script>
 </head>
 <%
 String id=(String)session.getAttribute("sid");
@@ -83,7 +90,6 @@ if(id==null){
 	<%
 	return;
 }
-int result4=ndao.mgrJudge(id);	
 %>
 <%
 int totalCnt=qdao.getTotalCnt();
@@ -112,15 +118,8 @@ if(cp%pageSize==0) {userGroup--;}
 				<thead>
 					<tr>
 						<th>TYPE</th>
-						<%if (result4>0) { 
-						%>	
 						<th style="text-align: left">ID</th>
-						<%
-						}  else {
-						%>
-						<th></th>
-						<% } %>
-						<th style="text-align: left">SUBJECT</th>
+						<th class="a">SUBJECT</th>
 						<th>DATE</th>
 					</tr>
 				</thead>
@@ -153,10 +152,6 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 						</td>
 					</tr>
 				</tfoot>
-			
-				<%
-			if (result4>0) {
-				%>
 				<tbody>
 				<%
 					ArrayList<QnaDTO> arr=qdao.qnaMgrList(cp, listSize);
@@ -178,7 +173,7 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 									out.println("&nbsp;&nbsp;");
 								}
 								%>
-								<a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>	
+								<a href="javascript:pwdCheck(<%=arr.get(i).getIdx()%>)"><%=arr.get(i).getSubject() %></a></td>	
 								<td><%=arr.get(i).getWritedate() %></td>
 							</tr>
 						<%
@@ -187,40 +182,6 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
 					}
 					%>
 					</tbody>	
-				<%
-			} else {
-			%>
-			<tbody>
-			<%
-				ArrayList<QnaDTO> arr=qdao.qnaList(cp, listSize, id);
-				if (arr==null||arr.size()==0) {
-					%>
-					<tr>
-						<td colspan="4" align="center">등록된 게시글이 없습니다.</td>
-					</tr>
-					<%
-				} else {
-					for (int i=0;i<arr.size();i++){
-						%>
-						<tr class="q">
-							<td class="b"><%=arr.get(i).getIdx()%></td>
-							<td></td>
-							<td class="a">
-							<% 
-							for (int z=0;z<arr.get(i).getLev();z++){
-								out.println("&nbsp;&nbsp;");
-							}
-							%>
-							<a href="qnaContent.jsp?idx=<%=arr.get(i).getIdx()%>"><%=arr.get(i).getSubject() %></a></td>	
-							<td><%=arr.get(i).getWritedate() %></td>
-						</tr>
-					<%
-					}
-					
-				}
-				%></tbody><%
-			}
-				%>
 			</table>
 		</form>
 	</article>
