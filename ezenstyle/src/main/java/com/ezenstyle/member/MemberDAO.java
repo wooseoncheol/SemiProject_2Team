@@ -144,7 +144,7 @@ public class MemberDAO {
 	public ArrayList<MemberDTO> getuserInfo(String id){
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="select idx, id as mid, name, substr(pwd,1,1)||lpad('*',3,'*') as mpwd, substr(email,1,3)||lpad('*',4,'*') as memail, substr(adr,1,3)||lpad('*',length(adr)-2,'*') as madr, substr(tel,1,4)||lpad('*',4,'*') as mtel, mgr from semi_member where id = ?";
+			String sql="select idx, id as mid, name, substr(pwd,1,1)||lpad('*',3,'*') as mpwd, substr(email,1,3)||lpad('*',4,'*') as memail, substr(adr,1,3)||lpad('*',4,'*') as madr, substr(tel,1,4)||lpad('*',4,'*') as mtel, mgr from semi_member where id = ?";
 			
 			ArrayList<MemberDTO> arr=new ArrayList<MemberDTO>();
 			ps = conn.prepareStatement(sql);
