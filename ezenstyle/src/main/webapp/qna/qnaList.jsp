@@ -86,21 +86,50 @@ if(id==null){
 int result4=ndao.mgrJudge(id);   
 %>
 <%
-int totalCnt=qdao.getTotalCnt();
-int listSize=10;
-int pageSize=5;
+int totalCnt=0;
+int listSize=0;
+int pageSize=0;
+int totalPage=0;
+int userGroup=0;
+int cp=0;
 
-String cp_s=request.getParameter("cp");
-if (cp_s==null||cp_s.equals("")){
-   cp_s="1";
+if (result4>0) {
+
+	totalCnt=qdao.getTotalMgrCnt();
+	listSize=10;
+	pageSize=5;
+	
+	String cp_s=request.getParameter("cp");
+	if (cp_s==null||cp_s.equals("")){
+	   cp_s="1";
+	}
+	cp=Integer.parseInt(cp_s);
+	
+	totalPage=totalCnt/listSize+1;
+	if(totalCnt%listSize==0) {totalPage--;}
+	
+	userGroup=cp/pageSize;
+	if(cp%pageSize==0) {userGroup--;}
+
+} else {
+	
+	totalCnt=qdao.getTotalCnt(id);
+	listSize=10;
+	pageSize=5;
+
+	String cp_s=request.getParameter("cp");
+	if (cp_s==null||cp_s.equals("")){
+	   cp_s="1";
+	}
+	cp=Integer.parseInt(cp_s);
+
+	totalPage=totalCnt/listSize+1;
+	if(totalCnt%listSize==0) {totalPage--;}
+
+	userGroup=cp/pageSize;
+	if(cp%pageSize==0) {userGroup--;}
+
 }
-int cp=Integer.parseInt(cp_s);
-
-int totalPage=totalCnt/listSize+1;
-if(totalCnt%listSize==0) {totalPage--;}
-
-int userGroup=cp/pageSize;
-if(cp%pageSize==0) {userGroup--;}
 %>
 <body>
 <%@ include file="/header.jsp" %>
@@ -195,7 +224,6 @@ if (userGroup!=(totalPage/pageSize-(totalPage%pageSize==0?1:0))) {
                   %>
                   <tr class="q">
                      <td class="b"><%=arr.get(i).getIdx()%></td>
-                     <td></td>
                      <td class="a">
                      <% 
                      for (int z=0;z<arr.get(i).getLev();z++){

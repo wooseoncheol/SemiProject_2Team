@@ -36,11 +36,38 @@ public class QnaDAO {
 	}
 	
 	/**총 게시물 수 관련 메서드_재영*/
-	public int getTotalCnt() {
+	public int getTotalMgrCnt() {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
 			String sql="select count(*) from semi_qna";
 			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			return count==0?1:count;	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 1;
+		} finally {
+			try {
+				if (rs!=null)rs.close();
+				if (ps!=null)ps.close();
+				if (conn!=null)conn.close();
+			} catch (Exception e2) {
+				
+			}
+		}
+		
+	}
+	
+	/**총 게시물 수 관련 메서드_재영*/
+	public int getTotalCnt(String id) {
+		try {
+			conn=com.ezenstyle.db.EzenDB.getConn();
+			String sql="select count(*) from semi_qna where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
 			rs=ps.executeQuery();
 			rs.next();
 			int count=rs.getInt(1);
@@ -276,13 +303,15 @@ public class QnaDAO {
 	}
 	
 	/**작성자 변경 메소드_재영*/
-	public int qnaChange(String id2, String id) {
+	public int qnaChange(String id2, int ref, int lev, int sunbun) {
 		try {
 			conn=com.ezenstyle.db.EzenDB.getConn();
-			String sql="update semi_qna set id=? where id=?";
+			String sql="update semi_qna set id=? where ref=? and lev=?+1 and sunbun=?+1";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id2);
-			ps.setString(2, id);
+			ps.setInt(2, ref);
+			ps.setInt(3, lev);
+			ps.setInt(4, sunbun);
 			int count=ps.executeUpdate();
 			return count;
 		} catch (Exception e) {

@@ -6,13 +6,11 @@
 <%
 int result=qdao.qnaReWrite(qdto);
 String msg=result>0?"답변 작성 완료":"답변 작성 실패";
-String id = qdto.getId();
+int ref = qdto.getRef();
+int lev = qdto.getLev();
+int sunbun = qdto.getSunbun();
 String id2 = request.getParameter("id2");
-
-System.out.println(id);
-System.out.println(id2);
-
-int count=qdao.qnaChange(id2, id);
+int count=qdao.qnaChange(id2, ref, lev, sunbun);
 if (count>0) {
 	System.out.println("성공");
 }
