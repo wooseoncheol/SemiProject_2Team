@@ -143,7 +143,7 @@ function formatPhoneNumber(input) {
 			<td><br>휴대전화</td>
 		</tr>
 		<tr>
-			<td><br><input type="text" name="tel" id="a" required="required"></td>
+			<td><br><input type="text" name="tel" id="a" required="required" onkeypress="return checkNumber(event)" onkeyup="formatPhoneNumber(this)" maxlength="13"></td>
 		</tr>
 		<tr>
 			<td><br><br><input type="submit" value="비밀번호 찾기" id="b">

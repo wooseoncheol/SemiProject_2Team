@@ -188,7 +188,8 @@ padding: .2em .3em;
 			}
 			%>
 			</li>
-			<li id="detail"><%=dto.getG_detail().replaceAll("\n", "<br>")%></li>
+			<%if(dto.getG_detail()==null||dto.getG_detail().equals("")){ }else{%>
+			<li id="detail"><%=dto.getG_detail().replaceAll("\n", "<br>")%></li><%} %>
 			</ul>
 			</td>
 		</tr>
