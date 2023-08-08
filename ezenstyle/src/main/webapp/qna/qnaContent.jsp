@@ -22,7 +22,7 @@ border-collapse: collapse;
 }
 
 table thead {
-height:50px;
+height:80px;
 }
 
 table thead th {
@@ -69,7 +69,9 @@ if (dto==null) {
 		<table>
 			<thead>
 				<tr>
-					<th><%=dto.getSubject() %></th>
+					<th colspan="2"><%=dto.getSubject() %></th>
+				</tr>
+				<tr>
 					<th><%=dto.getWritedate() %></th>
 					<th><%=dto.getId() %></th>
 				</tr>

@@ -20,7 +20,7 @@ border-collapse: collapse;
 }
 
 table thead {
-height:50px;
+height:80px;
 }
 
 table thead th {
@@ -71,7 +71,9 @@ if (dto==null) {
 		<table>
 			<thead>
 			<tr>
-				<th><%=dto.getSubject() %></th>
+				<th colspan="2"><%=dto.getSubject() %></th>
+			</tr>
+			<tr>
 				<th class="b">작성날짜: <%=dto.getWritedate() %></th>
 				<th class="a">조회수: <%=dto.getReadnum() %></th>
 			</tr>
