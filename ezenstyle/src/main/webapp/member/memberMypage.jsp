@@ -126,7 +126,7 @@ border-color: 1px solid white;
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 text-align: center;
-width: 300px;
+width: 180px;
 font-weight: bold;
 font-size: 18px;
 }
@@ -163,6 +163,7 @@ font-size: 20px;
 width : 30px;
 height : 30px;
 margin: auto 60px;
+background-color: #F0F0F0;
 }
 .imgmypage2 {
 background: url("/ezenstyle/img/pwd2.png") no-repeat;
@@ -193,11 +194,24 @@ cursor: pointer;
 margin: 0px auto;
 }
 .textmypage {
-text-indent: 40px;
 margin: auto 40px;
-float: left;
 }
-
+.vh {
+background-color: #F0F0F0;
+text-align: center;
+}
+.vh1{
+border-top-left-radius: 10px;
+}
+.vh2 {
+border-top-right-radius: 10px;
+}
+.vh3 {
+border-bottom-left-radius: 10px;
+}
+.vh4 {
+border-bottom-right-radius: 10px;
+}
 </style>
 <script>
 function checkNumber(event) {
@@ -253,7 +267,7 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 	<article>
 		<fieldset>
 			<legend>&nbsp;&nbsp;  내 정보 보기  &nbsp;&nbsp; </legend>
-			<table id="t123" >
+			<table id="t123">
 			<%
 				if(arr==null||arr.size()==0){
 				%>
@@ -273,21 +287,17 @@ MemberDTO dto1=m1dao.updateInfo1(sid,upwd);
 						<td class="tdmypage22"><%=dto.getId()%> </td>
 						</tr>
 						<tr class="trnot"></tr>
-						<tr>
-						<td colspan="4" class="tdmypage3"> 
-						<img class="imgmypage" src="/ezenstyle/img/number.png">
-						<img class="imgmypage" src="/ezenstyle/img/adr.png">
-						<img class="imgmypage" src="/ezenstyle/img/email.png">
-						<img class="imgmypage" src="/ezenstyle/img/pwd.png">
-						 </td>
+						<tr class="tdmypage3">
+						<td class="vh1"><img class="imgmypage" src="/ezenstyle/img/number.png"></td>
+						<td><img class="imgmypage" src="/ezenstyle/img/adr.png"></td>
+						<td><img class="imgmypage" src="/ezenstyle/img/email.png"></td>
+						<td class="vh2"><img class="imgmypage" src="/ezenstyle/img/pwd.png"></td>
 						</tr>
-						<tr >
-						<td colspan="4" class="tdmypage4"> 
-						<span class="textmypage"><%=arr.get(i).getTel() %></span>
-						<span class="textmypage"><%=arr.get(i).getAdr() %></span>
-						<span class="textmypage"><%=arr.get(i).getEmail() %></span>
-						<span class="textmypage"><%=arr.get(i).getPwd() %></span>
-						</td>
+						<tr  class="tdmypage4">
+						<td class="vh3"><%=arr.get(i).getTel() %></td>
+						<td class="textmypage"><%=arr.get(i).getAdr() %></td>
+						<td class="textmypage"><%=arr.get(i).getEmail() %></td>
+						<td class="vh4"><%=arr.get(i).getPwd() %></td>
 						</tr>
 						</tbody>
 						<%
