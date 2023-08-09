@@ -124,12 +124,17 @@ font-size: 17px;
 				<tr class="g"><td>배송지 : <%=arr.get(i).getAdr() %></td></tr>
 				<tr class="g"><td>배송상태 : 
 				<% 
-				switch(arr.get(i).getDel_state()){
-				case 0 : out.println(arr.get(i).getO_state());break;
-				case 1 : out.println("배송 시작");break;
-				case 2 : out.println("배송 중");break;
-				case 3 : out.println("배송 완료");break;
+				if(arr.get(i).getO_state().equals("결제 취소 요청")||arr.get(i).getO_state().equals("취소 완료")){
+					out.println(arr.get(i).getO_state());
+				}else{
+					switch(arr.get(i).getDel_state()){
+					case 0 : out.println(arr.get(i).getO_state());break;
+					case 1 : out.println("배송 시작");break;
+					case 2 : out.println("배송 중");break;
+					default : out.println("배송 완료");break;
+					}
 				}
+				
 				%></td></tr>
 				<tr><td><br></td></tr>
 				

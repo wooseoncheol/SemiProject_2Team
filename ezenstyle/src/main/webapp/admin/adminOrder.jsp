@@ -179,6 +179,12 @@ border-bottom: 3px solid #F0F0F0;
 					<td>취소 불가</td>
 					</tr>
 					<%
+				default : out.println("배송 완료");
+					%>
+					<tr class="g">
+					<td>취소 불가</td>
+					</tr>
+					<%
 				}
 				%>
 				

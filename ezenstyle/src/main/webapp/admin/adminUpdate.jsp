@@ -109,7 +109,7 @@ String category=request.getParameter("category");
 				</tr>
 				<tr class="a">
 					<td>상품명</td>
-					<td><input type="text" name="name" value=<%=name.replaceAll("nbsp", "\t") %>></td>
+					<td><input type="text" name="name" value=<%=name.replaceAll("nbsp", "&nbsp;") %>></td>
 				</tr>
 				<tr class="a">	
 					<td>가격</td>

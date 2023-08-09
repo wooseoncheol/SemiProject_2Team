@@ -109,12 +109,16 @@ font-size: 13px;
 			<tr class="gf"><td>배송 상태 : 
 			
 			<% 
+			if(arr.get(i).getO_state().equals("결제 취소 요청")||arr.get(i).getO_state().equals("취소 완료")){
+				out.println(arr.get(i).getO_state());
+			}else{
 				switch(detailstate){
 				case 0 : out.println(arr.get(i).getO_state());break;
 				case 1 : out.println("배송 시작");break;
 				case 2 : out.println("배송 중");break;
-				case 3 : out.println("배송 완료");break;
+				default : out.println("배송 완료");break;
 				}
+			}
 			%></td></tr>
 			<%
 		}
