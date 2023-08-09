@@ -140,11 +140,11 @@ function adminDelete(aaa) {
 					<td>가격:<%=df.format(arr.get(i).getG_price() ) %>원&nbsp;&nbsp;재고: <%=arr.get(i).getG_stock() %></td>
 				</tr>
 				<tr class="h">
-					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx() %>
-					&name=<%=arr.get(i).getG_name() %>&color=<%=arr.get(i).getG_color() %>
-					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock() %>
+					<td colspan="3"><a href="adminUpdate.jsp?idx=<%=arr.get(i).getIdx()%>
+					&name=<%=arr.get(i).getG_name().replaceAll(" ", "nbsp") %>&color=<%=arr.get(i).getG_color()%>
+					&size=<%=arr.get(i).getG_size() %>&stock=<%=arr.get(i).getG_stock()%>
 					&price=<%=arr.get(i).getG_price() %>&detail=<%=arr.get(i).getG_detail()%>
-					&nfile=<%=arr.get(i).getG_nfile() %>&category=<%=arr.get(i).getG_category() %>">수정</a>&nbsp;&nbsp;&nbsp;
+					&nfile=<%=arr.get(i).getG_nfile() %>&category=<%=arr.get(i).getG_category()%>">수정</a>&nbsp;&nbsp;&nbsp;
 					<a onclick="adminDelete('<%=arr.get(i).getIdx() %>')" style="cursor:pointer;">삭제</a></td>
 				</tr>
 		<%

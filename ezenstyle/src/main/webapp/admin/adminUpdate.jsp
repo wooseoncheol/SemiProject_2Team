@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,7 +109,7 @@ String category=request.getParameter("category");
 				</tr>
 				<tr class="a">
 					<td>상품명</td>
-					<td><input type="text" name="name" value=<%=name %>></td>
+					<td><input type="text" name="name" value=<%=name.replaceAll("nbsp", "\t") %>></td>
 				</tr>
 				<tr class="a">	
 					<td>가격</td>
