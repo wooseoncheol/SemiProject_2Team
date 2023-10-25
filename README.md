@@ -1,4 +1,4 @@
-<h2>※프로젝트 이름</h2>
+<div style="font-siz:300px;">※프로젝트 이름</h2>
 <div>EZEN STYLE</div>
 
 <h2>※프로젝트 소개</h2>
